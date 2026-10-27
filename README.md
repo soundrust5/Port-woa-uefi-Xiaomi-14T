@@ -1,3 +1,5 @@
+<img align="right" src="assets/xiaomi-14t.png" width="300" alt="Xiaomi 14T">
+
 # UEFI & Windows on Xiaomi 14T
 
 **English** | [Русский](README.ru-RU.md)
@@ -14,3 +16,5 @@ Windows PE boots from UFS. CPU, display, touchscreen with multitouch, and UFS re
 - [Mu-Silicium source](mu/) · [Source details & licenses](SOURCE.md)
 
 Maintainer: [soundrust5](https://github.com/soundrust5).
+
+<br clear="both">
