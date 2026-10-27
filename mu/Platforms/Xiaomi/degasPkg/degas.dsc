@@ -1,0 +1,40 @@
+[Defines]
+ PLATFORM_NAME=degas
+ PLATFORM_GUID=5C9664ED-1952-48A3-9DB2-8B6F0281F96D
+ PLATFORM_VERSION=0.1
+ DSC_SPECIFICATION=0x00010005
+ OUTPUT_DIRECTORY=Build/degasPkg
+ SUPPORTED_ARCHITECTURES=AARCH64
+ BUILD_TARGETS=DEBUG|RELEASE
+ SKUID_IDENTIFIER=DEFAULT
+ FLASH_DEFINITION=degasPkg/degas.fdf
+ USE_CUSTOM_DISPLAY_DRIVER=1
+ USE_PHYSICAL_TIMER=1
+!include SiliciumPkg/SiliciumPkg.dsc.inc
+[BuildOptions]
+ *_*_AARCH64_CC_FLAGS = -march=armv8-a -mstrict-align -DDEGAS_BOOT_OBSERVATION=1
+[PcdsFixedAtBuild]
+ gArmTokenSpaceGuid.PcdSystemMemoryBase|0x40000000
+ gArmPlatformTokenSpaceGuid.PcdCPUCoresStackBase|0x40400000
+ gArmPlatformTokenSpaceGuid.PcdCPUCorePrimaryStackSize|0x40000
+ gArmPlatformTokenSpaceGuid.PcdCoreCount|1
+ gArmPlatformTokenSpaceGuid.PcdClusterCount|1
+ gArmTokenSpaceGuid.PcdGicDistributorBase|0x0c400000
+ gArmTokenSpaceGuid.PcdGicRedistributorsBase|0x0c440000
+ gArmTokenSpaceGuid.PcdArmArchTimerSecIntrNum|29
+ gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|30
+ gArmTokenSpaceGuid.PcdArmArchTimerVirtIntrNum|27
+ gArmTokenSpaceGuid.PcdArmArchTimerHypIntrNum|26
+ gSiliciumPkgTokenSpaceGuid.PcdFrameBufferWidth|1220
+ gSiliciumPkgTokenSpaceGuid.PcdFrameBufferHeight|2712
+ gSiliciumPkgTokenSpaceGuid.PcdFrameBufferColorDepth|32
+ gSiliciumPkgTokenSpaceGuid.PcdFrameBufferPixelsPerScanLine|1248
+[LibraryClasses]
+  ArmSmcLib|MdePkg/Library/ArmSmcLib/ArmSmcLib.inf
+ MemoryMapLib|degasPkg/Library/MemoryMapLib/MemoryMapLib.inf
+ SerialPortLib|degasPkg/Library/RamSerialPortLib/RamSerialPortLib.inf
+[Components]
+ degasPkg/Drivers/DegasAcpiDxe/DegasAcpiDxe.inf
+ degasPkg/Applications/UfsFileProbe/UfsFileProbe.inf
+ degasPkg/Drivers/DegasGopDxe/DegasGopDxe.inf
+ degasPkg/Drivers/CheckpointDxe/CheckpointDxe.inf

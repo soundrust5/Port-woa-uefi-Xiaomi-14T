@@ -1,0 +1,15 @@
+{
+  "upstream": "https://github.com/Project-Silicium/Mu-Silicium",
+  "upstream_revision": "964a886f3d1ad3f35137435b11287c8d6827437b",
+  "snapshot_date": "2026-10-27",
+  "submodules": {
+    "Binaries": "b36d6529fa2a51c602bffefdee545feb098f2bde",
+    "Common/Mu": "d491bf02de6974425e247e4b7d33a99b6d66d225",
+    "Common/Mu_OEM_Sample": "841317731fb907cd366222d831a96ab0974b4101",
+    "Mu_Basecore": "7e2a44a7129856365a8d71eff83de38877b47e66",
+    "Silicium-ACPI": "94896d455b758765f9cef0dc60e1bc447f53bee5",
+    "Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl": "67b5686b4419b4cb8caa502711c41815f5279751"
+  },
+  "local_basecore_changes": "source-patches/Mu_Basecore/",
+  "scope": "Tracked Mu-Silicium working files, degas platform sources, required touch headers; no build products or phone dumps."
+}

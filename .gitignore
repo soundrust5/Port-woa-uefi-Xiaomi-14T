@@ -1,0 +1,8 @@
+/_staging/
+**/Build/
+**/__pycache__/
+*.pfx
+*.p12
+*.dmp
+*.wim
+*.iso

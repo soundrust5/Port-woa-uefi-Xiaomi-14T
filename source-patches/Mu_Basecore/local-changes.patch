@@ -1,0 +1,541 @@
+diff --git a/ArmPkg/Drivers/ArmGicDxe/GicV3/ArmGicV3Dxe.c b/ArmPkg/Drivers/ArmGicDxe/GicV3/ArmGicV3Dxe.c
+index 95d734c..90fb6c0 100644
+--- a/ArmPkg/Drivers/ArmGicDxe/GicV3/ArmGicV3Dxe.c
++++ b/ArmPkg/Drivers/ArmGicDxe/GicV3/ArmGicV3Dxe.c
+@@ -13,6 +13,10 @@
+ #include "Protocol/HardwareInterrupt.h"
+ #include "Uefi/UefiBaseType.h"
+ 
++#if OP12_WINDOWS_BOOT && defined(MDE_CPU_AARCH64)
++#include "Op12GicHandoff.h"
++#endif
++
+ #define ARM_GIC_DEFAULT_PRIORITY  0x80
+ 
+ // In GICv3, there are 2 x 64KB frames:
+@@ -736,7 +740,11 @@ GicV3ExitBootServicesEvent (
+   ArmGicV3DisableInterruptInterface ();
+ 
+   // Disable Gic Distributor
++#if OP12_WINDOWS_BOOT && defined(MDE_CPU_AARCH64)
++  Op12GicDisableGroups (mGicDistributorBase);
++#else
+   ArmGicDisableDistributor (mGicDistributorBase);
++#endif
+ }
+ 
+ /**
+diff --git a/ArmPkg/Drivers/CpuDxe/CpuDxe.c b/ArmPkg/Drivers/CpuDxe/CpuDxe.c
+index be76ed1..68a2e0c 100644
+--- a/ArmPkg/Drivers/CpuDxe/CpuDxe.c
++++ b/ArmPkg/Drivers/CpuDxe/CpuDxe.c
+@@ -443,7 +443,14 @@ CpuDxeInitialize (
+   }
+ 
+   // MU_CHANGE [START]: Only install Memory Attribute Protocol if policy is enabled
+-  if (gDxeMps.InstallMemoryAttributeProtocol) {
++  if (gDxeMps.InstallMemoryAttributeProtocol
++#if defined (OP12_WINDOWS_BOOT) && (OP12_WINDOWS_BOOT == 1)
++      // Waffle starts this CPU driver only on its Windows path. Its null
++      // protection policy otherwise hides the protocol needed by KEP.
++      // Expose the existing implementation without enabling other policies.
++      || TRUE
++#endif
++      ) {
+     Status = gBS->InstallMultipleProtocolInterfaces (
+                     &CpuHandle,
+                     &gEfiMemoryAttributeProtocolGuid,
+diff --git a/ArmPkg/Drivers/TimerDxe/TimerDxe.c b/ArmPkg/Drivers/TimerDxe/TimerDxe.c
+index b7f5ecc..a592250 100644
+--- a/ArmPkg/Drivers/TimerDxe/TimerDxe.c
++++ b/ArmPkg/Drivers/TimerDxe/TimerDxe.c
+@@ -37,6 +37,9 @@ UINT64  mElapsedPeriod = 1;
+ 
+ // Cached copy of the Hardware Interrupt protocol instance
+ EFI_HARDWARE_INTERRUPT_PROTOCOL  *gInterrupt = NULL;
++#if OP12_WINDOWS_BOOT && defined(MDE_CPU_AARCH64)
++#include "Op12TimerProbe.inc"
++#endif
+ 
+ /**
+   This function registers the handler NotifyFunction so it is called every time
+@@ -292,6 +295,9 @@ TimerInterruptHandler (
+   EFI_TPL  OriginalTPL;
+   UINT64   CurrentValue;
+   UINT64   CompareValue;
++#if OP12_WINDOWS_BOOT && defined(MDE_CPU_AARCH64)
++  if (Op12TimerObserve(Source)) return;
++#endif
+ 
+   //
+   // DXE core uses this callback for the EFI timer tick. The DXE core uses locks
+@@ -430,6 +436,11 @@ TimerInitialize (
+                   );
+   ASSERT_EFI_ERROR (Status);
+ 
++#if OP12_WINDOWS_BOOT && defined(MDE_CPU_AARCH64)
++  Status = gBS->InstallProtocolInterface (&Handle, &mOp12TimerProbeGuid,
++                                         EFI_NATIVE_INTERFACE, &mOp12TimerProbe);
++  if (EFI_ERROR(Status)) return Status;
++#endif
+   // Everything is ready, unmask and enable timer interrupts
+   TimerCtrlReg = ARM_ARCH_TIMER_ENABLE;
+   ArmGenericTimerSetTimerCtrlReg (TimerCtrlReg);
+diff --git a/ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.c b/ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.c
+index fbbecdc..9378c27 100644
+--- a/ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.c
++++ b/ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.c
+@@ -59,7 +59,14 @@ ArmGenericTimerGetTimerFreq (
+   VOID
+   )
+ {
+-  return ArmReadCntFrq ();
++  UINTN Freq;
++
++  Freq = ArmReadCntFrq ();
++  if (!Freq) {
++    Freq = FixedPcdGet64 (PcdTimerFreqOverwrite);
++  }
++
++  return Freq;
+ }
+ 
+ UINTN
+diff --git a/ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.inf b/ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.inf
+index c37f272..0462650 100644
+--- a/ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.inf
++++ b/ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.inf
+@@ -22,7 +22,12 @@
+ [Packages]
+   MdePkg/MdePkg.dec
+   ArmPkg/ArmPkg.dec
++  SiliciumPkg/SiliciumPkg.dec
+ 
+ [LibraryClasses]
+   ArmLib
+   BaseLib
++  PcdLib
++
++[FixedPcd]
++  gSiliciumPkgTokenSpaceGuid.PcdTimerFreqOverwrite
+diff --git a/ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.c b/ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.c
+index 893125a..4b1018b 100644
+--- a/ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.c
++++ b/ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.c
+@@ -59,7 +59,14 @@ ArmGenericTimerGetTimerFreq (
+   VOID
+   )
+ {
+-  return ArmReadCntFrq ();
++  UINTN Freq;
++
++  Freq = ArmReadCntFrq ();
++  if (!Freq) {
++    Freq = FixedPcdGet64 (PcdTimerFreqOverwrite);
++  }
++
++  return Freq;
+ }
+ 
+ UINTN
+diff --git a/ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.inf b/ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.inf
+index 89fcb71..5c29ece 100644
+--- a/ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.inf
++++ b/ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.inf
+@@ -22,7 +22,12 @@
+ [Packages]
+   MdePkg/MdePkg.dec
+   ArmPkg/ArmPkg.dec
++  SiliciumPkg/SiliciumPkg.dec
+ 
+ [LibraryClasses]
+   ArmLib
+   BaseLib
++  PcdLib
++
++[FixedPcd]
++  gSiliciumPkgTokenSpaceGuid.PcdTimerFreqOverwrite
+diff --git a/BaseTools/Source/C/EfiRom/EfiRom.c b/BaseTools/Source/C/EfiRom/EfiRom.c
+index fa7bf0e..854dfc6 100644
+--- a/BaseTools/Source/C/EfiRom/EfiRom.c
++++ b/BaseTools/Source/C/EfiRom/EfiRom.c
+@@ -44,7 +44,7 @@ Returns:
+   FILE_LIST *FList;
+   UINT32    TotalSize;
+   UINT32    Size;
+-  CHAR8     *Ptr0;
++  CONST CHAR8 *Ptr0;
+ 
+   SetUtilityName(UTILITY_NAME);
+ 
+diff --git a/MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenu.c b/MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenu.c
+index ef19319..72b399b 100644
+--- a/MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenu.c
++++ b/MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenu.c
+@@ -6,6 +6,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
+ 
+ **/
+ 
++#include <Library/UefiRuntimeServicesTableLib.h>
++
+ #include "BootManagerMenu.h"
+ 
+ EFI_HII_HANDLE  gStringPackHandle;
+@@ -344,9 +346,9 @@ IgnoreBootOption (
+   }
+ 
+   //
+-  // Ignore the hidden/inactive boot option.
++  // Ignore "UEFI Misc Device" boot options.
+   //
+-  if (((BootOption->Attributes & LOAD_OPTION_HIDDEN) != 0) || ((BootOption->Attributes & LOAD_OPTION_ACTIVE) == 0)) {
++  if (BootOption->Description != NULL && StrnCmp (BootOption->Description, L"UEFI Misc Device", 16) == 0) {
+     return TRUE;
+   }
+ 
+@@ -379,7 +381,7 @@ InitializeBootMenuData (
+   }
+ 
+   BootMenuData->TitleToken[0] = STRING_TOKEN (STR_BOOT_POPUP_MENU_TITLE_STRING);
+-  BootMenuData->PtrTokens     = AllocateZeroPool (BootOptionCount * sizeof (EFI_STRING_ID));
++  BootMenuData->PtrTokens     = AllocateZeroPool ((BootOptionCount + 2) * sizeof (EFI_STRING_ID));
+   ASSERT (BootMenuData->PtrTokens != NULL);
+ 
+   //
+@@ -399,10 +401,19 @@ InitializeBootMenuData (
+                                             );
+   }
+ 
++  //
++  // Add Power Off Option
++  //
++  BootMenuData->PtrTokens[StrIndex++] = HiiSetString (gStringPackHandle, 0, L"Power Off", NULL);
++
++  //
++  // Add Exit Option
++  //
++  BootMenuData->PtrTokens[StrIndex++] = HiiSetString (gStringPackHandle, 0, L"Exit", NULL);
++
+   BootMenuData->ItemCount    = StrIndex;
+   BootMenuData->HelpToken[0] = STRING_TOKEN (STR_BOOT_POPUP_MENU_HELP1_STRING);
+   BootMenuData->HelpToken[1] = STRING_TOKEN (STR_BOOT_POPUP_MENU_HELP2_STRING);
+-  BootMenuData->HelpToken[2] = STRING_TOKEN (STR_BOOT_POPUP_MENU_HELP3_STRING);
+   InitializeBootMenuScreen (BootMenuData);
+   BootMenuData->SelectItem = 0;
+   return EFI_SUCCESS;
+@@ -468,7 +479,7 @@ BootMenuSelectItem (
+       BootMenuData->ScrollBarControl.LastItem  = WantSelectItem;
+     }
+ 
+-    gST->ConOut->SetAttribute (gST->ConOut, EFI_WHITE | EFI_BACKGROUND_BLUE);
++    gST->ConOut->SetAttribute (gST->ConOut, EFI_WHITE | EFI_BACKGROUND_BLACK);
+     FirstItem   = BootMenuData->ScrollBarControl.FirstItem;
+     LastItem    = BootMenuData->ScrollBarControl.LastItem;
+     TopShadeNum = 0;
+@@ -539,7 +550,7 @@ BootMenuSelectItem (
+   //
+   FirstItem = BootMenuData->ScrollBarControl.FirstItem;
+   if ((WantSelectItem != BootMenuData->SelectItem) && !RePaintItems) {
+-    gST->ConOut->SetAttribute (gST->ConOut, EFI_WHITE | EFI_BACKGROUND_BLUE);
++    gST->ConOut->SetAttribute (gST->ConOut, EFI_WHITE | EFI_BACKGROUND_BLACK);
+     String   = HiiGetString (gStringPackHandle, BootMenuData->PtrTokens[BootMenuData->SelectItem], NULL);
+     PrintCol = StartCol  + 1;
+     PrintRow = StartRow + 3 + BootMenuData->SelectItem - FirstItem;
+@@ -550,7 +561,7 @@ BootMenuSelectItem (
+   //
+   // Print want to select item
+   //
+-  gST->ConOut->SetAttribute (gST->ConOut, EFI_WHITE | EFI_BACKGROUND_BLACK);
++  gST->ConOut->SetAttribute (gST->ConOut, EFI_BLACK | EFI_BACKGROUND_LIGHTGRAY);
+   String   = HiiGetString (gStringPackHandle, BootMenuData->PtrTokens[WantSelectItem], NULL);
+   PrintCol = StartCol  + 1;
+   PrintRow = StartRow + TITLE_TOKEN_COUNT + 2 + WantSelectItem - FirstItem;
+@@ -589,7 +600,7 @@ DrawBootPopupMenu (
+   gST->ConOut->ClearScreen (gST->ConOut);
+ 
+   SavedAttribute = gST->ConOut->Mode->Attribute;
+-  gST->ConOut->SetAttribute (gST->ConOut, EFI_WHITE | EFI_BACKGROUND_BLUE);
++  gST->ConOut->SetAttribute (gST->ConOut, EFI_WHITE | EFI_BACKGROUND_BLACK);
+   Width              = BootMenuData->MenuScreen.Width;
+   StartCol           = BootMenuData->MenuScreen.StartCol;
+   StartRow           = BootMenuData->MenuScreen.StartRow;
+@@ -754,6 +765,16 @@ BootFromSelectOption (
+       break;
+     }
+   }
++
++  // Power Off
++  if (SelectItem == ItemNum) {
++    gRT->ResetSystem (EfiResetShutdown, EFI_SUCCESS, 0, NULL);
++  }
++
++  // Exit
++  if (SelectItem == ItemNum + 1) {
++    gBS->Exit (gImageHandle, EFI_SUCCESS, 0, NULL);
++  }
+ }
+ 
+ /**
+diff --git a/MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenu.h b/MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenu.h
+index 876237d..2aa50e2 100644
+--- a/MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenu.h
++++ b/MdeModulePkg/Application/BootManagerMenuApp/BootManagerMenu.h
+@@ -23,7 +23,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
+ #include <Protocol/BootLogo.h>
+ 
+ #define TITLE_TOKEN_COUNT  1
+-#define HELP_TOKEN_COUNT   3
++#define HELP_TOKEN_COUNT   2
+ 
+ typedef struct _BOOT_MENU_SCREEN {
+   UINTN    StartCol;
+diff --git a/MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBus.h b/MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBus.h
+index 3966812..8405bc3 100644
+--- a/MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBus.h
++++ b/MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBus.h
+@@ -134,10 +134,10 @@ typedef struct _USB_HUB_API    USB_HUB_API;
+ #define USB_CLEAR_FEATURE_REQUEST_TIMEOUT  10
+ 
+ //
+-// Bus raises TPL to TPL_NOTIFY to serialize all its operations
++// Bus raises TPL to TPL_CALLBACK to serialize all its operations
+ // to protect shared data structures.
+ //
+-#define  USB_BUS_TPL  TPL_NOTIFY
++#define  USB_BUS_TPL  TPL_CALLBACK
+ 
+ #define  USB_INTERFACE_SIGNATURE  SIGNATURE_32 ('U', 'S', 'B', 'I')
+ #define  USB_BUS_SIGNATURE        SIGNATURE_32 ('U', 'S', 'B', 'B')
+diff --git a/MdeModulePkg/Core/Dxe/DxeMain/DxeMain.c b/MdeModulePkg/Core/Dxe/DxeMain/DxeMain.c
+index f2ef036..bba8e5d 100644
+--- a/MdeModulePkg/Core/Dxe/DxeMain/DxeMain.c
++++ b/MdeModulePkg/Core/Dxe/DxeMain/DxeMain.c
+@@ -826,6 +826,9 @@ CoreExitBootServices (
+   // Notify other drivers that we are exiting boot services.
+   //
+   CoreNotifySignalList (&gEfiEventExitBootServicesGuid);
++#if defined (DEGAS_BOOT_OBSERVATION) && DEGAS_BOOT_OBSERVATION
++  DEBUG ((DEBUG_ERROR, "DEGAS EBS core callbacks complete\n"));
++#endif
+ 
+   //
+   // Report that ExitBootServices() has been called
+@@ -836,6 +839,9 @@ CoreExitBootServices (
+     );
+ 
+   MemoryProtectionExitBootServicesCallback ();
++#if defined (DEGAS_BOOT_OBSERVATION) && DEGAS_BOOT_OBSERVATION
++  DEBUG ((DEBUG_ERROR, "DEGAS EBS core memory protection complete\n"));
++#endif
+ 
+   //
+   // Disable interrupt of Debug timer.
+@@ -874,6 +880,12 @@ CoreExitBootServices (
+   //
+   gRuntime->AtRuntime = TRUE;
+ 
++#if defined (DEGAS_BOOT_OBSERVATION) && DEGAS_BOOT_OBSERVATION
++  // RAM-only DebugLib on degas: no Boot Services, allocations or disk access.
++  // This is the final firmware boundary, not proof the kernel has started.
++  DEBUG ((DEBUG_ERROR, "DEGAS EBS core ready-to-return success\n"));
++#endif
++
+   return Status;
+ }
+ 
+diff --git a/MdeModulePkg/Core/RuntimeDxe/Runtime.c b/MdeModulePkg/Core/RuntimeDxe/Runtime.c
+index c66ed71..15d1d4d 100644
+--- a/MdeModulePkg/Core/RuntimeDxe/Runtime.c
++++ b/MdeModulePkg/Core/RuntimeDxe/Runtime.c
+@@ -40,7 +40,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
+ 
+ **/
+ 
+-#include "Runtime.h"
++#include "Runtime.h"
++#include "Op12Trace.h"
+ 
+ //
+ // Global Variables
+@@ -256,14 +257,18 @@ RuntimeDriverSetVirtualAddressMap (
+   // Can only switch to virtual addresses once the memory map is locked down,
+   // and can only set it once
+   //
+-  if (!mRuntime.AtRuntime || mRuntime.VirtualMode) {
+-    return EFI_UNSUPPORTED;
+-  }
++  if (!mRuntime.AtRuntime || mRuntime.VirtualMode) {
++    return EFI_UNSUPPORTED;
++  }
++
++  Op12TraceLocate ();
++  Op12TraceMark (0x10, MemoryMapSize, DescriptorSize);
+ 
+   //
+   // Only understand the original descriptor format
+   //
+-  if ((DescriptorVersion != EFI_MEMORY_DESCRIPTOR_VERSION) || (DescriptorSize < sizeof (EFI_MEMORY_DESCRIPTOR))) {
++  if ((DescriptorVersion != EFI_MEMORY_DESCRIPTOR_VERSION) || (DescriptorSize < sizeof (EFI_MEMORY_DESCRIPTOR))) {
++    Op12TraceMark (0xff, DescriptorVersion, EFI_INVALID_PARAMETER);
+     return EFI_INVALID_PARAMETER;
+   }
+ 
+@@ -278,7 +283,8 @@ RuntimeDriverSetVirtualAddressMap (
+   //
+   mVirtualMapDescriptorSize = DescriptorSize;
+   mVirtualMapMaxIndex       = MemoryMapSize / DescriptorSize;
+-  mVirtualMap               = VirtualMap;
++  mVirtualMap               = VirtualMap;
++  Op12TraceMark (0x11, (UINTN)VirtualMap, 0);
+ 
+   //
+   // ReporstStatusCodeLib will check and make sure this service can be called in runtime mode.
+@@ -305,10 +311,12 @@ RuntimeDriverSetVirtualAddressMap (
+       // of the field doesn't match the natural language description. Therefore
+       // we need an explicit cast here.
+       //
+-      RuntimeEvent->NotifyFunction (
++      Op12TraceMark (0x20, (UINTN)RuntimeEvent->NotifyFunction, 0);
++      RuntimeEvent->NotifyFunction (
+                       (EFI_EVENT)RuntimeEvent->Event,
+-                      RuntimeEvent->NotifyContext
+-                      );
++                      RuntimeEvent->NotifyContext
++                      );
++      Op12TraceMark (0x21, (UINTN)RuntimeEvent->NotifyFunction, 0);
+     }
+   }
+ 
+@@ -322,7 +330,8 @@ RuntimeDriverSetVirtualAddressMap (
+     //
+     if (mMyImageBase != RuntimeImage->ImageBase) {
+       VirtImageBase = (EFI_PHYSICAL_ADDRESS)(UINTN)RuntimeImage->ImageBase;
+-      Status        = RuntimeDriverConvertPointer (0, (VOID **)&VirtImageBase);
++      Status        = RuntimeDriverConvertPointer (0, (VOID **)&VirtImageBase);
++      Op12TraceMark (0x30, (UINTN)RuntimeImage->ImageBase, Status);
+       ASSERT_EFI_ERROR (Status);
+ 
+       PeCoffLoaderRelocateImageForRuntime (
+@@ -332,7 +341,8 @@ RuntimeDriverSetVirtualAddressMap (
+         RuntimeImage->RelocationData
+         );
+ 
+-      InvalidateInstructionCacheRange (RuntimeImage->ImageBase, (UINTN)RuntimeImage->ImageSize);
++      InvalidateInstructionCacheRange (RuntimeImage->ImageBase, (UINTN)RuntimeImage->ImageSize);
++      Op12TraceMark (0x31, (UINTN)RuntimeImage->ImageBase, 0);
+     }
+   }
+ 
+@@ -340,7 +350,8 @@ RuntimeDriverSetVirtualAddressMap (
+   // Convert all the Runtime Services except ConvertPointer() and SetVirtualAddressMap()
+   // and recompute the CRC-32
+   //
+-  RuntimeDriverConvertInternalPointer ((VOID **)&gRT->GetTime);
++  Op12TraceMark (0x40, 0, 0);
++  RuntimeDriverConvertInternalPointer ((VOID **)&gRT->GetTime);
+   RuntimeDriverConvertInternalPointer ((VOID **)&gRT->SetTime);
+   RuntimeDriverConvertInternalPointer ((VOID **)&gRT->GetWakeupTime);
+   RuntimeDriverConvertInternalPointer ((VOID **)&gRT->SetWakeupTime);
+@@ -361,7 +372,8 @@ RuntimeDriverSetVirtualAddressMap (
+   //
+   // Convert the runtime fields of the EFI System Table and recompute the CRC-32
+   //
+-  RuntimeDriverConvertInternalPointer ((VOID **)&gST->FirmwareVendor);
++  Op12TraceMark (0x41, 0, 0);
++  RuntimeDriverConvertInternalPointer ((VOID **)&gST->FirmwareVendor);
+   RuntimeDriverConvertInternalPointer ((VOID **)&gST->ConfigurationTable);
+   RuntimeDriverConvertInternalPointer ((VOID **)&gST->RuntimeServices);
+   RuntimeDriverCalculateEfiHdrCrc (&gST->Hdr);
+@@ -374,7 +386,9 @@ RuntimeDriverSetVirtualAddressMap (
+   // mVirtualMap is only valid during SetVirtualAddressMap() call
+   //
+   mVirtualMap         = NULL;
+-  mVirtualMapMaxIndex = 0;
++  mVirtualMapMaxIndex = 0;
++
++  Op12TraceMark (0x50, mOp12TraceKepBase, EFI_SUCCESS);
+ 
+   return EFI_SUCCESS;
+ }
+diff --git a/MdeModulePkg/Library/FrameBufferBltLib/FrameBufferBltLib.c b/MdeModulePkg/Library/FrameBufferBltLib/FrameBufferBltLib.c
+index 432577b..5c3e60d 100644
+--- a/MdeModulePkg/Library/FrameBufferBltLib/FrameBufferBltLib.c
++++ b/MdeModulePkg/Library/FrameBufferBltLib/FrameBufferBltLib.c
+@@ -588,19 +588,27 @@ FrameBufferBltLibVideoToVideo (
+   //
+   // Video to Video: Source is Video, destination is Video
+   //
+-  if (SourceY + Height > Configure->Height) {
++  if ((SourceY >= Configure->Height) ||
++      (Height > Configure->Height - SourceY))
++  {
+     return RETURN_INVALID_PARAMETER;
+   }
+ 
+-  if (SourceX + Width > Configure->Width) {
++  if ((SourceX >= Configure->Width) ||
++      (Width > Configure->Width - SourceX))
++  {
+     return RETURN_INVALID_PARAMETER;
+   }
+ 
+-  if (DestinationY + Height > Configure->Height) {
++  if ((DestinationY >= Configure->Height) ||
++      (Height > Configure->Height - DestinationY))
++  {
+     return RETURN_INVALID_PARAMETER;
+   }
+ 
+-  if (DestinationX + Width > Configure->Width) {
++  if ((DestinationX >= Configure->Width) ||
++      (Width > Configure->Width - DestinationX))
++  {
+     return RETURN_INVALID_PARAMETER;
+   }
+ 
+@@ -623,8 +631,8 @@ FrameBufferBltLibVideoToVideo (
+     //
+     // Copy from last line to avoid source is corrupted by copying
+     //
+-    Source      += Height * LineStride;
+-    Destination += Height * LineStride;
++    Source      += (Height - 1) * LineStride;
++    Destination += (Height - 1) * LineStride;
+     LineStride   = -LineStride;
+   }
+ 
+diff --git a/SecurityPkg/Library/AuthVariableLib/AuthService.c b/SecurityPkg/Library/AuthVariableLib/AuthService.c
+index 7f7c91e..aa8632a 100644
+--- a/SecurityPkg/Library/AuthVariableLib/AuthService.c
++++ b/SecurityPkg/Library/AuthVariableLib/AuthService.c
+@@ -29,6 +29,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
+ 
+ #include <Protocol/VariablePolicy.h>
+ #include <Library/VariablePolicyLib.h>
++#include <Library/UefiRuntimeLib.h>
+ 
+ #define SHA_DIGEST_SIZE_MAX  SHA512_DIGEST_SIZE
+ 
+@@ -2506,6 +2507,10 @@ VerifyTimeBasedPayloadAndUpdate (
+   AUTH_VARIABLE_INFO             OrgVariableInfo;
+   BOOLEAN                        IsDel;
+ 
++  if (EfiAtRuntime ()) {
++    return EFI_WRITE_PROTECTED;
++  }
++
+   ZeroMem (&OrgVariableInfo, sizeof (OrgVariableInfo));
+   FindStatus = mAuthVarLibContextIn->FindVariable (
+                                        VariableName,
+diff --git a/SecurityPkg/Library/AuthVariableLib/AuthVariableLib.inf b/SecurityPkg/Library/AuthVariableLib/AuthVariableLib.inf
+index 0b0f0a9..0f605de 100644
+--- a/SecurityPkg/Library/AuthVariableLib/AuthVariableLib.inf
++++ b/SecurityPkg/Library/AuthVariableLib/AuthVariableLib.inf
+@@ -43,6 +43,7 @@
+   BaseCryptLib
+   PlatformSecureLib
+   VariablePolicyLib
++  UefiRuntimeLib
+ 
+ # MU_CHANGE [BEGIN] - TCBZ2506
+ [FeaturePcd]

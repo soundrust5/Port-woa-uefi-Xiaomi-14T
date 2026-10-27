@@ -1,0 +1,48 @@
+[Defines]
+ INF_VERSION=0x00010005
+ BASE_NAME=DegasCheckpointDxe
+ FILE_GUID=8637a751-179a-4e47-9367-a37133710e0e
+ MODULE_TYPE=DXE_DRIVER
+ ENTRY_POINT=CheckpointEntry
+[Sources]
+ Checkpoint.c
+[Packages]
+ MdePkg/MdePkg.dec
+ MdeModulePkg/MdeModulePkg.dec
+[LibraryClasses]
+ UefiDriverEntryPoint
+ UefiBootServicesTableLib
+ SerialPortLib
+ TimerLib
+ DebugLib
+ PrintLib
+ ArmSmcLib
+ ArmLib
+ CacheMaintenanceLib
+ BaseLib
+ IoLib
+ MemoryAllocationLib
+ BaseMemoryLib
+ DevicePathLib
+ UefiBootManagerLib
+[Protocols]
+ gEfiBdsArchProtocolGuid
+ gEfiGraphicsOutputProtocolGuid
+ gEfiTimerArchProtocolGuid
+ gEfiMetronomeArchProtocolGuid
+ gEfiBlockIoProtocolGuid
+ gEfiDevicePathProtocolGuid
+ gEfiPartitionInfoProtocolGuid
+ gEfiSimpleFileSystemProtocolGuid
+ gEfiLoadedImageProtocolGuid
+ gEfiSimpleTextOutProtocolGuid
+ gEfiDxeSmmReadyToLockProtocolGuid
+[Guids]
+ gEfiSmbiosTableGuid
+ gEfiSmbios3TableGuid
+ gEfiEndOfDxeEventGroupGuid
+ gEfiEventExitBootServicesGuid
+ gEfiEventBeforeExitBootServicesGuid
+ gEventExitBootServicesFailedGuid
+[Depex]
+ gEfiGraphicsOutputProtocolGuid AND gEfiTimerArchProtocolGuid AND gEfiMetronomeArchProtocolGuid

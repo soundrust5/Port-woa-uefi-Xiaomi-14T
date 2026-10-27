@@ -1,0 +1,43 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DegasGopDxe
+  FILE_GUID                      = 1E9377E4-F26B-467E-B249-AFC15E08D35F
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = RegisterFrameBuffer
+
+[Sources]
+  DegasGop.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SiliciumPkg/SiliciumPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  IoLib
+  TimerLib
+  CacheMaintenanceLib
+  DebugLib
+  FrameBufferBltLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  MemoryAllocationLib
+  MemoryMapHelperLib
+  BaseMemoryLib
+  PcdLib
+
+[FixedPcd]
+  gSiliciumPkgTokenSpaceGuid.PcdFrameBufferWidth
+  gSiliciumPkgTokenSpaceGuid.PcdFrameBufferHeight
+  gSiliciumPkgTokenSpaceGuid.PcdFrameBufferColorDepth
+  gSiliciumPkgTokenSpaceGuid.PcdFrameBufferPixelsPerScanLine
+
+[Protocols]
+  gEfiGraphicsOutputProtocolGuid
+  gEfiDevicePathProtocolGuid
+
+[Depex]
+  TRUE

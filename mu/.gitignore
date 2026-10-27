@@ -1,0 +1,10 @@
+Build
+Conf
+bootpayload.bin
+Mu-*.*
+__pycache__
+*.bin
+*.elf
+*:Zone.Identifier
+.vscode
+uuid

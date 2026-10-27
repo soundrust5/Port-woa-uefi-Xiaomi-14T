@@ -1,0 +1,12 @@
+[Defines]
+ INF_VERSION=0x00010005
+ BASE_NAME=DegasRamSerialPortLib
+ FILE_GUID=bf5e6212-2532-45ff-a0e6-4a172260a085
+ MODULE_TYPE=BASE
+ LIBRARY_CLASS=SerialPortLib
+[Sources]
+ RamSerialPortLib.c
+[Packages]
+ MdePkg/MdePkg.dec
+[LibraryClasses]
+ BaseLib

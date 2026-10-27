@@ -1,0 +1,26 @@
+[Defines]
+ INF_VERSION=0x0001001B
+ BASE_NAME=DegasAcpiDxe
+ FILE_GUID=6751F67A-2BB1-4C85-9D74-941D9F2BC2AD
+ MODULE_TYPE=DXE_DRIVER
+ ENTRY_POINT=DegasAcpiEntry
+[Sources]
+ DegasAcpiDxe.c
+ AcpiTablesGenerated.h
+[Packages]
+ MdePkg/MdePkg.dec
+[LibraryClasses]
+ UefiDriverEntryPoint
+ UefiBootServicesTableLib
+ BaseLib
+ BaseMemoryLib
+ DebugLib
+ ArmLib
+ ArmSmcLib
+ IoLib
+[Protocols]
+ gEfiAcpiTableProtocolGuid
+[Guids]
+ gEfiAcpiTableGuid
+[Depex]
+ gEfiAcpiTableProtocolGuid

@@ -32,7 +32,9 @@ The status describes development-device results, not a finished daily-use port. 
 
 Maintained by [soundrust5](https://github.com/soundrust5).
 
-This repository currently presents the project's progress and availability. Firmware and driver release packages will be documented when they are ready for public use.
+**AI-assisted development:** the maintainer estimates that around **90% of the port's development** was carried out with AI assistance. This is an author estimate, not a measured percentage of code. Hardware results are checked on the physical phone.
+
+The [mu/](mu/) directory contains the Mu-Silicium source snapshot used for this port. See [SOURCE.md](SOURCE.md) for its upstream revision, dependencies, local patches and licensing. Firmware and driver release packages will be documented when they are ready for public use.
 
 This is an independent community project and is not affiliated with Xiaomi, MediaTek or Microsoft.
 

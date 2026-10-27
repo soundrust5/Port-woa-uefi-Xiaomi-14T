@@ -1,0 +1,16 @@
+[Defines]
+ INF_VERSION=0x00010005
+ BASE_NAME=DegasUfsFileProbe
+ FILE_GUID=4753b25e-caf4-424d-990a-f2adfc735826
+ MODULE_TYPE=UEFI_APPLICATION
+ ENTRY_POINT=ProbeEntry
+[Sources]
+ Probe.c
+[Packages]
+ MdePkg/MdePkg.dec
+[LibraryClasses]
+ UefiApplicationEntryPoint
+ UefiBootServicesTableLib
+ DebugLib
+[Protocols]
+ gEfiLoadedImageProtocolGuid
