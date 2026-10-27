@@ -1,10 +1,10 @@
 <img align="right" src="assets/xiaomi-14t.png" width="300" alt="Xiaomi 14T">
 
-# UEFI & Windows on Xiaomi 14T
+# Windows 11 ARM64 & UEFI on Xiaomi 14T
 
 **English** | [Русский](README.ru-RU.md)
 
-Experimental port for **Xiaomi 14T (`degas`) — MediaTek Dimensity 8300-Ultra**.
+Experimental Windows on ARM (WoA) port for **Xiaomi 14T (`degas`) — MediaTek Dimensity 8300-Ultra (MT6897)**.
 
 Windows PE boots from UFS. CPU, display, touchscreen with multitouch, and UFS read/write work. Hardware buttons work in UEFI only.
 
