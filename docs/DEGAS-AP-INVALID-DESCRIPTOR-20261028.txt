@@ -1,0 +1,24 @@
+Degas AP invalid-descriptor detail, 2026-10-28
+
+The eight displayed/retained words normally mean:
+E00=(probe stage<<32)|reader status; E08=OS-saved initial TPIDR;
+E10=LPB-derived PRCB; E18=TPIDR-derived processor Number;
+E20=TPIDR-derived LocalSharedReadyQueue; E28=TPIDR-derived SharedReadyQueue;
+E30=saved PC; E38=saved TTBR1.
+
+ONLY when E00 low32 is reader status3 (invalid descriptor), three words change:
+E18=translation level (0..3), E20=physical address of descriptor read,
+E28=exact descriptor value observed. The high32 probe stage remains unchanged.
+Other statuses and successful outputs retain their previous meanings.
+
+This is diagnostic observation, not a fix. No additional RAM reads occur:
+X5/X9/X7 are the bounded reader's level/descriptor-address/raw-descriptor
+registers on its invalid-descriptor return. Integration tests pin and check
+this coupling at all four levels, including a nonzero invalid descriptor.
+Physical MMU-off reads may still differ from Windows's coherent Normal-WB view.
+
+To remain below the 0x600 code budget with helper alignment, the four existing
+F10..F28 telemetry STRs were equivalently compacted to ADD + two aligned STPs.
+No extra architectural-state writes, cache operations or OS mailbox writes.
+Integrated linked fixture:1520bytes (0x5F0), code ends at page+0xDF0,
+before snapshots at page+0xE00 and telemetry at page+0xF00.

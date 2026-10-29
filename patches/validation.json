@@ -1,0 +1,47 @@
+{
+  "mu-framebuffer-stride.patch": {
+    "sha256": "eb89a24e98ad20668411fab69fc98fc480d86f04c2e9cfcdc44ad21a54362f9e",
+    "checks": [
+      {
+        "mode": "--check --cached",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "mode": "--reverse --check",
+        "returncode": 0,
+        "stderr": ""
+      }
+    ]
+  },
+  "mu-sec-display-preserve.patch": {
+    "sha256": "425f0872144a4a6a7411ab2cb50767d5507bf176467ecab8454716d0f4111892",
+    "checks": [
+      {
+        "mode": "--check --cached",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "mode": "--reverse --check",
+        "returncode": 0,
+        "stderr": ""
+      }
+    ]
+  },
+  "mu-sec-stack-base.patch": {
+    "sha256": "413d4bdab71b3ba6f5b4581c146746c1054df9499cbc4a2b04b56f9004903092",
+    "checks": [
+      {
+        "mode": "--check --cached",
+        "returncode": 0,
+        "stderr": ""
+      },
+      {
+        "mode": "--reverse --check",
+        "returncode": 0,
+        "stderr": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,590 @@
+{
+  "format": "DVF1",
+  "source": "UEFI read",
+  "stage": "UEFI before OS loader",
+  "sequence": 305441741,
+  "capture_status": "complete",
+  "successful_reads": 109,
+  "failed_address": null,
+  "global_mode_raw": 0,
+  "source_driver_mode": "LUT index",
+  "physical_clock_measured": false,
+  "windows_runtime_observation": false,
+  "classification": "Boot-stage controller/shared-memory observation; not Android sysfs or live Windows telemetry.",
+  "limits": [
+    "Words are sampled sequentially, not atomically.",
+    "LUT frequencies are available OPP encodings, not current clocks or thermal ceilings.",
+    "Request/readiness/enable words do not measure clock edges.",
+    "Global mode alone does not prove that the alternative FDVFS request path is inactive."
+  ],
+  "domains": [
+    {
+      "domain": 0,
+      "physical_cpus_from_DT": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "base": "0x0011bc10",
+      "lut_raw_and_encoded_mhz": [
+        {
+          "index": 0,
+          "raw": "0xabcd0898",
+          "encoded_mhz": 2200
+        },
+        {
+          "index": 1,
+          "raw": "0xabcd07d0",
+          "encoded_mhz": 2000
+        },
+        {
+          "index": 2,
+          "raw": "0xabcd0578",
+          "encoded_mhz": 1400
+        },
+        {
+          "index": 3,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 4,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 5,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 6,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 7,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 8,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 9,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 10,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 11,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 12,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 13,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 14,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 15,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 16,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 17,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 18,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 19,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 20,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 21,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 22,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 23,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 24,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 25,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 26,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 27,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 28,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 29,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 30,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        },
+        {
+          "index": 31,
+          "raw": "0xabcd01e0",
+          "encoded_mhz": 480
+        }
+      ],
+      "source_driver_opp_khz": [
+        2200000,
+        2000000,
+        1400000,
+        480000
+      ],
+      "lut_qualified_for_request_decode": true,
+      "lut_termination": "first repeated frequency (vendor terminator)",
+      "enable_raw": 1,
+      "request_raw": 2,
+      "request_interpretation": "LUT index request",
+      "requested_candidate_khz": 1400000,
+      "requested_candidate_mhz": 1400.0,
+      "readiness_raw": 3,
+      "cpufreq_ready_bit0": true,
+      "svs_ready_bit1": true,
+      "latency_raw_us": 5,
+      "reported_transition_latency_ns": 5000
+    },
+    {
+      "domain": 1,
+      "physical_cpus_from_DT": [
+        4,
+        5,
+        6
+      ],
+      "base": "0x0011bd30",
+      "lut_raw_and_encoded_mhz": [
+        {
+          "index": 0,
+          "raw": "0xabcd0c80",
+          "encoded_mhz": 3200
+        },
+        {
+          "index": 1,
+          "raw": "0xabcd0bb8",
+          "encoded_mhz": 3000
+        },
+        {
+          "index": 2,
+          "raw": "0xabcd08fc",
+          "encoded_mhz": 2300
+        },
+        {
+          "index": 3,
+          "raw": "0xabcd04b0",
+          "encoded_mhz": 1200
+        },
+        {
+          "index": 4,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 5,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 6,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 7,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 8,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 9,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 10,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 11,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 12,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 13,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 14,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 15,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 16,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 17,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 18,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 19,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 20,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 21,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 22,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 23,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 24,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 25,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 26,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 27,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 28,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 29,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 30,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 31,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        }
+      ],
+      "source_driver_opp_khz": [
+        3200000,
+        3000000,
+        2300000,
+        1200000,
+        400000
+      ],
+      "lut_qualified_for_request_decode": true,
+      "lut_termination": "first repeated frequency (vendor terminator)",
+      "enable_raw": 1,
+      "request_raw": 2,
+      "request_interpretation": "LUT index request",
+      "requested_candidate_khz": 2300000,
+      "requested_candidate_mhz": 2300.0,
+      "readiness_raw": 3,
+      "cpufreq_ready_bit0": true,
+      "svs_ready_bit1": true,
+      "latency_raw_us": 5,
+      "reported_transition_latency_ns": 5000
+    },
+    {
+      "domain": 2,
+      "physical_cpus_from_DT": [
+        7
+      ],
+      "base": "0x0011be50",
+      "lut_raw_and_encoded_mhz": [
+        {
+          "index": 0,
+          "raw": "0xabcd0d16",
+          "encoded_mhz": 3350
+        },
+        {
+          "index": 1,
+          "raw": "0xabcd0c80",
+          "encoded_mhz": 3200
+        },
+        {
+          "index": 2,
+          "raw": "0xabcd0960",
+          "encoded_mhz": 2400
+        },
+        {
+          "index": 3,
+          "raw": "0xabcd0320",
+          "encoded_mhz": 800
+        },
+        {
+          "index": 4,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 5,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 6,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 7,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 8,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 9,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 10,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 11,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 12,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 13,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 14,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 15,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 16,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 17,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 18,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 19,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 20,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 21,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 22,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 23,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 24,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 25,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 26,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 27,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 28,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 29,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 30,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        },
+        {
+          "index": 31,
+          "raw": "0xabcd0190",
+          "encoded_mhz": 400
+        }
+      ],
+      "source_driver_opp_khz": [
+        3350000,
+        3200000,
+        2400000,
+        800000,
+        400000
+      ],
+      "lut_qualified_for_request_decode": true,
+      "lut_termination": "first repeated frequency (vendor terminator)",
+      "enable_raw": 1,
+      "request_raw": 2,
+      "request_interpretation": "LUT index request",
+      "requested_candidate_khz": 2400000,
+      "requested_candidate_mhz": 2400.0,
+      "readiness_raw": 3,
+      "cpufreq_ready_bit0": true,
+      "svs_ready_bit1": true,
+      "latency_raw_us": 5,
+      "reported_transition_latency_ns": 5000
+    }
+  ]
+}

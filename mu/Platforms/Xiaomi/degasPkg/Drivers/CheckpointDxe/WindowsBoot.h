@@ -2,10 +2,14 @@
 #include "BootObservation.h"
 #include <Guid/EventExitBootServiceFailed.h>
 #include "../../Include/Protocol/DegasDisplayRefresh.h"
+#include "../../Include/Protocol/DegasCpuStatus.h"
 #include <Library/PrintLib.h>
 #include "FrameThumbnail.h"
+#include "WindowsViewport.h"
 STATIC DEGAS_DISPLAY_REFRESH_PROTOCOL *mWindowsDisplayRefresh;
 STATIC BOOLEAN mWindowsEbsEntered;
+STATIC BOOLEAN mWindowsPreExitFrameShown;
+#include "NativeContextBoot.h"
 STATIC EFI_STATUS WindowsConsole(VOID){
  EFI_HANDLE *Handles=NULL;UINTN Count=0,I;EFI_STATUS S;
  EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL *Text=NULL;
@@ -40,11 +44,30 @@ STATIC EFI_STATUS WindowsConsoleMessage(CONST CHAR16 *Message){
 STATIC VOID EFIAPI WindowsFeed(EFI_EVENT Event,VOID *Context){
  BootWatchdogFeed();
  BootObservation("timer",FALSE);
+ // Boot applications may write FrameBufferBase directly instead of GOP Blt.
+ // Show their pre-EBS error/menu frame too. GOP Blt runs at TPL_NOTIFY, so
+ // raising to the same TPL serializes this bounded, allocation-free flush.
+ // One snapshot only; after EBS the autonomous GCE owns refresh exclusively.
+ if(!mWindowsEbsEntered && !mWindowsPreExitFrameShown &&
+    GetTimeInNanoSecond(GetPerformanceCounter()-mBootBudgetStart)>=25000000000ULL){
+  EFI_TPL Old;EFI_STATUS Status;
+  mWindowsPreExitFrameShown=TRUE;
+  Old=gBS->RaiseTPL(TPL_NOTIFY);
+  Status=mWindowsDisplayRefresh->Flush(mWindowsDisplayRefresh);
+  DEBUG((DEBUG_ERROR,"DEGAS WINDOWS PRE EBS VISIBLE FRAME=%r\n",Status));
+  gBS->RestoreTPL(Old);
+ }
 }
 STATIC VOID EFIAPI WindowsBeforeExit(EFI_EVENT Event,VOID *Context){
+#if DEGAS_NATIVE_CONTEXT_BRIDGE
+ NativeBootSnapshot();
+#endif
  SerialPortWrite((UINT8 *)"DEGAS WINDOWS BEFORE EXIT BOOT SERVICES\n",sizeof("DEGAS WINDOWS BEFORE EXIT BOOT SERVICES\n")-1);
 }
 STATIC VOID EFIAPI WindowsExitFailed(EFI_EVENT Event,VOID *Context){
+#if DEGAS_NATIVE_CONTEXT_BRIDGE
+ mNativeMapReady=FALSE; // Never patch using a failed EBS attempt's snapshot.
+#endif
  GceWindowsStop();
  SerialPortWrite((UINT8 *)"DEGAS WINDOWS EXIT BOOT SERVICES FAILED\n",sizeof("DEGAS WINDOWS EXIT BOOT SERVICES FAILED\n")-1);
 }
@@ -58,6 +81,9 @@ STATIC VOID EFIAPI WindowsExitBoot(EFI_EVENT Event,VOID *Context){
  BootObservation("ebs_event_before_handoff",TRUE);
  mBootObservationActive=FALSE;
  DegasOsHandoff();
+#if DEGAS_NATIVE_CONTEXT_BRIDGE
+ NativeBootExit();
+#endif
  FrameThumbnail();
  // Last CPU frame before exclusive autonomous ownership. Both methods were
  // cached before StartImage; neither calls Boot Services or allocates.
@@ -74,11 +100,14 @@ STATIC EFI_STATUS WindowsBoot(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
  EFI_HANDLE *Handles=NULL,Esp=NULL;UINTN Count=0,I;
  EFI_PARTITION_INFO_PROTOCOL *Pi;EFI_DEVICE_PATH_PROTOCOL *Dp,*Path=NULL;
  EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *Fs;EFI_BOOT_MANAGER_LOAD_OPTION Option;
- BOOLEAN OptionReady=FALSE;
+ BOOLEAN OptionReady=FALSE,ParkingPrepared=FALSE;
  EFI_EVENT Feed=NULL,ExitEvent=NULL,BeforeExit=NULL,ExitFailed=NULL;EFI_STATUS S;UINTN Matches=0;
  EFI_GUID DisplayRefreshGuid=DEGAS_DISPLAY_REFRESH_PROTOCOL_GUID;
  mBootBudgetStart=GetPerformanceCounter();mBootBudgetActive=TRUE;
- BootWatchdogArmTenSeconds();
+ mWindowsPreExitFrameShown=FALSE;
+ // No timeout while Windows boot manager or the OS is running.
+ MmioWrite32(0x1c00a000,(MmioRead32(0x1c00a000)&~1u)|0x22000000u);
+ DEBUG((DEBUG_ERROR,"DEGAS WINDOWS WATCHDOG DISABLED BEFORE LOADER\n"));
  mWindowsDisplayRefresh=NULL;
  S=gBS->LocateProtocol(&DisplayRefreshGuid,NULL,(VOID **)&mWindowsDisplayRefresh);
  if(EFI_ERROR(S) || !mWindowsDisplayRefresh || !mWindowsDisplayRefresh->Flush || !mWindowsDisplayRefresh->LockCpuRefresh){
@@ -87,6 +116,19 @@ STATIC EFI_STATUS WindowsBoot(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
  }
  DEBUG((DEBUG_ERROR,"DEGAS WINDOWS DISPLAY flush_protocol=%r\n",S));
  if(EFI_ERROR(S))return S;
+#if DEGAS_NATIVE_CONTEXT_BRIDGE
+ S=NativeBootPrepare();if(EFI_ERROR(S))return S;
+#endif
+ {
+  EFI_GUID CpuGuid=DEGAS_CPU_STATUS_GUID;DEGAS_CPU_STATUS *Cpu=NULL;
+  S=gBS->LocateProtocol(&CpuGuid,NULL,(VOID **)&Cpu);
+  if(!EFI_ERROR(S) && Cpu && Cpu->Version==2 && Cpu->PrepareParking){
+   Label(Gop,1690,"PREPARING CPU MAILBOX STARTUP");
+   S=Cpu->PrepareParking();DEBUG((DEBUG_ERROR,"DEGAS WINDOWS parking_prepare=%r\n",S));
+   if(EFI_ERROR(S)){Label(Gop,1690,"CPU MAILBOX FAILED RESET REQUIRED");return S;}
+   ParkingPrepared=TRUE;
+  }
+ }
  Label(Gop,1690,"CONNECT WINDOWS CONSOLE");
  DEBUG((DEBUG_ERROR,"DEGAS WINDOWS before console\n"));
  S=WindowsConsole();if(EFI_ERROR(S))return S;
@@ -127,6 +169,20 @@ STATIC EFI_STATUS WindowsBoot(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
  OptionReady=TRUE;
  S=WindowsConsoleMessage(L"STARTING WINDOWS BOOT MANAGER\r\n");
  if(EFI_ERROR(S))goto Done;
+ S=DegasWindowsInsetArm();
+ DEBUG((DEBUG_ERROR,"DEGAS WINDOWS VIEW diagnostic_inset=%u result=%r\n",(UINT32)DEGAS_DIAGNOSTIC_INSET,S));
+ if(EFI_ERROR(S))goto Done;
+ // Console initialization cleared the physical surface after APs drew their
+ // ready markers. Redraw only after the diagnostic inset is armed: later GOP
+ // clears are then constrained to the inner Windows surface.
+ if(ParkingPrepared){
+  for(UINTN Ap=1;Ap<8;Ap++)for(UINTN Y=512+64*Ap;Y<528+64*Ap;Y++){
+   volatile UINT32 *Row=(volatile UINT32 *)(UINTN)(0xfcc2f000ULL+4992ULL*Y);
+   for(UINTN X=16;X<32;X++)Row[X]=0xffffffffU;
+   WriteBackDataCacheRange((VOID *)(UINTN)(0xfcc2f000ULL+4992ULL*Y+64),64);
+  }
+  MemoryFence();
+ }
  BootPreflight();
  {
   UINT32 GceStatus=GceWindowsPrepare();
@@ -157,6 +213,7 @@ Done:
   BootObservation("boot_return",TRUE);mBootObservationActive=FALSE;
   gBS->RestoreTPL(Old);
  }
+ DegasWindowsInsetDisarm();
  if(OptionReady){
   if(Option.ExitData)FreePool(Option.ExitData);
   EfiBootManagerFreeLoadOption(&Option);

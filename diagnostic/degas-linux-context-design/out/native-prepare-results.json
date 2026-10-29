@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "tests": 12,
+  "prepare_cases": 268,
+  "cpu_configurations": [
+    2,
+    8
+  ],
+  "prepare_cases_by_cpu_configuration": {
+    "2": 134,
+    "8": 134
+  },
+  "source": "/mnt/d/Edk2-For-Xiaomi14T/mu/Platforms/Xiaomi/degasPkg/Drivers/DegasAcpiDxe/NativeContext.h",
+  "source_sha256": "93558fe50246ba418312fbb1f99f77ae551a3d8e426c7910f44123b43e15315c",
+  "source_unchanged": true,
+  "implementation": "Actual PrepareNativeContext header compiled with UBSan and firmware stubs",
+  "limits": "Host allocation and PSCI-query/cache stubs only; no real UEFI, SMC, NVS, cache or phone validation"
+}

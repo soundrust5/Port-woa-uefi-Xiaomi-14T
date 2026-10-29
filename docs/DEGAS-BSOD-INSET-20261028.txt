@@ -1,0 +1,4 @@
+Diagnostic inset for degas KMODE capture, 2026-10-28.
+Physical scanout remains 1220x2712, pitch 1248 pixels. GOP publishes a 964x2320 viewport at (128,196), offset 0xEF000 (page aligned), size 0xB0C000 (page rounded).
+Offset plus size is within the original reserved framebuffer. GOP Blt translates video coordinates and validates viewport bounds. QueryMode returns the altered mode; SetMode(0) clears through the wrapper. Restore original mode and Blt if boot returns before ExitBootServices.
+Only armed on Windows boot after console initialization. GCE and full scanout retain original physical base. Parking behavior is unchanged; this image is for reproducing KMODE with readable bugcheck parameters, not a CPU fix. Touch calibration is not adapted for the diagnostic viewport.

@@ -1,0 +1,223 @@
+{
+  "source": "evidence\\raw\\2026-10-29-degas-active-gz-identity\\gz_b.full.img",
+  "source_sha256": "011c07ed744d69a7b2760a3fb2bdd727327bec08bc844dd4177086e4ce04ee0e",
+  "payload_offset": "0x200",
+  "payload_bytes": "0x1b77c0",
+  "payload_sha256": "85802b8800ce948f36f463945dd9bf3dfd348073c771133b5f7e44d1baa57fd9",
+  "linked_base": "0x38000000",
+  "static_PMU_register_hits": [
+    {
+      "offset": "0x3b534",
+      "bytes": "019c3bd5",
+      "mnemonic": "mrs",
+      "operands": "x1, pmcr_el0"
+    },
+    {
+      "offset": "0x3b538",
+      "bytes": "20113cd5",
+      "mnemonic": "mrs",
+      "operands": "x0, mdcr_el2"
+    },
+    {
+      "offset": "0x3b548",
+      "bytes": "20111cd5",
+      "mnemonic": "msr",
+      "operands": "mdcr_el2, x0"
+    }
+  ],
+  "SYS64_EC": "0x18",
+  "SYS64_table": "0x79d10",
+  "SYS64_table_index": 23,
+  "SYS64_halfword": "0x41",
+  "SYS64_dispatch_target": "0x3d060",
+  "original_instruction_dispatch_cases": [
+    {
+      "register": "PMCCNTR_EL0_read",
+      "vm_route": "Linux/no_VM",
+      "esr": "0x6230e41b",
+      "masked_sysreg_key": "0x30e41a",
+      "stop_offset": "0x3d474",
+      "external_helpers_modeled": [
+        "current_VM_query"
+      ],
+      "stop_reason": "unhandled SYS64 path before logs/abort helpers"
+    },
+    {
+      "register": "PMCCNTR_EL0_write",
+      "vm_route": "Linux/no_VM",
+      "esr": "0x6230e4fa",
+      "masked_sysreg_key": "0x30e41a",
+      "stop_offset": "0x3d474",
+      "external_helpers_modeled": [
+        "current_VM_query"
+      ],
+      "stop_reason": "unhandled SYS64 path before logs/abort helpers"
+    },
+    {
+      "register": "PMCR_EL0_read",
+      "vm_route": "Linux/no_VM",
+      "esr": "0x6230e419",
+      "masked_sysreg_key": "0x30e418",
+      "stop_offset": "0x3d474",
+      "external_helpers_modeled": [
+        "current_VM_query"
+      ],
+      "stop_reason": "unhandled SYS64 path before logs/abort helpers"
+    },
+    {
+      "register": "PMCR_EL0_write",
+      "vm_route": "Linux/no_VM",
+      "esr": "0x6230e4f8",
+      "masked_sysreg_key": "0x30e418",
+      "stop_offset": "0x3d474",
+      "external_helpers_modeled": [
+        "current_VM_query"
+      ],
+      "stop_reason": "unhandled SYS64 path before logs/abort helpers"
+    },
+    {
+      "register": "PMCCNTR_EL0_read",
+      "vm_route": "GZVM",
+      "esr": "0x6230e41b",
+      "masked_sysreg_key": "0x30e41a",
+      "stop_offset": "0x379bc",
+      "external_helpers_modeled": [
+        "current_VM_query"
+      ],
+      "stop_reason": "unhandled SYS64 path before logs/abort helpers"
+    },
+    {
+      "register": "PMCCNTR_EL0_write",
+      "vm_route": "GZVM",
+      "esr": "0x6230e4fa",
+      "masked_sysreg_key": "0x30e41a",
+      "stop_offset": "0x379bc",
+      "external_helpers_modeled": [
+        "current_VM_query"
+      ],
+      "stop_reason": "unhandled SYS64 path before logs/abort helpers"
+    },
+    {
+      "register": "PMCR_EL0_read",
+      "vm_route": "GZVM",
+      "esr": "0x6230e419",
+      "masked_sysreg_key": "0x30e418",
+      "stop_offset": "0x379bc",
+      "external_helpers_modeled": [
+        "current_VM_query"
+      ],
+      "stop_reason": "unhandled SYS64 path before logs/abort helpers"
+    },
+    {
+      "register": "PMCR_EL0_write",
+      "vm_route": "GZVM",
+      "esr": "0x6230e4f8",
+      "masked_sysreg_key": "0x30e418",
+      "stop_offset": "0x379bc",
+      "external_helpers_modeled": [
+        "current_VM_query"
+      ],
+      "stop_reason": "unhandled SYS64 path before logs/abort helpers"
+    },
+    {
+      "register": "CONTROL_ICC_SGI1R_EL1",
+      "vm_route": "Linux/no_VM",
+      "esr": "0x623a3016",
+      "masked_sysreg_key": "0x3a3016",
+      "stop_offset": "0x3d5a4",
+      "external_helpers_modeled": [
+        "current_VM_query"
+      ],
+      "stop_reason": "positive non-PMU match before register access"
+    },
+    {
+      "register": "CONTROL_ID_AA64MMFR2_EL1",
+      "vm_route": "GZVM",
+      "esr": "0x6234000f",
+      "masked_sysreg_key": "0x34000e",
+      "stop_offset": "0x37bcc",
+      "external_helpers_modeled": [
+        "current_VM_query"
+      ],
+      "stop_reason": "positive non-PMU match before register access"
+    }
+  ],
+  "original_instruction_MDCR_cases": [
+    {
+      "input_mdcr": "0x0",
+      "pmcr_N": 0,
+      "output_mdcr": "0x0",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x0",
+      "pmcr_N": 6,
+      "output_mdcr": "0x6",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x0",
+      "pmcr_N": 31,
+      "output_mdcr": "0x1f",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x60",
+      "pmcr_N": 0,
+      "output_mdcr": "0x60",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x60",
+      "pmcr_N": 6,
+      "output_mdcr": "0x66",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x60",
+      "pmcr_N": 31,
+      "output_mdcr": "0x7f",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x20065",
+      "pmcr_N": 0,
+      "output_mdcr": "0x20060",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x20065",
+      "pmcr_N": 6,
+      "output_mdcr": "0x20066",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x20065",
+      "pmcr_N": 31,
+      "output_mdcr": "0x2007f",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x10080000065",
+      "pmcr_N": 0,
+      "output_mdcr": "0x80000060",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x10080000065",
+      "pmcr_N": 6,
+      "output_mdcr": "0x80000066",
+      "preserves_TPM_TPMCR": true
+    },
+    {
+      "input_mdcr": "0x10080000065",
+      "pmcr_N": 31,
+      "output_mdcr": "0x8000007f",
+      "preserves_TPM_TPMCR": true
+    }
+  ],
+  "outcome": "No PMCCNTR scaling/emulation implementation identified in inspected core routes. Ultimate source of Windows1300MHz remains UNKNOWN.",
+  "limits": "Static core-payload scan and bounded original-instruction paths; ESR/PMCR/MDCR inputs and current-VM query modeled. Stops before hardware/register passthrough or abort/log helpers. No live register values, modules/runtime modifications, secure-world state, PMU rate, physical clock or Windows calibration measurement.",
+  "firmware_modified": false,
+  "phone_operations": false
+}

@@ -1,0 +1,56 @@
+{
+  "scope": "HOST ONLY, not installed",
+  "revision": 3,
+  "length": 216,
+  "sha256": "fef240c88e1496665c837016289b5814d03baca8328b3951868ca1c76f63091f",
+  "packages": 1,
+  "cores": 8,
+  "cache_nodes": 0,
+  "nodes": {
+    "0x24": {
+      "flags": 1,
+      "parent": 0,
+      "uid": 0
+    },
+    "0x38": {
+      "flags": 10,
+      "parent": 36,
+      "uid": 0
+    },
+    "0x4c": {
+      "flags": 10,
+      "parent": 36,
+      "uid": 1
+    },
+    "0x60": {
+      "flags": 10,
+      "parent": 36,
+      "uid": 2
+    },
+    "0x74": {
+      "flags": 10,
+      "parent": 36,
+      "uid": 3
+    },
+    "0x88": {
+      "flags": 10,
+      "parent": 36,
+      "uid": 4
+    },
+    "0x9c": {
+      "flags": 10,
+      "parent": 36,
+      "uid": 5
+    },
+    "0xb0": {
+      "flags": 10,
+      "parent": 36,
+      "uid": 6
+    },
+    "0xc4": {
+      "flags": 10,
+      "parent": 36,
+      "uid": 7
+    }
+  }
+}

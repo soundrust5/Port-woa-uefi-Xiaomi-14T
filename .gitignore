@@ -1,8 +1,23 @@
-/_staging/
-**/Build/
+# Generated files and local inputs
+artifacts/
+evidence/
+tools/vendor/
 **/__pycache__/
+.pytest_cache/
+**/build/
+**/build-*/
+mu/Build/
+mu/Conf/
+*.obj
+*.o
+*.pyc
 *.pfx
 *.p12
-*.dmp
+*.key
+*.pem
+*.cer
+*.crt
+*.sys
 *.wim
-*.iso
+*.img
+*.dmp

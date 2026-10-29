@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-29",
+  "snapshot_version": 3,
+  "snapshot_size_bytes": 556,
+  "raw_thermal_suffix_offset_bytes": 224,
+  "registration_diagnostics_offset_bytes": 280,
+  "abi_validation": "ARM64 WDK C_ASSERT size and FIELD_OFFSET",
+  "compiler_target": "aarch64-pc-windows-msvc",
+  "compiler_flags": ["-O2", "-Wall", "-Wextra", "-Werror"],
+  "full_driver_build": "PASS",
+  "protocol_host_tests": "PASS",
+  "actual_backend_mock_worker_tests": "PASS: managed, no-set, mode-loss, ready-loss",
+  "initialization_enable_writes": 3,
+  "initialization_frequency_writes": 0,
+  "initialization_delays": 0,
+  "unmanaged_closed_fresh_stale_frequency_writes": 0,
+  "verified_behaviors": [
+    "early init succeeds while thermal guard is closed",
+    "no accepted OS request: closed/fresh/stale worker preserves all boot requests",
+    "first closed-guard Set accepts a safe low request and starts management",
+    "worker only lowers; never raises on freshness recovery",
+    "continuous requested minimum and maximum are honored when fresh",
+    "all three stock maximum kHz requests accepted when fresh",
+    "thermal invalidation at lock acquisition wins over Set and worker",
+    "thermal safety overrides OS minimum with THERMAL reason",
+    "mode/readiness loss rejects writes and makes snapshot not ready",
+    "constraint notification happens outside backend locks",
+    "shutdown joins terminated worker before unmapping"
+  ],
+  "limits": "Host memory and thread mocks; no Windows SEH or scheduling guarantee; 200ms PASSIVE worker cannot guarantee response under whole-OS stall",
+  "phone_actions_by_this_subtask": false
+}

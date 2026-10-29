@@ -1,0 +1,7 @@
+  1465492 | S_PUB32 [size = 52] `HvlSetLogicalProcessorCppcRegister`
+  2155936 | S_PUB32 [size = 36] `PopFxPepPerfInfoFree`
+  2191556 | S_PUB32 [size = 36] `PopFxPepPerfInfoQuery`
+  567604 | S_PUB32 [size = 48] `PopPepRegisterComponentPerfStates`
+  961592 | S_PUB32 [size = 48] `HvlSetLogicalProcessorCppcRequest`
+  1180072 | S_PUB32 [size = 40] `HvlQueryHvCppcPerfSupport`
+  1894744 | S_PUB32 [size = 40] `PpmPerfGetVmCppcConfig`

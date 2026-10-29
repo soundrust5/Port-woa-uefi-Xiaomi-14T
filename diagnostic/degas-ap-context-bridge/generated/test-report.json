@@ -1,0 +1,1813 @@
+{
+  "status": "PASS_HOST_ONLY",
+  "binary_sha256": "3c479a17a75cf7631179b85a767b8409e1d5bbdb3c36aa02c305c420c386b60f",
+  "source_sha256": "6ab2b4e810260b38e80b26515e3cbcf896d70c610e6fe6d87bb8be0a9e96a3f0",
+  "unittest_methods": 11,
+  "assembled_execution_cases": 109,
+  "original_gz_instruction_cases": 6,
+  "scope": "Actual assembled AP instructions; system registers and backing RAM supplied by fixture. Original pinned GZ selected handler+restore instructions run separately with modeled external helpers. No cache/MMU/coherency/power/hardware proof.",
+  "cases": [
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x100",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 54,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 49,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 54,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000100",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000100",
+      "x0": 1,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000100",
+      "x0": 1234605616436508552,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000100",
+      "x0": 18446744073709551615,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000200",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000200",
+      "x0": 1,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000200",
+      "x0": 1234605616436508552,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000200",
+      "x0": 18446744073709551615,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000300",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000300",
+      "x0": 1,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000300",
+      "x0": 1234605616436508552,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000300",
+      "x0": 18446744073709551615,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000400",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000400",
+      "x0": 1,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000400",
+      "x0": 1234605616436508552,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000400",
+      "x0": 18446744073709551615,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000500",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000500",
+      "x0": 1,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000500",
+      "x0": 1234605616436508552,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000500",
+      "x0": 18446744073709551615,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000600",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000600",
+      "x0": 1,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000600",
+      "x0": 1234605616436508552,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000600",
+      "x0": 18446744073709551615,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000700",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000700",
+      "x0": 1,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000700",
+      "x0": 1234605616436508552,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000700",
+      "x0": 18446744073709551615,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000100",
+      "x0": 0,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000100",
+      "x0": 1,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000100",
+      "x0": 1234605616436508552,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000100",
+      "x0": 18446744073709551615,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000200",
+      "x0": 0,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000200",
+      "x0": 1,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000200",
+      "x0": 1234605616436508552,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000200",
+      "x0": 18446744073709551615,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000300",
+      "x0": 0,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000300",
+      "x0": 1,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000300",
+      "x0": 1234605616436508552,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000300",
+      "x0": 18446744073709551615,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000400",
+      "x0": 0,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000400",
+      "x0": 1,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000400",
+      "x0": 1234605616436508552,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000400",
+      "x0": 18446744073709551615,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000500",
+      "x0": 0,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000500",
+      "x0": 1,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000500",
+      "x0": 1234605616436508552,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000500",
+      "x0": 18446744073709551615,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000600",
+      "x0": 0,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000600",
+      "x0": 1,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000600",
+      "x0": 1234605616436508552,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000600",
+      "x0": 18446744073709551615,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000700",
+      "x0": 0,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000700",
+      "x0": 1,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000700",
+      "x0": 1234605616436508552,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x81000700",
+      "x0": 18446744073709551615,
+      "pc": 13153341440,
+      "instructions": 89,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x700",
+      "x0": 1311768464867721216,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x700",
+      "x0": 1311768464867721216,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x700",
+      "x0": 1311768464867721216,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x0",
+      "x0": 0,
+      "pc": 1124073828,
+      "instructions": 21,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x1",
+      "x0": 1,
+      "pc": 1124073828,
+      "instructions": 18,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x101",
+      "x0": 257,
+      "pc": 1124073828,
+      "instructions": 18,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x800",
+      "x0": 2048,
+      "pc": 1124073828,
+      "instructions": 23,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x10000",
+      "x0": 65536,
+      "pc": 1124073828,
+      "instructions": 23,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x10100",
+      "x0": 65792,
+      "pc": 1124073828,
+      "instructions": 23,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100000100",
+      "x0": 4294967552,
+      "pc": 1124073828,
+      "instructions": 23,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0xff00000100",
+      "x0": 1095216660736,
+      "pc": 1124073828,
+      "instructions": 23,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x100",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x100",
+      "x0": 1234605616436508552,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x100",
+      "x0": 18446744073709551615,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x700",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x700",
+      "x0": 1234605616436508552,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x700",
+      "x0": 18446744073709551615,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 46,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 49,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 54,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 54,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 54,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 54,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 57,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 60,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 60,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 67,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 69,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 74,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 77,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 71,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 83,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 31,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 33,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 35,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 37,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 39,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 1,
+      "pc": 1124073828,
+      "instructions": 10,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 4,
+      "pc": 1124073828,
+      "instructions": 10,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 4096,
+      "pc": 1124073828,
+      "instructions": 10,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 4101,
+      "pc": 1124073828,
+      "instructions": 10,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 33554432,
+      "pc": 1124073828,
+      "instructions": 11,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 0,
+      "pc": 1124073828,
+      "instructions": 6,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 8,
+      "pc": 1124073828,
+      "instructions": 6,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 12,
+      "pc": 1124073828,
+      "instructions": 6,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x100",
+      "x0": 0,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "parked",
+      "mpidr": "0x100",
+      "x0": 256,
+      "pc": 1124073828,
+      "instructions": 54,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x100",
+      "x0": 3735928559,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    },
+    {
+      "outcome": "dispatched",
+      "mpidr": "0x100",
+      "x0": 1234605616436508552,
+      "pc": 1078464512,
+      "instructions": 86,
+      "preserves_x18_x30_sp_simd": true,
+      "system_writes": [
+        [
+          "daifset",
+          "#0xf"
+        ],
+        [
+          "daif",
+          "x15"
+        ]
+      ]
+    }
+  ]
+}

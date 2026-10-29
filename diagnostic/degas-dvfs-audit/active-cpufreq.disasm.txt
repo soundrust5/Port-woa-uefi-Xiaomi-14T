@@ -1,0 +1,1081 @@
+D:\Edk2-For-Xiaomi14T\artifacts\degas\dvfs-active-modules\ramdisk00\mediatek-cpufreq-hw.ko
+SHA256 f12addd9a3b5c677e8fec7b11903561e2d4073dff831a5ce4bd4dc7057df51fc
+
+mtk_cpufreq_hw_get .text+0xc04 size=136
+00000c04 1f800071 cmp      w0, #0x20
+00000c08 02040054 b.hs     #0xc88
+00000c0c 3f2303d5 paciasp  
+00000c10 fd7bbea9 stp      x29, x30, [sp, #-0x20]!
+00000c14 f44f01a9 stp      x20, x19, [sp, #0x10]
+00000c18 fd030091 mov      x29, sp
+00000c1c 08000090 adrp     x8, #0
+    reloc275 .bss+0x8
+00000c20 08010091 add      x8, x8, #0
+    reloc277 .bss+0x8
+00000c24 145960f8 ldr      x20, [x8, w0, uxtw #3]
+00000c28 800e40f9 ldr      x0, [x20, #0x18]
+00000c2c 933a40b9 ldr      w19, [x20, #0x38]
+00000c30 f6feff97 bl       #0x808
+00000c34 880240f9 ldr      x8, [x20]
+00000c38 1f7c0071 cmp      w0, #0x1f
+00000c3c a8000054 b.hi     #0xc50
+00000c40 89018052 mov      w9, #0xc
+00000c44 0820a99b umaddl   x8, w0, w9, x8
+00000c48 000940b9 ldr      w0, [x8, #8]
+00000c4c 0b000014 b        #0xc78
+00000c50 090940b9 ldr      w9, [x8, #8]
+00000c54 3f01006b cmp      w9, w0
+00000c58 e3000054 b.lo     #0xc74
+00000c5c 69060051 sub      w9, w19, #1
+00000c60 8a018052 mov      w10, #0xc
+00000c64 2821aa9b umaddl   x8, w9, w10, x8
+00000c68 080940b9 ldr      w8, [x8, #8]
+00000c6c 1f00086b cmp      w0, w8
+00000c70 42000054 b.hs     #0xc78
+00000c74 00008012 mov      w0, #-1
+00000c78 f44f41a9 ldp      x20, x19, [sp, #0x10]
+00000c7c fd7bc2a8 ldp      x29, x30, [sp], #0x20
+00000c80 bf2303d5 autiasp  
+00000c84 c0035fd6 ret      
+00000c88 40a22ad4 brk      #0x5512
+
+mtk_cpufreq_hw_target_index .text+0xa40 size=116
+00000a40 3f2303d5 paciasp  
+00000a44 fd7bbfa9 stp      x29, x30, [sp, #-0x10]!
+00000a48 fd030091 mov      x29, sp
+00000a4c 09000090 adrp     x9, #0
+    reloc275 .bss+0x118
+00000a50 2a014039 ldrb     w10, [x9]
+    reloc278 .bss+0x118
+00000a54 095c41f9 ldr      x9, [x0, #0x2b8]
+00000a58 5f050071 cmp      w10, #1
+00000a5c 81010054 b.ne     #0xa8c
+00000a60 0ac840f9 ldr      x10, [x0, #0x190]
+00000a64 8b018052 mov      w11, #0xc
+00000a68 e80300aa mov      x8, x0
+00000a6c 2a28ab9b umaddl   x10, w1, w11, x10
+00000a70 0b000090 adrp     x11, #0
+    reloc275 .bss+0x11c
+00000a74 6b014039 ldrb     w11, [x11]
+    reloc278 .bss+0x11c
+00000a78 400940b9 ldr      w0, [x10, #8]
+00000a7c 0b010034 cbz      w11, #0xa9c
+00000a80 e10308aa mov      x1, x8
+00000a84 00000094 bl       #0xa84
+    reloc283 cpufreq_fdvfs_switch+0x0
+00000a88 07000014 b        #0xaa4
+00000a8c 280d40f9 ldr      x8, [x9, #0x18]
+00000a90 e003012a mov      w0, w1
+00000a94 e10308aa mov      x1, x8
+00000a98 02000014 b        #0xaa0
+00000a9c 210d40f9 ldr      x1, [x9, #0x18]
+00000aa0 80fdff97 bl       #0xa0
+00000aa4 e0031f2a mov      w0, wzr
+00000aa8 fd7bc1a8 ldp      x29, x30, [sp], #0x10
+00000aac bf2303d5 autiasp  
+00000ab0 c0035fd6 ret      
+
+mtk_cpufreq_hw_fast_switch .text+0xab8 size=328
+00000ab8 3f2303d5 paciasp  
+00000abc fd7bbda9 stp      x29, x30, [sp, #-0x30]!
+00000ac0 f65701a9 stp      x22, x21, [sp, #0x10]
+00000ac4 f44f02a9 stp      x20, x19, [sp, #0x20]
+00000ac8 fd030091 mov      x29, sp
+00000acc 087c42b9 ldr      w8, [x0, #0x27c]
+00000ad0 f503012a mov      w21, w1
+00000ad4 f30300aa mov      x19, x0
+00000ad8 165c41f9 ldr      x22, [x0, #0x2b8]
+00000adc 1f01016b cmp      w8, w1
+00000ae0 61000054 b.ne     #0xaec
+00000ae4 748242b9 ldr      w20, [x19, #0x280]
+00000ae8 17000014 b        #0xb44
+00000aec 69ca40f9 ldr      x9, [x19, #0x190]
+00000af0 e8031f2a mov      w8, wzr
+00000af4 14008012 mov      w20, #-1
+00000af8 29210091 add      x9, x9, #8
+00000afc 05000014 b        #0xb10
+00000b00 e003142a mov      w0, w20
+00000b04 08050011 add      w8, w8, #1
+00000b08 29310091 add      x9, x9, #0xc
+00000b0c f403002a mov      w20, w0
+00000b10 2a0140b9 ldr      w10, [x9]
+00000b14 5f050031 cmn      w10, #1
+00000b18 40ffff54 b.eq     #0xb00
+00000b1c 5f090031 cmn      w10, #2
+00000b20 20010054 b.eq     #0xb44
+00000b24 5f01156b cmp      w10, w21
+00000b28 c0000054 b.eq     #0xb40
+00000b2c e003082a mov      w0, w8
+00000b30 a8feff54 b.hi     #0xb04
+00000b34 9f060031 cmn      w20, #1
+00000b38 1401941a csel     w20, w8, w20, eq
+00000b3c 02000014 b        #0xb44
+00000b40 f403082a mov      w20, w8
+00000b44 08000090 adrp     x8, #0
+    reloc275 .bss+0x11c
+00000b48 08014039 ldrb     w8, [x8]
+    reloc278 .bss+0x11c
+00000b4c 48010034 cbz      w8, #0xb74
+00000b50 c02640f9 ldr      x0, [x22, #0x48]
+00000b54 08040091 add      x8, x0, #1
+00000b58 1f0900f1 cmp      x8, #2
+00000b5c 43000054 b.lo     #0xb64
+00000b60 00000094 bl       #0xb60
+    reloc283 cpufreq_fdvfs_cci_switch+0x0
+00000b64 e003152a mov      w0, w21
+00000b68 e10313aa mov      x1, x19
+00000b6c 00000094 bl       #0xb6c
+    reloc283 cpufreq_fdvfs_switch+0x0
+00000b70 15000014 b        #0xbc4
+00000b74 08000090 adrp     x8, #0
+    reloc275 .bss+0x120
+00000b78 080140f9 ldr      x8, [x8]
+    reloc286 .bss+0x120
+00000b7c 280100b4 cbz      x8, #0xba0
+00000b80 c02640f9 ldr      x0, [x22, #0x48]
+00000b84 1f0400b1 cmn      x0, #1
+00000b88 60000054 b.eq     #0xb94
+00000b8c a00000b4 cbz      x0, #0xba0
+00000b90 02000014 b        #0xb98
+00000b94 e0031f2a mov      w0, wzr
+00000b98 01810091 add      x1, x8, #0x20
+00000b9c 41fdff97 bl       #0xa0
+00000ba0 08000090 adrp     x8, #0
+    reloc275 .bss+0x118
+00000ba4 c10e40f9 ldr      x1, [x22, #0x18]
+00000ba8 08014039 ldrb     w8, [x8]
+    reloc278 .bss+0x118
+00000bac 1f050071 cmp      w8, #1
+00000bb0 61000054 b.ne     #0xbbc
+00000bb4 e003152a mov      w0, w21
+00000bb8 02000014 b        #0xbc0
+00000bbc e003142a mov      w0, w20
+00000bc0 38fdff97 bl       #0xa0
+00000bc4 c83e40b9 ldr      w8, [x22, #0x3c]
+00000bc8 1f01146b cmp      w8, w20
+00000bcc 61000054 b.ne     #0xbd8
+00000bd0 e0031f2a mov      w0, wzr
+00000bd4 06000014 b        #0xbec
+00000bd8 d43e00b9 str      w20, [x22, #0x3c]
+00000bdc 89018052 mov      w9, #0xc
+00000be0 68ca40f9 ldr      x8, [x19, #0x190]
+00000be4 8822a99b umaddl   x8, w20, w9, x8
+00000be8 000940b9 ldr      w0, [x8, #8]
+00000bec f44f42a9 ldp      x20, x19, [sp, #0x20]
+00000bf0 f65741a9 ldp      x22, x21, [sp, #0x10]
+00000bf4 fd7bc3a8 ldp      x29, x30, [sp], #0x30
+00000bf8 bf2303d5 autiasp  
+00000bfc c0035fd6 ret      
+
+mtk_cpufreq_hw_cpu_init .text+0x888 size=436
+00000888 3f2303d5 paciasp  
+0000088c fd7bbca9 stp      x29, x30, [sp, #-0x40]!
+00000890 f70b00f9 str      x23, [sp, #0x10]
+00000894 f65702a9 stp      x22, x21, [sp, #0x20]
+00000898 f44f03a9 stp      x20, x19, [sp, #0x30]
+0000089c fd030091 mov      x29, sp
+000008a0 08000090 adrp     x8, #0
+    reloc275 kmalloc_caches+0x30
+000008a4 f40300aa mov      x20, x0
+000008a8 01b88152 mov      w1, #0xdc0
+000008ac 02068052 mov      w2, #0x30
+000008b0 000140f9 ldr      x0, [x8]
+    reloc286 kmalloc_caches+0x30
+000008b4 00000094 bl       #0x8b4
+    reloc283 kmalloc_trace+0x0
+000008b8 600700b4 cbz      x0, #0x9a4
+000008bc 811e40b9 ldr      w1, [x20, #0x1c]
+000008c0 3f800071 cmp      w1, #0x20
+000008c4 a20b0054 b.hs     #0xa38
+000008c8 08000090 adrp     x8, #0
+    reloc275 .bss+0x8
+000008cc 08010091 add      x8, x8, #0
+    reloc277 .bss+0x8
+000008d0 f30300aa mov      x19, x0
+000008d4 167961f8 ldr      x22, [x8, x1, lsl #3]
+000008d8 d60800b4 cbz      x22, #0x9f0
+000008dc 08000090 adrp     x8, #0
+    reloc275 nr_cpu_ids+0x0
+000008e0 c1020191 add      x1, x22, #0x40
+000008e4 e00314aa mov      x0, x20
+000008e8 080140b9 ldr      w8, [x8]
+    reloc285 nr_cpu_ids+0x0
+000008ec 08fd0011 add      w8, w8, #0x3f
+000008f0 087d0353 lsr      w8, w8, #3
+000008f4 02651d12 and      w2, w8, #0x1ffffff8
+000008f8 00000094 bl       #0x8f8
+    reloc283 memcpy+0x0
+000008fc c80240f9 ldr      x8, [x22]
+00000900 965e01f9 str      x22, [x20, #0x2b8]
+00000904 88ca00f9 str      x8, [x20, #0x190]
+00000908 c01a40f9 ldr      x0, [x22, #0x30]
+0000090c bfffff97 bl       #0x808
+00000910 087d8052 mov      w8, #0x3e8
+00000914 e97c8012 mov      w9, #-0x3e8
+00000918 1f000071 cmp      w0, #0
+0000091c 01008012 mov      w1, #-1
+00000920 087c081b mul      w8, w0, w8
+00000924 e00313aa mov      x0, x19
+00000928 2801881a csel     w8, w9, w8, eq
+0000092c 29008052 mov      w9, #1
+00000930 883200b9 str      w8, [x20, #0x30]
+00000934 89c20939 strb     w9, [x20, #0x270]
+00000938 00000094 bl       #0x938
+    reloc283 cpu_latency_qos_add_request+0x0
+0000093c c10a40f9 ldr      x1, [x22, #0x10]
+00000940 20008052 mov      w0, #1
+00000944 d7fdff97 bl       #0xa0
+00000948 00000094 bl       #0x948
+    reloc283 ktime_get+0x0
+0000094c f50300aa mov      x21, x0
+00000950 c01240f9 ldr      x0, [x22, #0x20]
+00000954 11010094 bl       #0xd98
+00000958 77008052 mov      w23, #3
+0000095c ff02206a bics     wzr, w23, w0
+00000960 00030054 b.eq     #0x9c0
+00000964 08609452 mov      w8, #0xa300
+00000968 283ca272 movk     w8, #0x11e1, lsl #16
+0000096c b502088b add      x21, x21, x8
+00000970 00000094 bl       #0x970
+    reloc283 ktime_get+0x0
+00000974 1f0015eb cmp      x0, x21
+00000978 ac010054 b.gt     #0x9ac
+0000097c 601f8052 mov      w0, #0xfb
+00000980 017d8052 mov      w1, #0x3e8
+00000984 42008052 mov      w2, #2
+00000988 00000094 bl       #0x988
+    reloc283 usleep_range_state+0x0
+0000098c 3f2003d5 yield    
+00000990 c01240f9 ldr      x0, [x22, #0x20]
+00000994 01010094 bl       #0xd98
+00000998 ff02206a bics     wzr, w23, w0
+0000099c a1feff54 b.ne     #0x970
+000009a0 08000014 b        #0x9c0
+000009a4 74018012 mov      w20, #-0xc
+000009a8 0b000014 b        #0x9d4
+000009ac c01240f9 ldr      x0, [x22, #0x20]
+000009b0 fa000094 bl       #0xd98
+000009b4 68008052 mov      w8, #3
+000009b8 1f01206a bics     wzr, w8, w0
+000009bc 41020054 b.ne     #0xa04
+000009c0 e00313aa mov      x0, x19
+000009c4 00000094 bl       #0x9c4
+    reloc283 cpu_latency_qos_remove_request+0x0
+000009c8 f4031f2a mov      w20, wzr
+000009cc e00313aa mov      x0, x19
+000009d0 00000094 bl       #0x9d0
+    reloc283 kfree+0x0
+000009d4 e003142a mov      w0, w20
+000009d8 f44f43a9 ldp      x20, x19, [sp, #0x30]
+000009dc f65742a9 ldp      x22, x21, [sp, #0x20]
+000009e0 f70b40f9 ldr      x23, [sp, #0x10]
+000009e4 fd7bc4a8 ldp      x29, x30, [sp], #0x40
+000009e8 bf2303d5 autiasp  
+000009ec c0035fd6 ret      
+000009f0 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x66 '\x016No scaling support for CPU%d\n'
+000009f4 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x66 '\x016No scaling support for CPU%d\n'
+000009f8 00000094 bl       #0x9f8
+    reloc283 _printk+0x0
+000009fc 54028012 mov      w20, #-0x13
+00000a00 f3ffff17 b        #0x9cc
+00000a04 811e40b9 ldr      w1, [x20, #0x1c]
+00000a08 00010037 tbnz     w0, #0, #0xa28
+00000a0c 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x15b '\x016cpufreq hardware of CPU%d is not enabled\n'
+00000a10 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x15b '\x016cpufreq hardware of CPU%d is not enabled\n'
+00000a14 00000094 bl       #0xa14
+    reloc283 _printk+0x0
+00000a18 e00313aa mov      x0, x19
+00000a1c 00000094 bl       #0xa1c
+    reloc283 cpu_latency_qos_remove_request+0x0
+00000a20 54028012 mov      w20, #-0x13
+00000a24 eaffff17 b        #0x9cc
+00000a28 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x25c '\x016SVS of CPU%d is not enabled\n'
+00000a2c 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x25c '\x016SVS of CPU%d is not enabled\n'
+00000a30 00000094 bl       #0xa30
+    reloc283 _printk+0x0
+00000a34 e3ffff17 b        #0x9c0
+00000a38 40a22ad4 brk      #0x5512
+
+mtk_cpufreq_hw_driver_probe .text+0x128 size=1720
+00000128 3f2303d5 paciasp  
+0000012c ffc304d1 sub      sp, sp, #0x130
+00000130 fd7b0da9 stp      x29, x30, [sp, #0xd0]
+00000134 fc6f0ea9 stp      x28, x27, [sp, #0xe0]
+00000138 fa670fa9 stp      x26, x25, [sp, #0xf0]
+0000013c f85f10a9 stp      x24, x23, [sp, #0x100]
+00000140 f65711a9 stp      x22, x21, [sp, #0x110]
+00000144 f44f12a9 stp      x20, x19, [sp, #0x120]
+00000148 fd430391 add      x29, sp, #0xd0
+0000014c 084138d5 mrs      x8, sp_el0
+00000150 13400091 add      x19, x0, #0x10
+00000154 081d43f9 ldr      x8, [x8, #0x638]
+00000158 e00f00f9 str      x0, [sp, #0x18]
+0000015c e00313aa mov      x0, x19
+00000160 a8031ff8 stur     x8, [x29, #-0x10]
+00000164 ff7f06a9 stp      xzr, xzr, [sp, #0x60]
+00000168 ff7f05a9 stp      xzr, xzr, [sp, #0x50]
+0000016c ff7f04a9 stp      xzr, xzr, [sp, #0x40]
+00000170 ff7f03a9 stp      xzr, xzr, [sp, #0x30]
+00000174 ff7f02a9 stp      xzr, xzr, [sp, #0x20]
+00000178 00000094 bl       #0x178
+    reloc283 of_device_get_match_data+0x0
+0000017c e00b00f9 str      x0, [sp, #0x10]
+00000180 e02100b4 cbz      x0, #0x5bc
+00000184 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x232 'cpuhvfs'
+00000188 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x232 'cpuhvfs'
+0000018c e0031faa mov      x0, xzr
+00000190 00000094 bl       #0x190
+    reloc283 of_find_node_by_name+0x0
+00000194 802300b4 cbz      x0, #0x604
+00000198 f70300aa mov      x23, x0
+0000019c 00000094 bl       #0x19c
+    reloc283 of_find_device_by_node+0x0
+000001a0 802300b4 cbz      x0, #0x610
+000001a4 01408052 mov      w1, #0x200
+000001a8 22008052 mov      w2, #1
+000001ac 00000094 bl       #0x1ac
+    reloc283 platform_get_resource+0x0
+000001b0 e02300b4 cbz      x0, #0x62c
+000001b4 012040a9 ldp      x1, x8, [x0]
+000001b8 f60300aa mov      x22, x0
+000001bc e4031f2a mov      w4, wzr
+000001c0 030840f9 ldr      x3, [x0, #0x10]
+000001c4 00000090 adrp     x0, #0
+    reloc275 iomem_resource+0x0
+000001c8 00000091 add      x0, x0, #0
+    reloc277 iomem_resource+0x0
+000001cc 080101cb sub      x8, x8, x1
+000001d0 02050091 add      x2, x8, #1
+000001d4 00000094 bl       #0x1d4
+    reloc283 __request_region+0x0
+000001d8 802300b4 cbz      x0, #0x648
+000001dc 14000090 adrp     x20, #0
+    reloc275 arm64_use_ng_mappings+0x0
+000001e0 f30700f9 str      x19, [sp, #8]
+000001e4 c02240a9 ldp      x0, x8, [x22]
+000001e8 73e280d2 mov      x19, #0x713
+000001ec 89024039 ldrb     w9, [x20]
+    reloc278 arm64_use_ng_mappings+0x0
+000001f0 130de0f2 movk     x19, #0x68, lsl #48
+000001f4 6a0275b2 orr      x10, x19, #0x800
+000001f8 080100cb sub      x8, x8, x0
+000001fc 3f010071 cmp      w9, #0
+00000200 01050091 add      x1, x8, #1
+00000204 62028a9a csel     x2, x19, x10, eq
+00000208 00000094 bl       #0x208
+    reloc283 ioremap_prot+0x0
+0000020c 15000090 adrp     x21, #0
+    reloc275 .bss+0x108
+00000210 a00200f9 str      x0, [x21]
+    reloc286 .bss+0x108
+00000214 602200b4 cbz      x0, #0x660
+00000218 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x323 'csram-sys-base'
+0000021c 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x323 'csram-sys-base'
+00000220 a58301d1 sub      x5, x29, #0x60
+00000224 e00317aa mov      x0, x23
+00000228 e2031faa mov      x2, xzr
+0000022c e3031f2a mov      w3, wzr
+00000230 e4031f2a mov      w4, wzr
+00000234 bf7f3ea9 stp      xzr, xzr, [x29, #-0x20]
+00000238 bf7f3da9 stp      xzr, xzr, [x29, #-0x30]
+0000023c bf7f3ca9 stp      xzr, xzr, [x29, #-0x40]
+00000240 bf7f3ba9 stp      xzr, xzr, [x29, #-0x50]
+00000244 bf7f3aa9 stp      xzr, xzr, [x29, #-0x60]
+00000248 00000094 bl       #0x248
+    reloc283 __of_parse_phandle_with_args+0x0
+0000024c 60000035 cbnz     w0, #0x258
+00000250 a0035af8 ldur     x0, [x29, #-0x60]
+00000254 202100b5 cbnz     x0, #0x678
+00000258 a80240f9 ldr      x8, [x21]
+    reloc286 .bss+0x108
+0000025c 00311391 add      x0, x8, #0x4cc
+00000260 6a010094 bl       #0x808
+00000264 80010034 cbz      w0, #0x294
+00000268 08000090 adrp     x8, #0
+    reloc275 .bss+0x118
+0000026c 29008052 mov      w9, #1
+00000270 a00240f9 ldr      x0, [x21]
+    reloc286 .bss+0x108
+00000274 09010039 strb     w9, [x8]
+    reloc278 .bss+0x118
+00000278 00000094 bl       #0x278
+    reloc283 iounmap+0x0
+0000027c c12240a9 ldp      x1, x8, [x22]
+00000280 00000090 adrp     x0, #0
+    reloc275 iomem_resource+0x0
+00000284 00000091 add      x0, x0, #0
+    reloc277 iomem_resource+0x0
+00000288 080101cb sub      x8, x8, x1
+0000028c 02050091 add      x2, x8, #1
+00000290 00000094 bl       #0x290
+    reloc283 __release_region+0x0
+00000294 00000094 bl       #0x294
+    reloc283 check_fdvfs_support+0x0
+00000298 1f040071 cmp      w0, #1
+0000029c 08000090 adrp     x8, #0
+    reloc275 .bss+0x11c
+000002a0 e9179f1a cset     w9, eq
+000002a4 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x212 'cpuqos-v3'
+000002a8 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x212 'cpuqos-v3'
+000002ac e0031faa mov      x0, xzr
+000002b0 09010039 strb     w9, [x8]
+    reloc278 .bss+0x11c
+000002b4 00000094 bl       #0x2b4
+    reloc283 of_find_node_by_name+0x0
+000002b8 802100b4 cbz      x0, #0x6e8
+000002bc 00000094 bl       #0x2bc
+    reloc283 of_find_device_by_node+0x0
+000002c0 f50740f9 ldr      x21, [sp, #8]
+000002c4 202200b4 cbz      x0, #0x708
+000002c8 01408052 mov      w1, #0x200
+000002cc e2031f2a mov      w2, wzr
+000002d0 00000094 bl       #0x2d0
+    reloc283 platform_get_resource+0x0
+000002d4 002200b4 cbz      x0, #0x714
+000002d8 082440a9 ldp      x8, x9, [x0]
+000002dc 6b022091 add      x11, x19, #0x800
+000002e0 8a024039 ldrb     w10, [x20]
+    reloc278 arm64_use_ng_mappings+0x0
+000002e4 e00308aa mov      x0, x8
+000002e8 290108cb sub      x9, x9, x8
+000002ec 5f010071 cmp      w10, #0
+000002f0 21050091 add      x1, x9, #1
+000002f4 62028b9a csel     x2, x19, x11, eq
+000002f8 00000094 bl       #0x2f8
+    reloc283 ioremap_prot+0x0
+000002fc e8031faa mov      x8, xzr
+00000300 09000090 adrp     x9, #0
+    reloc275 .bss+0x120
+00000304 16000090 adrp     x22, #0
+    reloc275 __cpu_possible_mask+0x0
+00000308 d6020091 add      x22, x22, #0
+    reloc277 __cpu_possible_mask+0x0
+0000030c 17000090 adrp     x23, #0
+    reloc275 .rodata.str1.1+0x86 'performance-domains'
+00000310 f7020091 add      x23, x23, #0
+    reloc277 .rodata.str1.1+0x86 'performance-domains'
+00000314 14000090 adrp     x20, #0
+    reloc275 nr_cpu_ids+0x0
+00000318 18000090 adrp     x24, #0
+    reloc275 .rodata.str1.1+0x3a5 '#performance-domain-cells'
+0000031c 18030091 add      x24, x24, #0
+    reloc277 .rodata.str1.1+0x3a5 '#performance-domain-cells'
+00000320 200100f9 str      x0, [x9]
+    reloc286 .bss+0x120
+00000324 03000014 b        #0x330
+00000328 1c230035 cbnz     w28, #0x788
+0000032c 28070091 add      x8, x25, #1
+00000330 027d4092 and      x2, x8, #0xffffffff
+00000334 810240b9 ldr      w1, [x20]
+    reloc285 nr_cpu_ids+0x0
+00000338 e00316aa mov      x0, x22
+0000033c 00000094 bl       #0x33c
+    reloc283 _find_next_bit+0x0
+00000340 880240b9 ldr      w8, [x20]
+    reloc285 nr_cpu_ids+0x0
+00000344 f90300aa mov      x25, x0
+00000348 1f01196b cmp      w8, w25
+0000034c c9130054 b.ls     #0x5c4
+00000350 e003192a mov      w0, w25
+00000354 00000094 bl       #0x354
+    reloc283 get_cpu_device+0x0
+00000358 800000b4 cbz      x0, #0x368
+0000035c 007441f9 ldr      x0, [x0, #0x2e8]
+00000360 c00000b5 cbnz     x0, #0x378
+00000364 f3000014 b        #0x730
+00000368 e003192a mov      w0, w25
+0000036c e1031faa mov      x1, xzr
+00000370 00000094 bl       #0x370
+    reloc283 of_get_cpu_node+0x0
+00000374 e01d00b4 cbz      x0, #0x730
+00000378 e5830091 add      x5, sp, #0x20
+0000037c e10317aa mov      x1, x23
+00000380 e20318aa mov      x2, x24
+00000384 03008012 mov      w3, #-1
+00000388 e4031f2a mov      w4, wzr
+0000038c 00000094 bl       #0x38c
+    reloc283 __of_parse_phandle_with_args+0x0
+00000390 6013f837 tbnz     w0, #0x1f, #0x5fc
+00000394 3f830071 cmp      w25, #0x20
+00000398 02220054 b.hs     #0x7d8
+0000039c 287f4092 and      x8, x25, #0xffffffff
+000003a0 1f7d00f1 cmp      x8, #0x1f
+000003a4 88210054 b.hi     #0x7d4
+000003a8 09000090 adrp     x9, #0
+    reloc275 .bss+0x8
+000003ac 29010091 add      x9, x9, #0
+    reloc277 .bss+0x8
+000003b0 287968f8 ldr      x8, [x9, x8, lsl #3]
+000003b4 c8fbffb5 cbnz     x8, #0x32c
+000003b8 e00315aa mov      x0, x21
+000003bc 010a8052 mov      w1, #0x50
+000003c0 02b88152 mov      w2, #0xdc0
+000003c4 fb2f40b9 ldr      w27, [sp, #0x2c]
+000003c8 00000094 bl       #0x3c8
+    reloc283 devm_kmalloc+0x0
+000003cc c01d00b4 cbz      x0, #0x784
+000003d0 fa0300aa mov      x26, x0
+000003d4 e00f40f9 ldr      x0, [sp, #0x18]
+000003d8 e1031b2a mov      w1, w27
+000003dc 00000094 bl       #0x3dc
+    reloc283 devm_platform_ioremap_resource+0x0
+000003e0 fc0300aa mov      x28, x0
+000003e4 1f0440b1 cmn      x0, #1, lsl #12
+000003e8 08faff54 b.hi     #0x328
+000003ec ea0b40f9 ldr      x10, [sp, #0x10]
+000003f0 e8031faa mov      x8, xzr
+000003f4 53030191 add      x19, x26, #0x40
+000003f8 49014079 ldrh     w9, [x10]
+000003fc 8903098b add      x9, x28, x9
+00000400 490700f9 str      x9, [x26, #8]
+00000404 49054079 ldrh     w9, [x10, #2]
+00000408 8903098b add      x9, x28, x9
+0000040c 490b00f9 str      x9, [x26, #0x10]
+00000410 49094079 ldrh     w9, [x10, #4]
+00000414 8903098b add      x9, x28, x9
+00000418 490f00f9 str      x9, [x26, #0x18]
+0000041c 490d4079 ldrh     w9, [x10, #6]
+00000420 8903098b add      x9, x28, x9
+00000424 491300f9 str      x9, [x26, #0x20]
+00000428 49114079 ldrh     w9, [x10, #8]
+0000042c 8903098b add      x9, x28, x9
+00000430 491700f9 str      x9, [x26, #0x28]
+00000434 49154079 ldrh     w9, [x10, #0xa]
+00000438 bf7f3ea9 stp      xzr, xzr, [x29, #-0x20]
+0000043c bf7f3da9 stp      xzr, xzr, [x29, #-0x30]
+00000440 bf7f3ca9 stp      xzr, xzr, [x29, #-0x40]
+00000444 8903098b add      x9, x28, x9
+00000448 bf7f3ba9 stp      xzr, xzr, [x29, #-0x50]
+0000044c bf7f3aa9 stp      xzr, xzr, [x29, #-0x60]
+00000450 491b00f9 str      x9, [x26, #0x30]
+00000454 02000014 b        #0x45c
+00000458 88070091 add      x8, x28, #1
+0000045c 027d4093 sxtw     x2, w8
+00000460 810240b9 ldr      w1, [x20]
+    reloc285 nr_cpu_ids+0x0
+00000464 e00316aa mov      x0, x22
+00000468 00000094 bl       #0x468
+    reloc283 _find_next_bit+0x0
+0000046c 880240b9 ldr      w8, [x20]
+    reloc285 nr_cpu_ids+0x0
+00000470 fc0300aa mov      x28, x0
+00000474 1f011c6b cmp      w8, w28
+00000478 a9050054 b.ls     #0x52c
+0000047c e0031c2a mov      w0, w28
+00000480 00000094 bl       #0x480
+    reloc283 get_cpu_device+0x0
+00000484 800000b4 cbz      x0, #0x494
+00000488 007441f9 ldr      x0, [x0, #0x2e8]
+0000048c c00000b5 cbnz     x0, #0x4a4
+00000490 f2ffff17 b        #0x458
+00000494 e0031c2a mov      w0, w28
+00000498 e1031faa mov      x1, xzr
+0000049c 00000094 bl       #0x49c
+    reloc283 of_get_cpu_node+0x0
+000004a0 c0fdffb4 cbz      x0, #0x458
+000004a4 a58301d1 sub      x5, x29, #0x60
+000004a8 e10317aa mov      x1, x23
+000004ac e20318aa mov      x2, x24
+000004b0 03008012 mov      w3, #-1
+000004b4 e4031f2a mov      w4, wzr
+000004b8 00000094 bl       #0x4b8
+    reloc283 __of_parse_phandle_with_args+0x0
+000004bc e0fcff37 tbnz     w0, #0x1f, #0x458
+000004c0 a8c35ab8 ldur     w8, [x29, #-0x54]
+000004c4 1f011b6b cmp      w8, w27
+000004c8 81fcff54 b.ne     #0x458
+000004cc 28008052 mov      w8, #1
+000004d0 897f46d3 ubfx     x9, x28, #6, #0x1a
+000004d4 0821dc9a lsl      x8, x8, x28
+000004d8 0c000014 b        #0x508
+000004dc 690e098b add      x9, x19, x9, lsl #3
+000004e0 3f3128f8 stset    x8, [x9]
+000004e4 9f6b7bf2 tst      x28, #0xffffffe0
+000004e8 81170054 b.ne     #0x7d8
+000004ec 887f4092 and      x8, x28, #0xffffffff
+000004f0 1f7d00f1 cmp      x8, #0x1f
+000004f4 08170054 b.hi     #0x7d4
+000004f8 09000090 adrp     x9, #0
+    reloc275 .bss+0x8
+000004fc 29010091 add      x9, x9, #0
+    reloc277 .bss+0x8
+00000500 3a7928f8 str      x26, [x9, x8, lsl #3]
+00000504 d5ffff17 b        #0x458
+00000508 690e098b add      x9, x19, x9, lsl #3
+0000050c 310180f9 prfm     pstl1strm, [x9]
+00000510 2a7d5fc8 ldxr     x10, [x9]
+00000514 4a0108aa orr      x10, x10, x8
+00000518 2a7d0bc8 stxr     w11, x10, [x9]
+0000051c abffff35 cbnz     w11, #0x510
+00000520 9f6b7bf2 tst      x28, #0xffffffe0
+00000524 40feff54 b.eq     #0x4ec
+00000528 ac000014 b        #0x7d8
+0000052c e00315aa mov      x0, x21
+00000530 81318052 mov      w1, #0x18c
+00000534 02b88152 mov      w2, #0xdc0
+00000538 00000094 bl       #0x538
+    reloc283 devm_kmalloc+0x0
+0000053c 400300f9 str      x0, [x26]
+00000540 801100b4 cbz      x0, #0x770
+00000544 f3031faa mov      x19, xzr
+00000548 f5031f2a mov      w21, wzr
+0000054c 5b0740f9 ldr      x27, [x26, #8]
+00000550 1c018052 mov      w28, #8
+00000554 e0031baa mov      x0, x27
+00000558 ac000094 bl       #0x808
+0000055c 082c0012 and      w8, w0, #0xfff
+00000560 097d8052 mov      w9, #0x3e8
+00000564 087d091b mul      w8, w8, w9
+00000568 1f01156b cmp      w8, w21
+0000056c 60010054 b.eq     #0x598
+00000570 490340f9 ldr      x9, [x26]
+00000574 73060091 add      x19, x19, #1
+00000578 7b130091 add      x27, x27, #4
+0000057c f503082a mov      w21, w8
+00000580 28693cb8 str      w8, [x9, x28]
+00000584 9c330091 add      x28, x28, #0xc
+00000588 7f8200f1 cmp      x19, #0x20
+0000058c 41feff54 b.ne     #0x554
+00000590 08048052 mov      w8, #0x20
+00000594 02000014 b        #0x59c
+00000598 687e4092 and      x8, x19, #0xffffffff
+0000059c 490340f9 ldr      x9, [x26]
+000005a0 8a018052 mov      w10, #0xc
+000005a4 f50740f9 ldr      x21, [sp, #8]
+000005a8 0925aa9b umaddl   x9, w8, w10, x9
+000005ac 2a008012 mov      w10, #-2
+000005b0 2a0900b9 str      w10, [x9, #8]
+000005b4 483b00b9 str      w8, [x26, #0x38]
+000005b8 5dffff17 b        #0x32c
+000005bc bc028012 mov      w28, #-0x16
+000005c0 76000014 b        #0x798
+000005c4 00000090 adrp     x0, #0
+    reloc275 .data+0xf8
+000005c8 00000091 add      x0, x0, #0
+    reloc277 .data+0xf8
+000005cc 00000094 bl       #0x5cc
+    reloc283 cpufreq_register_driver+0x0
+000005d0 fc03002a mov      w28, w0
+000005d4 c00b0035 cbnz     w0, #0x74c
+000005d8 00000090 adrp     x0, #0
+    reloc275 .data+0x1c8
+000005dc 00000091 add      x0, x0, #0
+    reloc277 .data+0x1c8
+000005e0 00000094 bl       #0x5e0
+    reloc283 register_die_notifier+0x0
+000005e4 00000090 adrp     x0, #0
+    reloc275 panic_notifier_list+0x0
+000005e8 00000091 add      x0, x0, #0
+    reloc277 panic_notifier_list+0x0
+000005ec 01000090 adrp     x1, #0
+    reloc275 .data+0x1e0
+000005f0 21000091 add      x1, x1, #0
+    reloc277 .data+0x1e0
+000005f4 00000094 bl       #0x5f4
+    reloc283 atomic_notifier_chain_register+0x0
+000005f8 68000014 b        #0x798
+000005fc fc03002a mov      w28, w0
+00000600 66000014 b        #0x798
+00000604 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x29c '\x015failed to find node @ %s\n'
+00000608 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x29c '\x015failed to find node @ %s\n'
+0000060c 0a000014 b        #0x634
+00000610 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x3bf '\x015failed to find pdev @ %s\n'
+00000614 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x3bf '\x015failed to find pdev @ %s\n'
+00000618 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+0000061c 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+00000620 00000094 bl       #0x620
+    reloc283 _printk+0x0
+00000624 bc028012 mov      w28, #-0x16
+00000628 5c000014 b        #0x798
+0000062c 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0xb0 '\x015failed to get mem resource @ %s\n'
+00000630 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0xb0 '\x015failed to get mem resource @ %s\n'
+00000634 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+00000638 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+0000063c 00000094 bl       #0x63c
+    reloc283 _printk+0x0
+00000640 5c028012 mov      w28, #-0x13
+00000644 55000014 b        #0x798
+00000648 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x1e '\x015failed to request resource %pR\n'
+0000064c 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x1e '\x015failed to request resource %pR\n'
+00000650 e10316aa mov      x1, x22
+00000654 00000094 bl       #0x654
+    reloc283 _printk+0x0
+00000658 fc018012 mov      w28, #-0x10
+0000065c 4f000014 b        #0x798
+00000660 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x27b '\x015failed to map csram_base @ %s\n'
+00000664 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x27b '\x015failed to map csram_base @ %s\n'
+00000668 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+0000066c 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+00000670 00000094 bl       #0x670
+    reloc283 _printk+0x0
+00000674 15000014 b        #0x6c8
+00000678 e1031f2a mov      w1, wzr
+0000067c 00000094 bl       #0x67c
+    reloc283 of_iomap+0x0
+00000680 17000090 adrp     x23, #0
+    reloc275 .bss+0x110
+00000684 e00200f9 str      x0, [x23]
+    reloc286 .bss+0x110
+00000688 60000094 bl       #0x808
+0000068c 48b58a52 mov      w8, #0x55aa
+00000690 48b5aa72 movk     w8, #0x55aa, lsl #16
+00000694 1f00086b cmp      w0, w8
+00000698 a1000054 b.ne     #0x6ac
+0000069c e80240f9 ldr      x8, [x23]
+    reloc286 .bss+0x110
+000006a0 00710291 add      x0, x8, #0x9c
+000006a4 59000094 bl       #0x808
+000006a8 80050035 cbnz     w0, #0x758
+000006ac 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x332 '\x015%s: cpufreq hardware not enable\n'
+000006b0 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x332 '\x015%s: cpufreq hardware not enable\n'
+000006b4 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+000006b8 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+000006bc 00000094 bl       #0x6bc
+    reloc283 _printk+0x0
+000006c0 a00240f9 ldr      x0, [x21]
+    reloc286 .bss+0x108
+000006c4 00000094 bl       #0x6c4
+    reloc283 iounmap+0x0
+000006c8 c12240a9 ldp      x1, x8, [x22]
+000006cc 00000090 adrp     x0, #0
+    reloc275 iomem_resource+0x0
+000006d0 00000091 add      x0, x0, #0
+    reloc277 iomem_resource+0x0
+000006d4 080101cb sub      x8, x8, x1
+000006d8 02050091 add      x2, x8, #1
+000006dc 00000094 bl       #0x6dc
+    reloc283 __release_region+0x0
+000006e0 7c018012 mov      w28, #-0xc
+000006e4 2d000014 b        #0x798
+000006e8 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x1f8 '\x016without cpuqos-v3 @ %s\n'
+000006ec 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x1f8 '\x016without cpuqos-v3 @ %s\n'
+000006f0 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+000006f4 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+000006f8 00000094 bl       #0x6f8
+    reloc283 _printk+0x0
+000006fc f50740f9 ldr      x21, [sp, #8]
+00000700 e0031faa mov      x0, xzr
+00000704 fefeff17 b        #0x2fc
+00000708 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0xd3 '\x016without cpuqos_v3 pdev @ %s\n'
+0000070c 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0xd3 '\x016without cpuqos_v3 pdev @ %s\n'
+00000710 03000014 b        #0x71c
+00000714 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x21c '\x016%s no qos resource\n'
+00000718 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x21c '\x016%s no qos resource\n'
+0000071c 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+00000720 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+00000724 00000094 bl       #0x724
+    reloc283 _printk+0x0
+00000728 e0031faa mov      x0, xzr
+0000072c f4feff17 b        #0x2fc
+00000730 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x3f9 'Failed to get cpu %d device\n'
+00000734 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x3f9 'Failed to get cpu %d device\n'
+00000738 e00315aa mov      x0, x21
+0000073c e203192a mov      w2, w25
+00000740 00000094 bl       #0x740
+    reloc283 _dev_info+0x0
+00000744 5c028012 mov      w28, #-0x13
+00000748 14000014 b        #0x798
+0000074c 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x40 'CPUFreq HW driver failed to register\n'
+00000750 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x40 'CPUFreq HW driver failed to register\n'
+00000754 0f000014 b        #0x790
+00000758 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x1d9 '\x015%s: cpufreq hardware enable\n'
+0000075c 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x1d9 '\x015%s: cpufreq hardware enable\n'
+00000760 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+00000764 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x23a 'mtk_cpufreq_hw_driver_probe'
+00000768 00000094 bl       #0x768
+    reloc283 _printk+0x0
+0000076c bbfeff17 b        #0x258
+00000770 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x134 'Domain-%d failed to create freq table\n'
+00000774 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x134 'Domain-%d failed to create freq table\n'
+00000778 e00315aa mov      x0, x21
+0000077c e2031b2a mov      w2, w27
+00000780 00000094 bl       #0x780
+    reloc283 _dev_info+0x0
+00000784 7c018012 mov      w28, #-0xc
+00000788 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x3db 'CPUFreq resource init failed\n'
+0000078c 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x3db 'CPUFreq resource init failed\n'
+00000790 e00315aa mov      x0, x21
+00000794 00000094 bl       #0x794
+    reloc283 _dev_info+0x0
+00000798 084138d5 mrs      x8, sp_el0
+0000079c 081d43f9 ldr      x8, [x8, #0x638]
+000007a0 a9035ff8 ldur     x9, [x29, #-0x10]
+000007a4 1f0109eb cmp      x8, x9
+000007a8 a1010054 b.ne     #0x7dc
+000007ac e0031c2a mov      w0, w28
+000007b0 f44f52a9 ldp      x20, x19, [sp, #0x120]
+000007b4 f65751a9 ldp      x22, x21, [sp, #0x110]
+000007b8 f85f50a9 ldp      x24, x23, [sp, #0x100]
+000007bc fa674fa9 ldp      x26, x25, [sp, #0xf0]
+000007c0 fc6f4ea9 ldp      x28, x27, [sp, #0xe0]
+000007c4 fd7b4da9 ldp      x29, x30, [sp, #0xd0]
+000007c8 ffc30491 add      sp, sp, #0x130
+000007cc bf2303d5 autiasp  
+000007d0 c0035fd6 ret      
+000007d4 200020d4 brk      #1
+000007d8 40a22ad4 brk      #0x5512
+000007dc 00000094 bl       #0x7dc
+    reloc283 __stack_chk_fail+0x0
+
+check_fdvfs_support .text+0xf88 size=440
+00000f88 3f2303d5 paciasp  
+00000f8c fd7bbda9 stp      x29, x30, [sp, #-0x30]!
+00000f90 f50b00f9 str      x21, [sp, #0x10]
+00000f94 f44f02a9 stp      x20, x19, [sp, #0x20]
+00000f98 fd030091 mov      x29, sp
+00000f9c 15000090 adrp     x21, #0
+    reloc275 .data+0x1f8
+00000fa0 a80240b9 ldr      w8, [x21]
+    reloc285 .data+0x1f8
+00000fa4 1f050031 cmn      w8, #1
+00000fa8 20010054 b.eq     #0xfcc
+00000fac 1f050071 cmp      w8, #1
+00000fb0 f3179f1a cset     w19, eq
+00000fb4 e003132a mov      w0, w19
+00000fb8 f44f42a9 ldp      x20, x19, [sp, #0x20]
+00000fbc f50b40f9 ldr      x21, [sp, #0x10]
+00000fc0 fd7bc3a8 ldp      x29, x30, [sp], #0x30
+00000fc4 bf2303d5 autiasp  
+00000fc8 c0035fd6 ret      
+00000fcc 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x256 'fdvfs'
+00000fd0 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x256 'fdvfs'
+00000fd4 e0031faa mov      x0, xzr
+00000fd8 00000094 bl       #0xfd8
+    reloc283 of_find_node_by_name+0x0
+00000fdc 000100b5 cbnz     x0, #0xffc
+00000fe0 00000090 adrp     x0, #0
+    reloc275 .rodata.str1.1+0x355 '\x016failed to find node @ %s\n'
+00000fe4 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x355 '\x016failed to find node @ %s\n'
+00000fe8 01000090 adrp     x1, #0
+    reloc275 .rodata.str1.1+0x187 'check_fdvfs_support'
+00000fec 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x187 'check_fdvfs_support'
+00000ff0 00000094 bl       #0xff0
+    reloc283 _printk+0x0
+00000ff4 f3031f2a mov      w19, wzr
+00000ff8 35000014 b        #0x10cc
+00000ffc 00000094 bl       #0xffc
+    reloc283 of_find_device_by_node+0x0
+00001000 200100b5 cbnz     x0, #0x1024
+00001004 00000090 adrp     x0, #0x1000
+    reloc275 .rodata.str1.1+0x389 '\x016failed to find pdev @ %s\n'
+00001008 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x389 '\x016failed to find pdev @ %s\n'
+0000100c 01000090 adrp     x1, #0x1000
+    reloc275 .rodata.str1.1+0x187 'check_fdvfs_support'
+00001010 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x187 'check_fdvfs_support'
+00001014 00000094 bl       #0x1014
+    reloc283 _printk+0x0
+00001018 b3028012 mov      w19, #-0x16
+0000101c bf0200b9 str      wzr, [x21]
+    reloc285 .data+0x1f8
+00001020 e5ffff17 b        #0xfb4
+00001024 01408052 mov      w1, #0x200
+00001028 42008052 mov      w2, #2
+0000102c f30300aa mov      x19, x0
+00001030 00000094 bl       #0x1030
+    reloc283 platform_get_resource+0x0
+00001034 600000b5 cbnz     x0, #0x1040
+00001038 53028012 mov      w19, #-0x13
+0000103c 1e000014 b        #0x10b4
+00001040 f40300aa mov      x20, x0
+00001044 08000090 adrp     x8, #0x1000
+    reloc275 arm64_use_ng_mappings+0x0
+00001048 000040f9 ldr      x0, [x0]
+0000104c 6ae280d2 mov      x10, #0x713
+00001050 0a0de0f2 movk     x10, #0x68, lsl #48
+00001054 890640f9 ldr      x9, [x20, #8]
+00001058 4b0175b2 orr      x11, x10, #0x800
+0000105c 08014039 ldrb     w8, [x8]
+    reloc278 arm64_use_ng_mappings+0x0
+00001060 290100cb sub      x9, x9, x0
+00001064 1f010071 cmp      w8, #0
+00001068 21050091 add      x1, x9, #1
+0000106c 42018b9a csel     x2, x10, x11, eq
+00001070 00000094 bl       #0x1070
+    reloc283 ioremap_prot+0x0
+00001074 08000090 adrp     x8, #0x1000
+    reloc275 .bss+0x128
+00001078 000100f9 str      x0, [x8]
+    reloc286 .bss+0x128
+0000107c 800300b5 cbnz     x0, #0x10ec
+00001080 00000090 adrp     x0, #0x1000
+    reloc275 .rodata.str1.1+0x2f3 '\x016%s failed to map resource %pR\n'
+00001084 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x2f3 '\x016%s failed to map resource %pR\n'
+00001088 01000090 adrp     x1, #0x1000
+    reloc275 .rodata.str1.1+0x187 'check_fdvfs_support'
+0000108c 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x187 'check_fdvfs_support'
+00001090 e20314aa mov      x2, x20
+00001094 00000094 bl       #0x1094
+    reloc283 _printk+0x0
+00001098 812240a9 ldp      x1, x8, [x20]
+0000109c 00000090 adrp     x0, #0x1000
+    reloc275 iomem_resource+0x0
+000010a0 00000091 add      x0, x0, #0
+    reloc277 iomem_resource+0x0
+000010a4 080101cb sub      x8, x8, x1
+000010a8 02050091 add      x2, x8, #1
+000010ac 00000094 bl       #0x10ac
+    reloc283 __release_region+0x0
+000010b0 73018012 mov      w19, #-0xc
+000010b4 00000090 adrp     x0, #0x1000
+    reloc275 .rodata.str1.1+0x1b9 "\x016%s can't get mem resource %d\n"
+000010b8 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x1b9 "\x016%s can't get mem resource %d\n"
+000010bc 01000090 adrp     x1, #0x1000
+    reloc275 .rodata.str1.1+0x187 'check_fdvfs_support'
+000010c0 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x187 'check_fdvfs_support'
+000010c4 42008052 mov      w2, #2
+000010c8 00000094 bl       #0x10c8
+    reloc283 _printk+0x0
+000010cc 00000090 adrp     x0, #0x1000
+    reloc275 .rodata.str1.1+0x416 '\x016%s fdvfs is disabled: %d\n'
+000010d0 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x416 '\x016%s fdvfs is disabled: %d\n'
+000010d4 01000090 adrp     x1, #0x1000
+    reloc275 .rodata.str1.1+0x187 'check_fdvfs_support'
+000010d8 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x187 'check_fdvfs_support'
+000010dc e203132a mov      w2, w19
+000010e0 00000094 bl       #0x10e0
+    reloc283 _printk+0x0
+000010e4 bf0200b9 str      wzr, [x21]
+    reloc285 .data+0x1f8
+000010e8 b3ffff17 b        #0xfb4
+000010ec 15000094 bl       #0x1140
+000010f0 28008052 mov      w8, #1
+000010f4 a879b572 movk     w8, #0xabcd, lsl #16
+000010f8 1f00086b cmp      w0, w8
+000010fc 81000054 b.ne     #0x110c
+00001100 e00313aa mov      x0, x19
+00001104 2e000094 bl       #0x11bc
+00001108 a0000035 cbnz     w0, #0x111c
+0000110c e8031f2a mov      w8, wzr
+00001110 00000090 adrp     x0, #0x1000
+    reloc275 .rodata.str1.1+0x2b8 '\x016%s: fdvfs not supports\n'
+00001114 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x2b8 '\x016%s: fdvfs not supports\n'
+00001118 04000014 b        #0x1128
+0000111c 28008052 mov      w8, #1
+00001120 00000090 adrp     x0, #0x1000
+    reloc275 .rodata.str1.1+0x9a '\x016%s: fdvfs supports\n'
+00001124 00000091 add      x0, x0, #0
+    reloc277 .rodata.str1.1+0x9a '\x016%s: fdvfs supports\n'
+00001128 01000090 adrp     x1, #0x1000
+    reloc275 .rodata.str1.1+0x187 'check_fdvfs_support'
+0000112c 21000091 add      x1, x1, #0
+    reloc277 .rodata.str1.1+0x187 'check_fdvfs_support'
+00001130 a80200b9 str      w8, [x21]
+    reloc285 .data+0x1f8
+00001134 00000094 bl       #0x1134
+    reloc283 _printk+0x0
+00001138 b30240b9 ldr      w19, [x21]
+    reloc285 .data+0x1f8
+0000113c 9effff17 b        #0xfb4
+
+cpufreq_fdvfs_switch .text+0x12f4 size=152
+000012f4 3f2303d5 paciasp  
+000012f8 fd7bbca9 stp      x29, x30, [sp, #-0x40]!
+000012fc f70b00f9 str      x23, [sp, #0x10]
+00001300 f65702a9 stp      x22, x21, [sp, #0x20]
+00001304 f44f03a9 stp      x20, x19, [sp, #0x30]
+00001308 fd030091 mov      x29, sp
+0000130c e9b18c52 mov      w9, #0x658f
+00001310 2a669852 mov      w10, #0xc331
+00001314 0900090b add      w9, w0, w9
+00001318 2a2ab472 movk     w10, #0xa151, lsl #16
+0000131c e8031faa mov      x8, xzr
+00001320 33400091 add      x19, x1, #0x10
+00001324 297daa9b umull    x9, w9, w10
+00001328 16000090 adrp     x22, #0x1000
+    reloc275 nr_cpu_ids+0x0
+0000132c 17000090 adrp     x23, #0x1000
+    reloc275 .bss+0x130
+00001330 34fd6ed3 lsr      x20, x9, #0x2e
+00001334 027d4092 and      x2, x8, #0xffffffff
+00001338 c10240b9 ldr      w1, [x22]
+    reloc285 nr_cpu_ids+0x0
+0000133c e00313aa mov      x0, x19
+00001340 00000094 bl       #0x1340
+    reloc283 _find_next_bit+0x0
+00001344 c80240b9 ldr      w8, [x22]
+    reloc285 nr_cpu_ids+0x0
+00001348 f50300aa mov      x21, x0
+0000134c 1f01156b cmp      w8, w21
+00001350 09010054 b.ls     #0x1370
+00001354 e80240f9 ldr      x8, [x23]
+    reloc286 .bss+0x130
+00001358 a9761e53 lsl      w9, w21, #2
+0000135c e003142a mov      w0, w20
+00001360 0101098b add      x1, x8, x9
+00001364 0a000094 bl       #0x138c
+00001368 a8060091 add      x8, x21, #1
+0000136c f2ffff17 b        #0x1334
+00001370 e0031f2a mov      w0, wzr
+00001374 f44f43a9 ldp      x20, x19, [sp, #0x30]
+00001378 f65742a9 ldp      x22, x21, [sp, #0x20]
+0000137c f70b40f9 ldr      x23, [sp, #0x10]
+00001380 fd7bc4a8 ldp      x29, x30, [sp], #0x40
+00001384 bf2303d5 autiasp  
+00001388 c0035fd6 ret      

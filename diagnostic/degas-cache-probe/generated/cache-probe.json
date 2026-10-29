@@ -1,0 +1,13 @@
+{
+  "source_sha256": "421cc91b9134b8fe956437265067bd75a46d35a7cc504de84e57b23f4934d159",
+  "code_sha256": "41b6fcac1f8aefbcab9e32730b213b62b755cf55b22016fa7abe7323bdd24d0e",
+  "code_bytes": 912,
+  "symbols": {
+    "DegasCacheApStart": 0,
+    "DegasCacheApPark": 184,
+    "DegasCacheCollect": 208,
+    "DegasCacheApMailbox": 904,
+    "DegasCacheProbeEnd": 912
+  },
+  "scope": "Host instruction fixture, not deployed firmware"
+}

@@ -1,0 +1,132 @@
+{
+  "kernel_sha256": "5bb49f8383e38b26ef0c18f3087db3be541e99143b80b92d2f83d824b7e5301c",
+  "source_unchanged": true,
+  "tests_passed": 6,
+  "cases": [
+    {
+      "input_timer_hz": 13000000,
+      "saved_prcb_mhz": 13,
+      "saved_prcb_raw_hz": 13000000
+    },
+    {
+      "input_timer_hz": 1300000000,
+      "saved_prcb_mhz": 1300,
+      "saved_prcb_raw_hz": 1300000000
+    },
+    {
+      "input_timer_hz": 2200000000,
+      "saved_prcb_mhz": 2200,
+      "saved_prcb_raw_hz": 2200000000
+    },
+    {
+      "input_timer_hz": 3350000000,
+      "saved_prcb_mhz": 3350,
+      "saved_prcb_raw_hz": 3350000000
+    },
+    {
+      "input_timer_hz": 1300499999,
+      "saved_prcb_mhz": 1300,
+      "saved_prcb_raw_hz": 1300499999
+    },
+    {
+      "input_timer_hz": 1300500000,
+      "saved_prcb_mhz": 1301,
+      "saved_prcb_raw_hz": 1300500000
+    }
+  ],
+  "disassembly": {
+    "HalpTimerSaveProcessorFrequency": [
+      "00488A20 7f2303d5 pacibsp ",
+      "00488A24 fd7bbfa9 stp x29, x30, [sp, #-0x10]!",
+      "00488A28 fd030091 mov x29, sp",
+      "00488A2C e80312aa mov x8, x18",
+      "00488A30 24008052 mov w4, #1",
+      "00488A34 03008052 mov w3, #0",
+      "00488A38 02008052 mov w2, #0",
+      "00488A3C 01008052 mov w1, #0",
+      "00488A40 40018052 mov w0, #0xa",
+      "00488A44 0f012691 add x15, x8, #0x980",
+      "00488A48 58f5ff97 bl #0x485fa8",
+      "00488A4C 600100b4 cbz x0, #0x488a78",
+      "00488A50 086040f9 ldr x8, [x0, #0xc0]",
+      "00488A54 a9010058 ldr x9, #0x488a88",
+      "00488A58 08e94191 add x8, x8, #0x7a, lsl #12",
+      "00488A5C 08810491 add x8, x8, #0x120",
+      "00488A60 0809c99a udiv x8, x8, x9",
+      "00488A64 087d099b mul x8, x8, x9",
+      "00488A68 0809c99a udiv x8, x8, x9",
+      "00488A6C e87507b9 str w8, [x15, #0x774]",
+      "00488A70 086040f9 ldr x8, [x0, #0xc0]",
+      "00488A74 e8bd03f9 str x8, [x15, #0x778]",
+      "00488A78 fd7bc1a8 ldp x29, x30, [sp], #0x10",
+      "00488A7C ff2303d5 autibsp ",
+      "00488A80 c0035fd6 ret "
+    ],
+    "HalpCycleCounterDiscover": [
+      "0049FB48 7f2303d5 pacibsp ",
+      "0049FB4C fd7bb5a9 stp x29, x30, [sp, #-0xb0]!",
+      "0049FB50 fd030091 mov x29, sp",
+      "0049FB54 10e4004f movi v16.16b, #0",
+      "0049FB58 e8830091 add x8, sp, #0x20",
+      "0049FB5C 09010291 add x9, x8, #0x80",
+      "0049FB60 f007803d str q16, [sp, #0x10]",
+      "0049FB64 10e4004f movi v16.16b, #0",
+      "0049FB68 104181ac stp q16, q16, [x8], #0x20",
+      "0049FB6C 1f0109eb cmp x8, x9",
+      "0049FB70 c1ffff54 b.ne #0x49fb68",
+      "0049FB74 1001803d str q16, [x8]",
+      "0049FB78 08000090 adrp x8, #0x49f000",
+      "0049FB7C 08c12f91 add x8, x8, #0xbf0",
+      "0049FB80 c9020058 ldr x9, #0x49fbd8",
+      "0049FB84 e92302a9 stp x9, x8, [sp, #0x20]",
+      "0049FB88 28ebff90 adrp x8, #0x203000",
+      "0049FB8C 08413f91 add x8, x8, #0xfd0",
+      "0049FB90 e81b00f9 str x8, [sp, #0x30]",
+      "0049FB94 0808c0d2 mov x8, #0x4000000000",
+      "0049FB98 e0430091 add x0, sp, #0x10",
+      "0049FB9C ffa307a9 stp xzr, x8, [sp, #0x78]",
+      "0049FBA0 48018052 mov w8, #0xa",
+      "0049FBA4 e8ab00b9 str w8, [sp, #0xa8]",
+      "0049FBA8 c8010058 ldr x8, #0x49fbe0",
+      "0049FBAC ffa308a9 stp xzr, x8, [sp, #0x88]",
+      "0049FBB0 a80c0090 adrp x8, #0x633000",
+      "0049FBB4 01413891 add x1, x8, #0xe10",
+      "0049FBB8 5268f997 bl #0x2f9d00",
+      "0049FBBC e1430091 add x1, sp, #0x10",
+      "0049FBC0 e0830091 add x0, sp, #0x20",
+      "0049FBC4 dbfcff97 bl #0x49ef30",
+      "0049FBC8 fd7bcba8 ldp x29, x30, [sp], #0xb0",
+      "0049FBCC ff2303d5 autibsp ",
+      "0049FBD0 c0035fd6 ret "
+    ],
+    "HalpCycleCounterInitialize": [
+      "0049FBF0 099c3bd5 mrs x9, pmcr_el0",
+      "0049FBF4 08058092 mov x8, #-0x29",
+      "0049FBF8 2901088a and x9, x9, x8",
+      "0049FBFC 280a80d2 mov x8, #0x51",
+      "0049FC00 280108aa orr x8, x9, x8",
+      "0049FC04 089c1bd5 msr pmcr_el0, x8",
+      "0049FC08 df3f03d5 isb ",
+      "0049FC0C 0900b0d2 mov x9, #0x80000000",
+      "0049FC10 499e18d5 msr pmintenclr_el1, x9",
+      "0049FC14 df3f03d5 isb ",
+      "0049FC18 0800a1d2 mov x8, #0x8000000",
+      "0049FC1C e8ef1bd5 msr pmccfiltr_el0, x8",
+      "0049FC20 df3f03d5 isb ",
+      "0049FC24 299c1bd5 msr pmcntenset_el0, x9",
+      "0049FC28 df3f03d5 isb ",
+      "0049FC2C 089e3bd5 mrs x8, pmuserenr_el0",
+      "0049FC30 08017eb2 orr x8, x8, #4",
+      "0049FC34 089e1bd5 msr pmuserenr_el0, x8",
+      "0049FC38 df3f03d5 isb ",
+      "0049FC3C 00008052 mov w0, #0",
+      "0049FC40 c0035fd6 ret "
+    ],
+    "PMCCNTR_reader": [
+      "00203FD0 009d3bd5 mrs x0, pmccntr_el0",
+      "00203FD4 c0035fd6 ret "
+    ]
+  },
+  "conclusion": "The exact save routine rounds its selected timer Hz to MHz. 13MHz input yields13MHz, not1300MHz. Its timer-type10 source is registered with a PMCCNTR_EL0 reader. No live selected timer/PMU rate or physical CPU clock was measured.",
+  "limits": "Unicorn executes original NT instructions; external timer lookup modeled. No driver, kernel file patch, frequency write, phone access or reboot."
+}

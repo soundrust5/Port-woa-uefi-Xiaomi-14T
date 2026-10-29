@@ -1,0 +1,73 @@
+{
+  "module_sha256": "f2e0d8af09a5129afa22c7d727d2d4d68b9d4d638d03e374c2d776c2351b721c",
+  "loaded_note_identical": true,
+  "build_id": "60a16f5fd2cc864a1f90a4550e3ff92f9b2021d0",
+  "symbols": {
+    "get_cpu_temp": {
+      "offset": "0x728",
+      "size": "0xd0",
+      "section": ".text"
+    },
+    "get_cpu_ceiling_freq": {
+      "offset": "0x8c0",
+      "size": "0x68",
+      "section": ".text"
+    },
+    "get_dsu_temp": {
+      "offset": "0x7fc",
+      "size": "0x58",
+      "section": ".text"
+    },
+    "get_dsu_ceiling_freq": {
+      "offset": "0x858",
+      "size": "0x64",
+      "section": ".text"
+    },
+    "cpu_info_show": {
+      "offset": "0x16f0",
+      "size": "0x20c",
+      "section": ".text"
+    },
+    "cpu_temp_show": {
+      "offset": "0x1f1c",
+      "size": "0x210",
+      "section": ".text"
+    },
+    "is_cpu_limit_show": {
+      "offset": "0x1b2c",
+      "size": "0xe0",
+      "section": ".text"
+    },
+    "therm_intf_probe": {
+      "offset": "0xe20",
+      "size": "0x3d4",
+      "section": ".text"
+    },
+    "readl": {
+      "offset": "0xd08",
+      "size": "0x8c",
+      "section": ".text"
+    },
+    "tm_data": {
+      "offset": "0x78",
+      "size": "0x70",
+      "section": ".bss"
+    },
+    "thermal_csram_base": {
+      "offset": "0x0",
+      "size": "0x8",
+      "section": ".bss"
+    },
+    "thermal_cputcm_base": {
+      "offset": "0x8",
+      "size": "0x8",
+      "section": ".bss"
+    },
+    "eas_previous_temp": {
+      "offset": "0x148",
+      "size": "0x28",
+      "section": ".data"
+    }
+  },
+  "phone_accessed": false
+}

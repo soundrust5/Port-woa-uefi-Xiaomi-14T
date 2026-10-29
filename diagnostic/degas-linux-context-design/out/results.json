@@ -1,0 +1,180 @@
+{
+  "scope": "HOST ONLY; missing Windows integration is not emulated",
+  "sha256": "98ebeb1886d10a1bf88107b0ced1ecfb1261c1658cf8fb3964d7460c18b7d528",
+  "bytes": 312,
+  "cases": [
+    {
+      "mpidr": "0xc1000100",
+      "rows": 1,
+      "count": null,
+      "outcome": {
+        "ok": true,
+        "context": 1311768467463790320,
+        "entry": 2097152
+      }
+    },
+    {
+      "mpidr": "0xc1123456",
+      "rows": 1,
+      "count": null,
+      "outcome": {
+        "ok": true,
+        "context": 1311768467463790320,
+        "entry": 2097152
+      }
+    },
+    {
+      "mpidr": "0xabc1123456",
+      "rows": 1,
+      "count": null,
+      "outcome": {
+        "ok": true,
+        "context": 1311768467463790320,
+        "entry": 2097152
+      }
+    },
+    {
+      "mpidr": "0x100",
+      "rows": 1,
+      "count": 0,
+      "outcome": {
+        "ok": false
+      }
+    },
+    {
+      "mpidr": "0x100",
+      "rows": 1,
+      "count": 9,
+      "outcome": {
+        "ok": false
+      }
+    },
+    {
+      "mpidr": "0x100",
+      "rows": 1,
+      "count": 18446744073709551615,
+      "outcome": {
+        "ok": false
+      }
+    },
+    {
+      "mpidr": "0x100",
+      "rows": 1,
+      "count": null,
+      "outcome": {
+        "ok": false
+      }
+    },
+    {
+      "mpidr": "0x100",
+      "rows": 1,
+      "count": null,
+      "outcome": {
+        "ok": false
+      }
+    },
+    {
+      "mpidr": "0x100",
+      "rows": 1,
+      "count": null,
+      "outcome": {
+        "ok": false
+      }
+    },
+    {
+      "mpidr": "0x100",
+      "rows": 1,
+      "count": null,
+      "outcome": {
+        "ok": false
+      }
+    },
+    {
+      "mpidr": "0x200",
+      "rows": 1,
+      "count": null,
+      "outcome": {
+        "ok": false
+      }
+    },
+    {
+      "mpidr": "0x100",
+      "rows": 2,
+      "count": null,
+      "outcome": {
+        "ok": false
+      }
+    },
+    {
+      "mpidr": "0x100",
+      "rows": 7,
+      "count": null,
+      "outcome": {
+        "ok": true,
+        "context": 0,
+        "entry": 2097152
+      }
+    },
+    {
+      "mpidr": "0x200",
+      "rows": 7,
+      "count": null,
+      "outcome": {
+        "ok": true,
+        "context": 1,
+        "entry": 2097152
+      }
+    },
+    {
+      "mpidr": "0x300",
+      "rows": 7,
+      "count": null,
+      "outcome": {
+        "ok": true,
+        "context": 4294967295,
+        "entry": 2097152
+      }
+    },
+    {
+      "mpidr": "0x400",
+      "rows": 7,
+      "count": null,
+      "outcome": {
+        "ok": true,
+        "context": 4294967296,
+        "entry": 2097152
+      }
+    },
+    {
+      "mpidr": "0x500",
+      "rows": 7,
+      "count": null,
+      "outcome": {
+        "ok": true,
+        "context": 18446734770810394720,
+        "entry": 2097152
+      }
+    },
+    {
+      "mpidr": "0x600",
+      "rows": 7,
+      "count": null,
+      "outcome": {
+        "ok": true,
+        "context": 12297829381041378645,
+        "entry": 2097152
+      }
+    },
+    {
+      "mpidr": "0x700",
+      "rows": 7,
+      "count": null,
+      "outcome": {
+        "ok": true,
+        "context": 18446744073709551615,
+        "entry": 2097152
+      }
+    }
+  ],
+  "success": true
+}

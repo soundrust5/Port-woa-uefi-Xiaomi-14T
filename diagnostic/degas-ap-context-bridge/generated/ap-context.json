@@ -1,0 +1,14 @@
+{
+  "source_sha256": "6ab2b4e810260b38e80b26515e3cbcf896d70c610e6fe6d87bb8be0a9e96a3f0",
+  "binary_sha256": "3c479a17a75cf7631179b85a767b8409e1d5bbdb3c36aa02c305c420c386b60f",
+  "binary_bytes": 448,
+  "symbols": {
+    "DegasApContextStart": 0,
+    "DegasApContextClaim": 332,
+    "DegasApContextPark": 356,
+    "DegasApContextConfig": 384,
+    "DegasApContextEnd": 448
+  },
+  "linked_at_zero": true,
+  "deployable": false
+}

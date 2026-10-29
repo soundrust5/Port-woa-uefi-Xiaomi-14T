@@ -1,0 +1,31 @@
+
+diagnostic/degas-dvfs-windows/pep_contract.obj:	file format coff-arm64
+
+SYMBOL TABLE:
+[ 0](sec  1)(fl 0x00)(ty   0)(scl   3) (nx 1) 0x00000000 .text
+AUX scnlen 0x54 nreloc 5 nlnno 0 checksum 0xdedf958d assoc 1 comdat 0
+[ 2](sec  2)(fl 0x00)(ty   0)(scl   3) (nx 1) 0x00000000 .data
+AUX scnlen 0x0 nreloc 0 nlnno 0 checksum 0x0 assoc 2 comdat 0
+[ 4](sec  3)(fl 0x00)(ty   0)(scl   3) (nx 1) 0x00000000 .bss
+AUX scnlen 0x0 nreloc 0 nlnno 0 checksum 0x0 assoc 3 comdat 0
+[ 6](sec  4)(fl 0x00)(ty   0)(scl   3) (nx 1) 0x00000000 .xdata
+AUX scnlen 0xc nreloc 0 nlnno 0 checksum 0x5054d99e assoc 4 comdat 0
+[ 8](sec  5)(fl 0x00)(ty   0)(scl   3) (nx 1) 0x00000000 .bss
+AUX scnlen 0x1 nreloc 0 nlnno 0 checksum 0x0 assoc 5 comdat 2
+[10](sec  5)(fl 0x00)(ty   0)(scl   2) (nx 0) 0x00000000 ExPoolZeroingNativelySupported
+[11](sec  6)(fl 0x00)(ty   0)(scl   3) (nx 1) 0x00000000 .rdata
+AUX scnlen 0x30 nreloc 0 nlnno 0 checksum 0xda392b29 assoc 6 comdat 0
+[13](sec  7)(fl 0x00)(ty   0)(scl   3) (nx 1) 0x00000000 .debug$S
+AUX scnlen 0x5c nreloc 0 nlnno 0 checksum 0xb08aa5bd assoc 7 comdat 0
+[15](sec  8)(fl 0x00)(ty   0)(scl   3) (nx 1) 0x00000000 .pdata
+AUX scnlen 0x8 nreloc 2 nlnno 0 checksum 0x7cbb312b assoc 8 comdat 0
+[17](sec  9)(fl 0x00)(ty   0)(scl   3) (nx 1) 0x00000000 .llvm_addrsig
+AUX scnlen 0x2 nreloc 0 nlnno 0 checksum 0x437333be assoc 9 comdat 0
+[19](sec -1)(fl 0x00)(ty   0)(scl   3) (nx 0) 0x00000000 @feat.00
+[20](sec  1)(fl 0x00)(ty  20)(scl   2) (nx 0) 0x00000000 DegasRejectDevice
+[21](sec  1)(fl 0x00)(ty  20)(scl   2) (nx 0) 0x00000008 DegasRejectProcessor
+[22](sec  1)(fl 0x00)(ty  20)(scl   2) (nx 0) 0x00000010 DegasBuildOfflinePepInformation
+[23](sec  0)(fl 0x00)(ty   0)(scl   2) (nx 0) 0x00000000 memset
+[24](sec  6)(fl 0x00)(ty   0)(scl   2) (nx 0) 0x00000000 DegasDomains
+[25](sec -2)(fl 0x00)(ty   0)(scl  67) (nx 1) 0x00000000 .file
+AUX pep_contract.c

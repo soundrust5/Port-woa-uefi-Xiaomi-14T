@@ -1,0 +1,468 @@
+{
+  "module_sha256": "f12addd9a3b5c677e8fec7b11903561e2d4073dff831a5ce4bd4dc7057df51fc",
+  "loaded_note_identical": true,
+  "gnu_build_id": "068e6f5000761002c3541edbe177a210f2299352",
+  "function_extents": {
+    "mtk_cpufreq_hw_get": {
+      "value": 3076,
+      "size": 136,
+      "section": 12
+    },
+    "mtk_cpufreq_hw_target_index": {
+      "value": 2624,
+      "size": 116,
+      "section": 12
+    },
+    "mtk_cpufreq_hw_fast_switch": {
+      "value": 2744,
+      "size": 328,
+      "section": 12
+    },
+    "mtk_cpufreq_hw_cpu_init": {
+      "value": 2184,
+      "size": 436,
+      "section": 12
+    },
+    "mtk_cpufreq_hw_driver_probe": {
+      "value": 296,
+      "size": 1720,
+      "section": 12
+    },
+    "readl_relaxed": {
+      "value": 4416,
+      "size": 124,
+      "section": 12
+    }
+  },
+  "get_pre_probe": {
+    "symbol": "mediatek_cpufreq_hw:mtk_cpufreq_hw_get+0x24",
+    "text_offset": "0xc28",
+    "instruction": "LDR X0,[X20,#0x18]",
+    "fetch": "cpu=%x0:u32 map=%x8:x64 mode_flag=+272(%x8):u8 fdvfs_flag=+276(%x8):u8"
+  },
+  "get_post_probe": {
+    "symbol": "mediatek_cpufreq_hw:mtk_cpufreq_hw_get+0x30",
+    "text_offset": "0xc34",
+    "instruction": "LDR X8,[X20]",
+    "fetch": "raw=%x0:x32 domain=%x20:x64 req_va=+24(%x20):x64 lut_va=+8(%x20):x64 nr_opp=+56(%x20):u32 cpus=+64(%x20):x64"
+  },
+  "mode_semantics": "Compiled .bss+118:1 selects kHz,0 selects index; .bss+11c:1 selects FDVFS.",
+  "captured_android": {
+    "capture": "D:\\Edk2-For-Xiaomi14T\\evidence\\raw\\2026-10-29-degas-dvfs-requests-v1\\capture.txt",
+    "capture_sha256": "0678c054e6908de9af890246eb3ac5f16fe9bff86809d8ee53c0f0c5d35c63d4",
+    "paired_reads": 12,
+    "domains": {
+      "0": {
+        "mode_flag": 1,
+        "fdvfs_flag": 0,
+        "cpumask": "0xf",
+        "nr_opp": 18,
+        "available_khz": [
+          2200000,
+          2100000,
+          2000000,
+          1900000,
+          1800000,
+          1700000,
+          1600000,
+          1500000,
+          1400000,
+          1300000,
+          1200000,
+          1100000,
+          1000000,
+          900000,
+          800000,
+          700000,
+          600000,
+          480000
+        ],
+        "samples": [
+          {
+            "round": 1,
+            "raw_khz": 480000,
+            "scaling_cur_khz": 1400000,
+            "raw_is_lut_entry": true
+          },
+          {
+            "round": 2,
+            "raw_khz": 480000,
+            "scaling_cur_khz": 480000,
+            "raw_is_lut_entry": true
+          },
+          {
+            "round": 3,
+            "raw_khz": 480000,
+            "scaling_cur_khz": 480000,
+            "raw_is_lut_entry": true
+          },
+          {
+            "round": 4,
+            "raw_khz": 480000,
+            "scaling_cur_khz": 480000,
+            "raw_is_lut_entry": true
+          }
+        ]
+      },
+      "4": {
+        "mode_flag": 1,
+        "fdvfs_flag": 0,
+        "cpumask": "0x70",
+        "nr_opp": 30,
+        "available_khz": [
+          3200000,
+          3100000,
+          3000000,
+          2900000,
+          2850000,
+          2800000,
+          2660000,
+          2600000,
+          2500000,
+          2400000,
+          2300000,
+          2200000,
+          2100000,
+          2000000,
+          1900000,
+          1800000,
+          1700000,
+          1600000,
+          1500000,
+          1400000,
+          1300000,
+          1200000,
+          1100000,
+          1000000,
+          900000,
+          800000,
+          700000,
+          600000,
+          500000,
+          400000
+        ],
+        "samples": [
+          {
+            "round": 1,
+            "raw_khz": 2446000,
+            "scaling_cur_khz": 2600000,
+            "raw_is_lut_entry": false
+          },
+          {
+            "round": 2,
+            "raw_khz": 1250000,
+            "scaling_cur_khz": 1500000,
+            "raw_is_lut_entry": false
+          },
+          {
+            "round": 3,
+            "raw_khz": 1328000,
+            "scaling_cur_khz": 1300000,
+            "raw_is_lut_entry": false
+          },
+          {
+            "round": 4,
+            "raw_khz": 1302000,
+            "scaling_cur_khz": 1600000,
+            "raw_is_lut_entry": false
+          }
+        ]
+      },
+      "7": {
+        "mode_flag": 1,
+        "fdvfs_flag": 0,
+        "cpumask": "0x80",
+        "nr_opp": 31,
+        "available_khz": [
+          3350000,
+          3200000,
+          3100000,
+          3050000,
+          3000000,
+          2900000,
+          2800000,
+          2700000,
+          2600000,
+          2500000,
+          2400000,
+          2300000,
+          2200000,
+          2100000,
+          2000000,
+          1900000,
+          1800000,
+          1700000,
+          1600000,
+          1500000,
+          1400000,
+          1300000,
+          1200000,
+          1100000,
+          1000000,
+          900000,
+          800000,
+          700000,
+          600000,
+          500000,
+          400000
+        ],
+        "samples": [
+          {
+            "round": 1,
+            "raw_khz": 400000,
+            "scaling_cur_khz": 400000,
+            "raw_is_lut_entry": true
+          },
+          {
+            "round": 2,
+            "raw_khz": 400000,
+            "scaling_cur_khz": 400000,
+            "raw_is_lut_entry": true
+          },
+          {
+            "round": 3,
+            "raw_khz": 400000,
+            "scaling_cur_khz": 400000,
+            "raw_is_lut_entry": true
+          },
+          {
+            "round": 4,
+            "raw_khz": 400000,
+            "scaling_cur_khz": 400000,
+            "raw_is_lut_entry": true
+          }
+        ]
+      }
+    },
+    "conclusion": "All12existingMMIOreads agree with corresponding cpuinfo_cur values. All domains use kHz direct mode with FDVFS off. CPU4 readback includes intermediate values outside exported OPP entries. Physical clocks not measured."
+  },
+  "cases": [
+    {
+      "cpu": 0,
+      "raw_word": 8,
+      "returned_khz": 1400000,
+      "mode_flag": 0,
+      "fdvfs_flag": 0,
+      "hardware_model_reads": [
+        {
+          "address": "0x21000088",
+          "size": 4
+        }
+      ],
+      "hardware_model_writes": [],
+      "probe_snapshots": {
+        "pre": {
+          "cpu": 0,
+          "mode_flag": 0,
+          "fdvfs_flag": 0
+        },
+        "post": {
+          "raw": 8,
+          "request_pointer": 553648264
+        }
+      }
+    },
+    {
+      "cpu": 0,
+      "raw_word": 1400000,
+      "returned_khz": 1400000,
+      "mode_flag": 1,
+      "fdvfs_flag": 0,
+      "hardware_model_reads": [
+        {
+          "address": "0x21000088",
+          "size": 4
+        }
+      ],
+      "hardware_model_writes": [],
+      "probe_snapshots": {
+        "pre": {
+          "cpu": 0,
+          "mode_flag": 1,
+          "fdvfs_flag": 0
+        },
+        "post": {
+          "raw": 1400000,
+          "request_pointer": 553648264
+        }
+      }
+    },
+    {
+      "cpu": 4,
+      "raw_word": 8,
+      "returned_khz": 1400000,
+      "mode_flag": 1,
+      "fdvfs_flag": 1,
+      "hardware_model_reads": [
+        {
+          "address": "0x21000088",
+          "size": 4
+        }
+      ],
+      "hardware_model_writes": [],
+      "probe_snapshots": {
+        "pre": {
+          "cpu": 4,
+          "mode_flag": 1,
+          "fdvfs_flag": 1
+        },
+        "post": {
+          "raw": 8,
+          "request_pointer": 553648264
+        }
+      }
+    },
+    {
+      "cpu": 7,
+      "raw_word": 1300000,
+      "returned_khz": 1300000,
+      "mode_flag": 0,
+      "fdvfs_flag": 0,
+      "hardware_model_reads": [
+        {
+          "address": "0x21000088",
+          "size": 4
+        }
+      ],
+      "hardware_model_writes": [],
+      "probe_snapshots": {
+        "pre": {
+          "cpu": 7,
+          "mode_flag": 0,
+          "fdvfs_flag": 0
+        },
+        "post": {
+          "raw": 1300000,
+          "request_pointer": 553648264
+        }
+      }
+    },
+    {
+      "cpu": 7,
+      "raw_word": 5000000,
+      "returned_khz": 4294967295,
+      "mode_flag": 1,
+      "fdvfs_flag": 0,
+      "hardware_model_reads": [
+        {
+          "address": "0x21000088",
+          "size": 4
+        }
+      ],
+      "hardware_model_writes": [],
+      "probe_snapshots": {
+        "pre": {
+          "cpu": 7,
+          "mode_flag": 1,
+          "fdvfs_flag": 0
+        },
+        "post": {
+          "raw": 5000000,
+          "request_pointer": 553648264
+        }
+      }
+    },
+    {
+      "cpu": 4,
+      "raw_word": 2446000,
+      "returned_khz": 2446000,
+      "mode_flag": 1,
+      "fdvfs_flag": 0,
+      "hardware_model_reads": [
+        {
+          "address": "0x21000088",
+          "size": 4
+        }
+      ],
+      "hardware_model_writes": [],
+      "probe_snapshots": {
+        "pre": {
+          "cpu": 4,
+          "mode_flag": 1,
+          "fdvfs_flag": 0
+        },
+        "post": {
+          "raw": 2446000,
+          "request_pointer": 553648264
+        }
+      }
+    },
+    {
+      "cpu": 4,
+      "raw_word": 1250000,
+      "returned_khz": 1250000,
+      "mode_flag": 1,
+      "fdvfs_flag": 0,
+      "hardware_model_reads": [
+        {
+          "address": "0x21000088",
+          "size": 4
+        }
+      ],
+      "hardware_model_writes": [],
+      "probe_snapshots": {
+        "pre": {
+          "cpu": 4,
+          "mode_flag": 1,
+          "fdvfs_flag": 0
+        },
+        "post": {
+          "raw": 1250000,
+          "request_pointer": 553648264
+        }
+      }
+    },
+    {
+      "cpu": 4,
+      "raw_word": 1328000,
+      "returned_khz": 1328000,
+      "mode_flag": 1,
+      "fdvfs_flag": 0,
+      "hardware_model_reads": [
+        {
+          "address": "0x21000088",
+          "size": 4
+        }
+      ],
+      "hardware_model_writes": [],
+      "probe_snapshots": {
+        "pre": {
+          "cpu": 4,
+          "mode_flag": 1,
+          "fdvfs_flag": 0
+        },
+        "post": {
+          "raw": 1328000,
+          "request_pointer": 553648264
+        }
+      }
+    },
+    {
+      "cpu": 4,
+      "raw_word": 1302000,
+      "returned_khz": 1302000,
+      "mode_flag": 1,
+      "fdvfs_flag": 0,
+      "hardware_model_reads": [
+        {
+          "address": "0x21000088",
+          "size": 4
+        }
+      ],
+      "hardware_model_writes": [],
+      "probe_snapshots": {
+        "pre": {
+          "cpu": 4,
+          "mode_flag": 1,
+          "fdvfs_flag": 0
+        },
+        "post": {
+          "raw": 1302000,
+          "request_pointer": 553648264
+        }
+      }
+    }
+  ],
+  "tests_passed": 9,
+  "scope": "Exact .get instruction execution in Unicorn with two .bss relocations applied, external read-logging callbacks modeled, MMIO is host RAM only. Pre/post probe expressions qualified; no phone/probe/control operation."
+}

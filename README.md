@@ -18,3 +18,10 @@ Windows 11 PRO boots from UFS. CPU, display, touchscreen with multitouch, and UF
 Maintainer: [soundrust5](https://github.com/soundrust5).
 
 <br clear="both">
+
+
+## Current sources and experimental release — 29 October 2026
+
+Current UEFI, Windows UFS/touch driver and CPU/DVFS research sources, build scripts, tests and reports are published. [Source contents and dependency reconstruction](SOURCE.md) · [UEFI releases](../../releases).
+
+Earlier device testing confirmed Windows with all eight CPU cores, UFS read/write, multitouch and autonomous framebuffer refresh. DVFS is unfinished; GPU acceleration, Wi-Fi and Bluetooth are not implemented. The new fullscreen-default image passed build and packaging checks; this exact binary has not yet been booted on the phone. Windows images and proprietary driver binaries are not included.

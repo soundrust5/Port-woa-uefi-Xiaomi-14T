@@ -1,0 +1,785 @@
+{
+  "status": "PASS_HOST_ONLY_SYNTHETIC",
+  "tests": 11,
+  "instruction_cases": 70,
+  "code_bytes": 912,
+  "code_sha256": "41b6fcac1f8aefbcab9e32730b213b62b755cf55b22016fa7abe7323bdd24d0e",
+  "source_sha256": "421cc91b9134b8fe956437265067bd75a46d35a7cc504de84e57b23f4934d159",
+  "scope": "Actual assembled control flow; privileged registers, traps, and CPU_OFF are modeled. No actual MT6897 geometry/coherency/power measurements.",
+  "cases": [
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 0,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 0,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 0,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 0,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 2,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 2,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 2,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 2,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 3,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 3,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 3,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 3,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 4,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 4,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 4,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 4,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 5,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 5,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 5,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 5,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 6,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 6,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 6,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 6,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 7,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 7,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 7,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 7,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 7,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 7,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 7,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 0,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 0,
+      "wrapper": true,
+      "outcome": "parked",
+      "status": 10,
+      "phase": 66,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "parked",
+      "status": 9,
+      "phase": 65,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 18446744073709551615
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 0,
+      "commit": 0,
+      "smcs": [],
+      "x0": 2
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 0,
+      "commit": 0,
+      "smcs": [],
+      "x0": 2
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "parked",
+      "status": 0,
+      "phase": 0,
+      "commit": 0,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "parked",
+      "status": 0,
+      "phase": 0,
+      "commit": 0,
+      "smcs": [],
+      "x0": 1
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 4,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 4
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 4,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 4
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 3,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 3
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 5,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 5
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 6,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 6
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 6,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 6
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 7,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 7
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 7,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 7
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 2,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 2
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 2,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 2
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 2,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 2
+    },
+    {
+      "cpu": 1,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 2,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 2
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 5,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 5,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 5,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_cpu_off",
+      "status": 5,
+      "phase": 64,
+      "commit": 5207077351351799620,
+      "smcs": [
+        2214592514
+      ],
+      "x0": 2214592514
+    },
+    {
+      "cpu": 0,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 0,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 0,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 0,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 0,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 0,
+      "wrapper": false,
+      "outcome": "returned",
+      "status": 0,
+      "phase": 51,
+      "commit": 5207077351351799620,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_trap",
+      "status": 1,
+      "phase": 8,
+      "commit": 0,
+      "smcs": [],
+      "x0": 1124139008
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_trap",
+      "status": 1,
+      "phase": 9,
+      "commit": 0,
+      "smcs": [],
+      "x0": 1124139008
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_trap",
+      "status": 1,
+      "phase": 32,
+      "commit": 0,
+      "smcs": [],
+      "x0": 1124139008
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_trap",
+      "status": 1,
+      "phase": 289,
+      "commit": 0,
+      "smcs": [],
+      "x0": 1124139008
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_trap",
+      "status": 0,
+      "phase": 48,
+      "commit": 0,
+      "smcs": [],
+      "x0": 0
+    },
+    {
+      "cpu": 1,
+      "wrapper": true,
+      "outcome": "modeled_trap",
+      "status": 0,
+      "phase": 50,
+      "commit": 0,
+      "smcs": [],
+      "x0": 0
+    }
+  ]
+}

@@ -7,6 +7,11 @@
 [Sources]
  DegasAcpiDxe.c
  AcpiTablesGenerated.h
+ CpuTopologyCore.h
+ Parking.S
+ WindowsObserver.S
+ BugcheckMonitor.inc
+ Parking.h
 [Packages]
  MdePkg/MdePkg.dec
 [LibraryClasses]
@@ -18,8 +23,12 @@
  ArmLib
  ArmSmcLib
  IoLib
+ CacheMaintenanceLib
+ TimerLib
+ SerialPortLib
 [Protocols]
  gEfiAcpiTableProtocolGuid
+ gEfiCpuArchProtocolGuid
 [Guids]
  gEfiAcpiTableGuid
 [Depex]

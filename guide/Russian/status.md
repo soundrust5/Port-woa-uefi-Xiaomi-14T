@@ -54,3 +54,6 @@
 Чтение и запись UFS проверены в Windows, включая стресс-тест памяти. Непроверенные пункты не означают наличие поддержки в Windows.
 
 [Доступность установки](installation.md)
+
+
+2026-10-29 source refresh: all eight CPU cores were observed working in Windows. Clock-frequency scaling/DVFS is still under investigation. See [current source notes](../../SOURCE.md) for the build-qualified fullscreen prerelease and remaining limitations.

@@ -1,7 +1,7 @@
 {
   "upstream": "https://github.com/Project-Silicium/Mu-Silicium",
   "upstream_revision": "964a886f3d1ad3f35137435b11287c8d6827437b",
-  "snapshot_date": "2026-10-27",
+  "snapshot_date": "2026-10-29",
   "submodules": {
     "Binaries": "b36d6529fa2a51c602bffefdee545feb098f2bde",
     "Common/Mu": "d491bf02de6974425e247e4b7d33a99b6d66d225",
@@ -10,6 +10,6 @@
     "Silicium-ACPI": "94896d455b758765f9cef0dc60e1bc447f53bee5",
     "Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl": "67b5686b4419b4cb8caa502711c41815f5279751"
   },
-  "local_basecore_changes": "source-patches/Mu_Basecore/",
-  "scope": "Tracked Mu-Silicium working files, degas platform sources, required touch headers; no build products or phone dumps."
+  "local_basecore_changes": "source-patches/Mu_Basecore/current-working-tree.patch",
+  "scope": "Complete current degas platform, shared Mu sources, Xiaomi Windows driver sources, build/packaging tools, tests and research docs. No raw phone dumps, private signing material, Windows binary fixtures or generated artifacts."
 }

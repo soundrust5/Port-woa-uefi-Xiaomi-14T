@@ -211,7 +211,9 @@ STATIC BOOLEAN UfsDeviceDescriptor(VOID){
 #include "UfsCopy.h"
 #include "UfsSpeedCheck.h"
 #include "UfsBlockIo.h"
+#ifndef DEGAS_DIAGNOSTIC_EBS_WATCHDOG
 #define DEGAS_DIAGNOSTIC_EBS_WATCHDOG 0
+#endif
 #include "OsHandoff.h"
 #include "GceSnapshot.h"
 #include "GceMappingInstall.h"
@@ -275,9 +277,21 @@ STATIC VOID UfsEnableTest(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop,BOOLEAN SpeedOnly){
  DEBUG((DEBUG_ERROR,"DEGAS UFS ENABLE cleanup=%u xo=%08x READ ONLY BLOCKIO TEST\n",Stopped,MmioRead32(0x112b0140)));
  Label(Gop,1690,!Stopped?"UFS STOP FAILED RESET REQUIRED":(SpeedOnly && BlocksOk)?"UFS SPEED AND CRC PASS":PartitionsOk?"WINDOWS RETURNED SEE RAM LOG":BlocksOk?"UFS PARTITION TEST FAILED":HsOk?"UFS BLOCK READ FAILED":CapacityOk?"UFS HIGH SPEED FAILED":DescOk?"UFS CAPACITY FAILED":NopOk?"UFS DESCRIPTOR FAILED":LinkOk?"UFS NOP FAILED":ReadOk?"UFS LINK FAILED":Ready?"UFS ATTRIBUTE READ FAILED":"UFS ENABLE TIMEOUT");
 }
-#include "RamAllocation.h"
+#include "ApJournalRetention.h"
+#include "BootAndroid.h"
+#include "CpuProbe.h"
+#include "CpuCacheVisibility.h"
+#include "CpuDvfsSnapshot.h"
 #include "TouchSpi.h"
 #include "TouchPower.h"
+#include "../../Include/Protocol/DegasCpuStatus.h"
+STATIC VOID CpuSummary(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
+ EFI_GUID Guid=DEGAS_CPU_STATUS_GUID;DEGAS_CPU_STATUS *Cpu=NULL;CHAR8 Text[80];
+ if(EFI_ERROR(gBS->LocateProtocol(&Guid,NULL,(VOID **)&Cpu)) || !Cpu || Cpu->Version!=2 || Cpu->TemplateCount>8){Label(Gop,660,"ACPI CPU STATUS UNAVAILABLE");return;}
+ AsciiSPrint(Text,sizeof(Text),"ACPI CPUS: %u / %u",Cpu->PublishedCount,Cpu->TemplateCount);Label(Gop,660,Text);
+ AsciiSPrint(Text,sizeof(Text),"GIC: %u PSCI: %x STATE: %x",Cpu->DiscoveryStatus,Cpu->PsciCpuOnFeature,Cpu->StateMismatchMask);Label(Gop,720,Text);
+ AsciiSPrint(Text,sizeof(Text),"BOOT CPU: %u MIDR: %08x",(UINT32)((ArmReadMpidr()>>8)&255),(UINT32)ArmReadMidr());Label(Gop,780,Text);
+}
 STATIC VOID ButtonTest(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
  UINTN I,Selected=0,Changes=0,Stable=0,Confirms=0;
  UINT32 Last=0,Pressed=0,Sample,Edges; unsigned int Pmic=0,Error;
@@ -289,13 +303,14 @@ STATIC VOID ButtonTest(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
  DEBUG((DEBUG_ERROR,"DEGAS PMIC initial error=%u status=%02x\n",Error,Pmic));
  if(Error){Label(Gop,1690,"PMIC READ FAILED RETURN FASTBOOT");return;}
  if(EFI_ERROR(Label(Gop,660,"")) ||
-    EFI_ERROR(Label(Gop,900,"DEVICE INFORMATION")) ||
-    EFI_ERROR(Label(Gop,1030,"RAM ALLOCATION TEST")) ||
+    EFI_ERROR(Label(Gop,900,"BOOT ANDROID")) ||
+    EFI_ERROR(Label(Gop,1030,"CPU DVFS SNAPSHOT")) ||
     EFI_ERROR(Label(Gop,1160,"WINDOWS BOOT MANAGER")) ||
     EFI_ERROR(Label(Gop,1290,"UFS SPEED TEST")) ||
     EFI_ERROR(Label(Gop,1420,"TOUCH DRAW TEST")) ||
     EFI_ERROR(Label(Gop,1550,"END TEST")) ||
     EFI_ERROR(Label(Gop,1690,"")))return;
+ CpuSummary(Gop);
  DEBUG((DEBUG_ERROR,"DEGAS MENU WATCHDOG mode=%08x\n",MmioRead32(0x1c00a000)));
  if(EFI_ERROR(Gop->Blt(Gop,&Orange,EfiBltVideoFill,0,0,70,855,16,100,0)))return;
  for(I=0;;I++){
@@ -333,11 +348,11 @@ STATIC VOID ButtonTest(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
     TouchPowerSnapshot(Gop);
     return;
    }
-   if(Selected==0){Label(Gop,1690,"XIAOMI DEGAS UEFI");}
+   if(Selected==0){BootAndroid(Gop);return;}
    else if(Selected==1){
-    RamAccessTest(Gop);
-    Label(Gop,1840,"TEST ENDED WAIT FOR RESTART");
-    return;
+    CpuDvfsSnapshot(Gop);
+    Label(Gop,2050,"TEST ENDED SELECT BOOT ANDROID");
+    continue;
    }
    else{
     STATIC CONST UINT16 Offsets[]={0,0x10,0x14,0x18,0x20,0x24,0x30,0x34,0x38,0x3c,0x40,0x44,0x48,0x50,0x54,0x58,0x60,0x70,0x74,0x78,0x80,0x140,0x144,0x160,0x2100,0x2200,0x2240};
@@ -378,6 +393,7 @@ STATIC EFI_STATUS RunMenu(VOID){
  }
  if(EFI_ERROR(S))return S;
  S=Label(Gop,300,"MEDIATEK");if(EFI_ERROR(S))return S;
+ ApJournalCanaryCheck(Gop);
  ButtonTest(Gop);
  return EFI_SUCCESS;
 }

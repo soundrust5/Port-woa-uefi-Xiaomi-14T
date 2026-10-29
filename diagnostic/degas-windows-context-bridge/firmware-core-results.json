@@ -1,0 +1,9 @@
+{
+  "tests_run": 13,
+  "successful": true,
+  "source_unchanged": true,
+  "implementation": "actual NativeContextCore.h compiled with UBSan",
+  "physical_base": "0x50000000",
+  "independent_virtual_base": "0xfffff800d3c00000",
+  "scope": "Host-owned loader domains only; no live EBS mapping or Windows integrity validation"
+}

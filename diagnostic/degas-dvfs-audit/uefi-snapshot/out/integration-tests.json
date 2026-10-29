@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "tests": 7,
+  "implementation": "actual firmware CpuDvfsSnapshot.h and copied capture/formatter headers, compiled with UBSan",
+  "modeled": "AT translation, controller reads, PMU raw return/status, retained RAM, UI and watchdog; assembly separately tested",
+  "phone_operations": false,
+  "shared_firmware_modified": false
+}

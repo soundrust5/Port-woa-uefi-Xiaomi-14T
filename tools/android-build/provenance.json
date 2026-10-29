@@ -1,0 +1,35 @@
+{
+  "prepared_on": "2026-09-24",
+  "downloads_performed": false,
+  "android_sdk": {
+    "origin": "pre-existing official Android SDK installation",
+    "root_at_preparation": "C:/Users/gavso/AppData/Local/Android/Sdk",
+    "packages": {
+      "platforms;android-35": {
+        "description": "Android SDK Platform 15",
+        "revision": "2",
+        "android_jar_sha256": "4566663c3876e022b4fa4ced8c8697c4ab1688267f090114fd92d027b32e619b"
+      },
+      "build-tools;35.0.0": {
+        "revision": "35.0.0",
+        "files_sha256": {
+          "aapt2.exe": "cbfe5deda5f7074ce47b6f33818b456ee8046a076a11af13e29c837d3c80c564",
+          "lib/d8.jar": "305622ad00535684534eb8f742cbf5e628a9abc09d8ea4d39d1babb95bf0cee5",
+          "apksigner.bat": "549dd0028b0314a5112d6b56e2de7800e713f297da4508b513a735546e52ce38",
+          "zipalign.exe": "aa2475ce201962b871fb8daec020da03fd6292c9c1f422cd0fe2e39b20d4f673"
+        }
+      }
+    }
+  },
+  "jdk": {
+    "origin": "pre-existing local Oracle JDK",
+    "home_at_preparation": "C:/Program Files/Java/jdk-21",
+    "java_version": "21.0.9",
+    "javac_version": "21.0.9",
+    "files_sha256": {
+      "bin/java.exe": "d27c1a75edf380963c430232e93340eab4bd3694044976cff85421bf163b876c",
+      "bin/javac.exe": "8a1d32f529ba4d01940194e3b06d14aff828e5d47f5f374ec88c81902fc3456f",
+      "bin/keytool.exe": "b93b1a4272db1bff23540de193ff40752db888648a3f4619a7e42b8a076adc88"
+    }
+  }
+}

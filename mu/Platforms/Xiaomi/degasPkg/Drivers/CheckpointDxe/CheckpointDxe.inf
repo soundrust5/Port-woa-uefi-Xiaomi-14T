@@ -6,6 +6,19 @@
  ENTRY_POINT=CheckpointEntry
 [Sources]
  Checkpoint.c
+ CpuProbe.S
+ CpuProbe.h
+ CpuCacheVisibility.S
+ CpuCacheVisibility.h
+ CpuCoherentProbe.S
+ CpuCoherentTest.h
+ CpuObserverMap.h
+ NativeTranslation.S
+ CpuDvfsSnapshot.h
+ UefiCsramSnapshot.h
+ UefiCsramJournal.h
+ DvfsPmuRead.S
+ CpuDvfsStep.h
 [Packages]
  MdePkg/MdePkg.dec
  MdeModulePkg/MdeModulePkg.dec
@@ -26,6 +39,7 @@
  DevicePathLib
  UefiBootManagerLib
 [Protocols]
+ gEfiCpuArchProtocolGuid
  gEfiBdsArchProtocolGuid
  gEfiGraphicsOutputProtocolGuid
  gEfiTimerArchProtocolGuid

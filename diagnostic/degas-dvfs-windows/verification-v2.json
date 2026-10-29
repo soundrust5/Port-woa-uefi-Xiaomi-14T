@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-29",
+  "snapshot_version": 2,
+  "snapshot_size_bytes": 280,
+  "raw_thermal_suffix_offset_bytes": 224,
+  "abi_validation": "ARM64 WDK C_ASSERT for size and FIELD_OFFSET",
+  "compiler_target": "aarch64-pc-windows-msvc",
+  "compiler_flags": ["-O2", "-Wall", "-Wextra", "-Werror"],
+  "full_driver_build": "PASS",
+  "protocol_host_tests": "PASS",
+  "actual_backend_thermal_closed_host_test": "PASS",
+  "closed_gate_mmio_writes": 0,
+  "closed_gate_waits": 0,
+  "runtime_state": "observe-only; stock 2.2/3.2/3.35 GHz capability metadata represented; thermal freshness unqualified; no boost authorized by telemetry",
+  "phone_actions": false
+}

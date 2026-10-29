@@ -1,0 +1,832 @@
+
+artifacts/degas/dvfs-windows/degas_thermal.obj:	file format coff-arm64
+
+Disassembly of section .text:
+
+0000000000000000 <DegasThermalInitialize>:
+       0: f81f0ff3     	str	x19, [sp, #-0x10]!
+       4: f90007fe     	str	x30, [sp, #0x8]
+       8: 90000013     	adrp	x19, 0x0 <DegasThermalInitialize>
+       c: f9400268     	ldr	x8, [x19]
+      10: b5000408     	cbnz	x8, 0x90 <DegasThermalInitialize+0x90>
+      14: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+      18: 90000000     	adrp	x0, 0x0 <DegasThermalInitialize>
+      1c: 91000000     	add	x0, x0, #0x0
+      20: f9400108     	ldr	x8, [x8]
+      24: d63f0100     	blr	x8
+      28: 90000000     	adrp	x0, 0x0 <DegasThermalInitialize>
+      2c: 91000000     	add	x0, x0, #0x0
+      30: 2a1f03e1     	mov	w1, wzr
+      34: 52802502     	mov	w2, #0x128              // =296
+      38: 94000000     	bl	0x38 <DegasThermalInitialize+0x38>
+      3c: 90000000     	adrp	x0, 0x0 <DegasThermalInitialize>
+      40: 91000000     	add	x0, x0, #0x0
+      44: 2a1f03e1     	mov	w1, wzr
+      48: 52800802     	mov	w2, #0x40               // =64
+      4c: 94000000     	bl	0x4c <DegasThermalInitialize+0x4c>
+      50: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+      54: 52880000     	mov	w0, #0x4000             // =16384
+      58: 52808001     	mov	w1, #0x400              // =1024
+      5c: f9400108     	ldr	x8, [x8]
+      60: 72a00220     	movk	w0, #0x11, lsl #16
+      64: 52804042     	mov	w2, #0x202              // =514
+      68: d63f0100     	blr	x8
+      6c: f9000260     	str	x0, [x19]
+      70: b4000180     	cbz	x0, 0xa0 <DegasThermalInitialize+0xa0>
+      74: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+      78: 90000002     	adrp	x2, 0x0 <DegasThermalInitialize>
+      7c: 91000042     	add	x2, x2, #0x0
+      80: f9400108     	ldr	x8, [x8]
+      84: 528009a0     	mov	w0, #0x4d               // =77
+      88: 52800021     	mov	w1, #0x1                // =1
+      8c: d63f0100     	blr	x8
+      90: 2a1f03e0     	mov	w0, wzr
+      94: f94007fe     	ldr	x30, [sp, #0x8]
+      98: f84107f3     	ldr	x19, [sp], #0x10
+      9c: d65f03c0     	ret
+      a0: 52801340     	mov	w0, #0x9a               // =154
+      a4: 72b80000     	movk	w0, #0xc000, lsl #16
+      a8: 17fffffb     	b	0x94 <DegasThermalInitialize+0x94>
+
+00000000000000ac <DegasThermalShutdown>:
+      ac: f81f0ff3     	str	x19, [sp, #-0x10]!
+      b0: f90007fe     	str	x30, [sp, #0x8]
+      b4: 90000013     	adrp	x19, 0x0 <DegasThermalInitialize>
+      b8: f9400260     	ldr	x0, [x19]
+      bc: b40000c0     	cbz	x0, 0xd4 <DegasThermalShutdown+0x28>
+      c0: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+      c4: 52808001     	mov	w1, #0x400              // =1024
+      c8: f9400108     	ldr	x8, [x8]
+      cc: d63f0100     	blr	x8
+      d0: f900027f     	str	xzr, [x19]
+      d4: f94007fe     	ldr	x30, [sp, #0x8]
+      d8: f84107f3     	ldr	x19, [sp], #0x10
+      dc: d65f03c0     	ret
+
+00000000000000e0 <DegasThermalRead>:
+      e0: d10143ff     	sub	sp, sp, #0x50
+      e4: a90153f3     	stp	x19, x20, [sp, #0x10]
+      e8: a9025bf5     	stp	x21, x22, [sp, #0x20]
+      ec: a90363f7     	stp	x23, x24, [sp, #0x30]
+      f0: f90023fe     	str	x30, [sp, #0x40]
+      f4: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+      f8: f9400108     	ldr	x8, [x8]
+      fc: f90007e8     	str	x8, [sp, #0x8]
+     100: b4000041     	cbz	x1, 0x108 <DegasThermalRead+0x28>
+     104: b900003f     	str	wzr, [x1]
+     108: 2a1f03e8     	mov	w8, wzr
+     10c: b4000582     	cbz	x2, 0x1bc <DegasThermalRead+0xdc>
+     110: b900005f     	str	wzr, [x2]
+     114: b4000541     	cbz	x1, 0x1bc <DegasThermalRead+0xdc>
+     118: 90000009     	adrp	x9, 0x0 <DegasThermalInitialize>
+     11c: f9400129     	ldr	x9, [x9]
+     120: b40004e9     	cbz	x9, 0x1bc <DegasThermalRead+0xdc>
+     124: d2800108     	mov	x8, #0x8                // =8
+     128: d28b2969     	mov	x9, #0x594b             // =22859
+     12c: 90000014     	adrp	x20, 0x0 <DegasThermalInitialize>
+     130: 91000294     	add	x20, x20, #0x0
+     134: f2def008     	movk	x8, #0xf780, lsl #32
+     138: f2a710c9     	movk	x9, #0x3886, lsl #16
+     13c: f2ffffe8     	movk	x8, #0xffff, lsl #48
+     140: f2d8bac9     	movk	x9, #0xc5d6, lsl #32
+     144: 2a0003f5     	mov	w21, w0
+     148: f9400108     	ldr	x8, [x8]
+     14c: f2e68da9     	movk	x9, #0x346d, lsl #48
+     150: aa1403e0     	mov	x0, x20
+     154: aa0103f8     	mov	x24, x1
+     158: aa0203f7     	mov	x23, x2
+     15c: 9bc97d08     	umulh	x8, x8, x9
+     160: d34bfd13     	lsr	x19, x8, #11
+     164: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     168: f9400108     	ldr	x8, [x8]
+     16c: d63f0100     	blr	x8
+     170: 2a0003f6     	mov	w22, w0
+     174: 910013e2     	add	x2, sp, #0x4
+     178: 910003e3     	mov	x3, sp
+     17c: aa1303e0     	mov	x0, x19
+     180: 2a1503e1     	mov	w1, w21
+     184: 94000000     	bl	0x184 <DegasThermalRead+0xa4>
+     188: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     18c: 2a0003f3     	mov	w19, w0
+     190: aa1403e0     	mov	x0, x20
+     194: f9400108     	ldr	x8, [x8]
+     198: 2a1603e1     	mov	w1, w22
+     19c: d63f0100     	blr	x8
+     1a0: 340000d3     	cbz	w19, 0x1b8 <DegasThermalRead+0xd8>
+     1a4: 294023e9     	ldp	w9, w8, [sp]
+     1a8: b9000308     	str	w8, [x24]
+     1ac: 52800028     	mov	w8, #0x1                // =1
+     1b0: b90002e9     	str	w9, [x23]
+     1b4: 14000002     	b	0x1bc <DegasThermalRead+0xdc>
+     1b8: 2a1f03e8     	mov	w8, wzr
+     1bc: 90000009     	adrp	x9, 0x0 <DegasThermalInitialize>
+     1c0: f94007ea     	ldr	x10, [sp, #0x8]
+     1c4: f9400129     	ldr	x9, [x9]
+     1c8: eb0a013f     	cmp	x9, x10
+     1cc: 54000101     	b.ne	0x1ec <DegasThermalRead+0x10c>
+     1d0: 2a0803e0     	mov	w0, w8
+     1d4: f94023fe     	ldr	x30, [sp, #0x40]
+     1d8: a94363f7     	ldp	x23, x24, [sp, #0x30]
+     1dc: a9425bf5     	ldp	x21, x22, [sp, #0x20]
+     1e0: a94153f3     	ldp	x19, x20, [sp, #0x10]
+     1e4: 910143ff     	add	sp, sp, #0x50
+     1e8: d65f03c0     	ret
+     1ec: f94007e0     	ldr	x0, [sp, #0x8]
+     1f0: 94000000     	bl	0x1f0 <DegasThermalRead+0x110>
+     1f4: d4200020     	brk	#0x1
+
+00000000000001f8 <DegasThermalPolicyRead>:
+     1f8: aa0003e8     	mov	x8, x0
+     1fc: 2a1f03e0     	mov	w0, wzr
+     200: 7100083f     	cmp	w1, #0x2
+     204: b900005f     	str	wzr, [x2]
+     208: b900007f     	str	wzr, [x3]
+     20c: 54002508     	b.hi	0x6ac <DegasThermalPolicyRead+0x4b4>
+     210: 90000909     	adrp	x9, 0x120000 <DegasThermalReadTelemetry+0x11f4bc>
+     214: b9412129     	ldr	w9, [x9, #0x120]
+     218: 340024a9     	cbz	w9, 0x6ac <DegasThermalPolicyRead+0x4b4>
+     21c: 90000029     	adrp	x9, 0x4000 <DegasThermalReadTelemetry+0x34bc>
+     220: 91001129     	add	x9, x9, #0x4
+     224: 2a1f03e0     	mov	w0, wzr
+     228: 9104512a     	add	x10, x9, #0x114
+     22c: f940014a     	ldr	x10, [x10]
+     230: eb0a010a     	subs	x10, x8, x10
+     234: 540023c3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     238: f11f3d5f     	cmp	x10, #0x7cf
+     23c: 54002388     	b.hi	0x6ac <DegasThermalPolicyRead+0x4b4>
+     240: b940152a     	ldr	w10, [x9, #0x14]
+     244: 3400234a     	cbz	w10, 0x6ac <DegasThermalPolicyRead+0x4b4>
+     248: b9400129     	ldr	w9, [x9]
+     24c: 7100093f     	cmp	w9, #0x2
+     250: 540022e3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     254: 90000049     	adrp	x9, 0x8000 <DegasThermalReadTelemetry+0x74bc>
+     258: f940052a     	ldr	x10, [x9, #0x8]
+     25c: eb0a011f     	cmp	x8, x10
+     260: 54000062     	b.hs	0x26c <DegasThermalPolicyRead+0x74>
+     264: 2a1f03e0     	mov	w0, wzr
+     268: d65f03c0     	ret
+     26c: 90000089     	adrp	x9, 0x10000 <DegasThermalReadTelemetry+0xf4bc>
+     270: 91004129     	add	x9, x9, #0x10
+     274: 2a1f03e0     	mov	w0, wzr
+     278: f940012c     	ldr	x12, [x9]
+     27c: eb0c010b     	subs	x11, x8, x12
+     280: 54002163     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     284: eb0a019f     	cmp	x12, x10
+     288: 54002123     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     28c: cb0a018a     	sub	x10, x12, x10
+     290: f101915f     	cmp	x10, #0x64
+     294: 540020c3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     298: f11f3d7f     	cmp	x11, #0x7cf
+     29c: 54002088     	b.hi	0x6ac <DegasThermalPolicyRead+0x4b4>
+     2a0: b940292a     	ldr	w10, [x9, #0x28]
+     2a4: 3400204a     	cbz	w10, 0x6ac <DegasThermalPolicyRead+0x4b4>
+     2a8: b9401529     	ldr	w9, [x9, #0x14]
+     2ac: 7100093f     	cmp	w9, #0x2
+     2b0: 54001fe3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     2b4: 90000149     	adrp	x9, 0x28000 <DegasThermalReadTelemetry+0x274bc>
+     2b8: f940152a     	ldr	x10, [x9, #0x28]
+     2bc: eb0a011f     	cmp	x8, x10
+     2c0: 54000062     	b.hs	0x2cc <DegasThermalPolicyRead+0xd4>
+     2c4: 2a1f03e0     	mov	w0, wzr
+     2c8: d65f03c0     	ret
+     2cc: 90000189     	adrp	x9, 0x30000 <DegasThermalReadTelemetry+0x2f4bc>
+     2d0: 9100c129     	add	x9, x9, #0x30
+     2d4: 2a1f03e0     	mov	w0, wzr
+     2d8: f940012c     	ldr	x12, [x9]
+     2dc: eb0c010b     	subs	x11, x8, x12
+     2e0: 54001e63     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     2e4: eb0a019f     	cmp	x12, x10
+     2e8: 54001e23     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     2ec: cb0a018a     	sub	x10, x12, x10
+     2f0: f101915f     	cmp	x10, #0x64
+     2f4: 54001dc3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     2f8: f11f3d7f     	cmp	x11, #0x7cf
+     2fc: 54001d88     	b.hi	0x6ac <DegasThermalPolicyRead+0x4b4>
+     300: b940292a     	ldr	w10, [x9, #0x28]
+     304: 34001d4a     	cbz	w10, 0x6ac <DegasThermalPolicyRead+0x4b4>
+     308: b9401529     	ldr	w9, [x9, #0x14]
+     30c: 7100093f     	cmp	w9, #0x2
+     310: 54001ce3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     314: 90000249     	adrp	x9, 0x48000 <DegasThermalReadTelemetry+0x474bc>
+     318: f940252a     	ldr	x10, [x9, #0x48]
+     31c: eb0a011f     	cmp	x8, x10
+     320: 54000062     	b.hs	0x32c <DegasThermalPolicyRead+0x134>
+     324: 2a1f03e0     	mov	w0, wzr
+     328: d65f03c0     	ret
+     32c: 90000289     	adrp	x9, 0x50000 <DegasThermalReadTelemetry+0x4f4bc>
+     330: 91014129     	add	x9, x9, #0x50
+     334: 2a1f03e0     	mov	w0, wzr
+     338: f940012c     	ldr	x12, [x9]
+     33c: eb0c010b     	subs	x11, x8, x12
+     340: 54001b63     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     344: eb0a019f     	cmp	x12, x10
+     348: 54001b23     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     34c: cb0a018a     	sub	x10, x12, x10
+     350: f101915f     	cmp	x10, #0x64
+     354: 54001ac3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     358: f11f3d7f     	cmp	x11, #0x7cf
+     35c: 54001a88     	b.hi	0x6ac <DegasThermalPolicyRead+0x4b4>
+     360: b940292a     	ldr	w10, [x9, #0x28]
+     364: 34001a4a     	cbz	w10, 0x6ac <DegasThermalPolicyRead+0x4b4>
+     368: b9401529     	ldr	w9, [x9, #0x14]
+     36c: 7100093f     	cmp	w9, #0x2
+     370: 540019e3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     374: 90000349     	adrp	x9, 0x68000 <DegasThermalReadTelemetry+0x674bc>
+     378: f940352a     	ldr	x10, [x9, #0x68]
+     37c: eb0a011f     	cmp	x8, x10
+     380: 54000062     	b.hs	0x38c <DegasThermalPolicyRead+0x194>
+     384: 2a1f03e0     	mov	w0, wzr
+     388: d65f03c0     	ret
+     38c: 90000389     	adrp	x9, 0x70000 <DegasThermalReadTelemetry+0x6f4bc>
+     390: 9101c129     	add	x9, x9, #0x70
+     394: 2a1f03e0     	mov	w0, wzr
+     398: f940012c     	ldr	x12, [x9]
+     39c: eb0c010b     	subs	x11, x8, x12
+     3a0: 54001863     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     3a4: eb0a019f     	cmp	x12, x10
+     3a8: 54001823     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     3ac: cb0a018a     	sub	x10, x12, x10
+     3b0: f101915f     	cmp	x10, #0x64
+     3b4: 540017c3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     3b8: f11f3d7f     	cmp	x11, #0x7cf
+     3bc: 54001788     	b.hi	0x6ac <DegasThermalPolicyRead+0x4b4>
+     3c0: b940292a     	ldr	w10, [x9, #0x28]
+     3c4: 3400174a     	cbz	w10, 0x6ac <DegasThermalPolicyRead+0x4b4>
+     3c8: b9401529     	ldr	w9, [x9, #0x14]
+     3cc: 7100093f     	cmp	w9, #0x2
+     3d0: 540016e3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     3d4: 90000449     	adrp	x9, 0x88000 <DegasThermalReadTelemetry+0x874bc>
+     3d8: f940452a     	ldr	x10, [x9, #0x88]
+     3dc: eb0a011f     	cmp	x8, x10
+     3e0: 54000062     	b.hs	0x3ec <DegasThermalPolicyRead+0x1f4>
+     3e4: 2a1f03e0     	mov	w0, wzr
+     3e8: d65f03c0     	ret
+     3ec: 90000489     	adrp	x9, 0x90000 <DegasThermalReadTelemetry+0x8f4bc>
+     3f0: 91024129     	add	x9, x9, #0x90
+     3f4: 2a1f03e0     	mov	w0, wzr
+     3f8: f940012c     	ldr	x12, [x9]
+     3fc: eb0c010b     	subs	x11, x8, x12
+     400: 54001563     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     404: eb0a019f     	cmp	x12, x10
+     408: 54001523     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     40c: cb0a018a     	sub	x10, x12, x10
+     410: f101915f     	cmp	x10, #0x64
+     414: 540014c3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     418: f11f3d7f     	cmp	x11, #0x7cf
+     41c: 54001488     	b.hi	0x6ac <DegasThermalPolicyRead+0x4b4>
+     420: b940292a     	ldr	w10, [x9, #0x28]
+     424: 3400144a     	cbz	w10, 0x6ac <DegasThermalPolicyRead+0x4b4>
+     428: b9401529     	ldr	w9, [x9, #0x14]
+     42c: 7100093f     	cmp	w9, #0x2
+     430: 540013e3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     434: 90000549     	adrp	x9, 0xa8000 <DegasThermalReadTelemetry+0xa74bc>
+     438: f940552a     	ldr	x10, [x9, #0xa8]
+     43c: eb0a011f     	cmp	x8, x10
+     440: 54000062     	b.hs	0x44c <DegasThermalPolicyRead+0x254>
+     444: 2a1f03e0     	mov	w0, wzr
+     448: d65f03c0     	ret
+     44c: 90000589     	adrp	x9, 0xb0000 <DegasThermalReadTelemetry+0xaf4bc>
+     450: 9102c129     	add	x9, x9, #0xb0
+     454: 2a1f03e0     	mov	w0, wzr
+     458: f940012c     	ldr	x12, [x9]
+     45c: eb0c010b     	subs	x11, x8, x12
+     460: 54001263     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     464: eb0a019f     	cmp	x12, x10
+     468: 54001223     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     46c: cb0a018a     	sub	x10, x12, x10
+     470: f101915f     	cmp	x10, #0x64
+     474: 540011c3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     478: f11f3d7f     	cmp	x11, #0x7cf
+     47c: 54001188     	b.hi	0x6ac <DegasThermalPolicyRead+0x4b4>
+     480: b940292a     	ldr	w10, [x9, #0x28]
+     484: 3400114a     	cbz	w10, 0x6ac <DegasThermalPolicyRead+0x4b4>
+     488: b9401529     	ldr	w9, [x9, #0x14]
+     48c: 7100093f     	cmp	w9, #0x2
+     490: 540010e3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     494: 90000649     	adrp	x9, 0xc8000 <DegasThermalReadTelemetry+0xc74bc>
+     498: f940652a     	ldr	x10, [x9, #0xc8]
+     49c: eb0a011f     	cmp	x8, x10
+     4a0: 54000062     	b.hs	0x4ac <DegasThermalPolicyRead+0x2b4>
+     4a4: 2a1f03e0     	mov	w0, wzr
+     4a8: d65f03c0     	ret
+     4ac: 90000689     	adrp	x9, 0xd0000 <DegasThermalReadTelemetry+0xcf4bc>
+     4b0: 91034129     	add	x9, x9, #0xd0
+     4b4: 2a1f03e0     	mov	w0, wzr
+     4b8: f940012c     	ldr	x12, [x9]
+     4bc: eb0c010b     	subs	x11, x8, x12
+     4c0: 54000f63     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     4c4: eb0a019f     	cmp	x12, x10
+     4c8: 54000f23     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     4cc: cb0a018a     	sub	x10, x12, x10
+     4d0: f101915f     	cmp	x10, #0x64
+     4d4: 54000ec3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     4d8: f11f3d7f     	cmp	x11, #0x7cf
+     4dc: 54000e88     	b.hi	0x6ac <DegasThermalPolicyRead+0x4b4>
+     4e0: b940292a     	ldr	w10, [x9, #0x28]
+     4e4: 34000e4a     	cbz	w10, 0x6ac <DegasThermalPolicyRead+0x4b4>
+     4e8: b9401529     	ldr	w9, [x9, #0x14]
+     4ec: 7100093f     	cmp	w9, #0x2
+     4f0: 54000de3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     4f4: 90000749     	adrp	x9, 0xe8000 <DegasThermalReadTelemetry+0xe74bc>
+     4f8: f9407529     	ldr	x9, [x9, #0xe8]
+     4fc: eb09011f     	cmp	x8, x9
+     500: 54000062     	b.hs	0x50c <DegasThermalPolicyRead+0x314>
+     504: 2a1f03e0     	mov	w0, wzr
+     508: d65f03c0     	ret
+     50c: 9000078a     	adrp	x10, 0xf0000 <DegasThermalReadTelemetry+0xef4bc>
+     510: 2a1f03e0     	mov	w0, wzr
+     514: f940794a     	ldr	x10, [x10, #0xf0]
+     518: eb0a0108     	subs	x8, x8, x10
+     51c: 54000c83     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     520: eb09015f     	cmp	x10, x9
+     524: 54000c43     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     528: cb090149     	sub	x9, x10, x9
+     52c: f101913f     	cmp	x9, #0x64
+     530: 54000be3     	b.lo	0x6ac <DegasThermalPolicyRead+0x4b4>
+     534: f11f3d1f     	cmp	x8, #0x7cf
+     538: 54000ba8     	b.hi	0x6ac <DegasThermalPolicyRead+0x4b4>
+     53c: d37e7c29     	ubfiz	x9, x1, #2, #32
+     540: 9000000a     	adrp	x10, 0x0 <DegasThermalInitialize>
+     544: 9100014a     	add	x10, x10, #0x0
+     548: 9000000b     	adrp	x11, 0x0 <DegasThermalInitialize>
+     54c: 9100016b     	add	x11, x11, #0x0
+     550: 8b090148     	add	x8, x10, x9
+     554: b8696969     	ldr	w9, [x11, x9]
+     558: b9410108     	ldr	w8, [x8, #0x100]
+     55c: 6b09011f     	cmp	w8, w9
+     560: 54000062     	b.hs	0x56c <DegasThermalPolicyRead+0x374>
+     564: 2a1f03e0     	mov	w0, wzr
+     568: d65f03c0     	ret
+     56c: 2a0103eb     	mov	w11, w1
+     570: 9000000c     	adrp	x12, 0x0 <DegasThermalInitialize>
+     574: 9100018c     	add	x12, x12, #0x0
+     578: b86b798c     	ldr	w12, [x12, x11, lsl #2]
+     57c: 6b0c011f     	cmp	w8, w12
+     580: 54000069     	b.ls	0x58c <DegasThermalPolicyRead+0x394>
+     584: 2a1f03e0     	mov	w0, wzr
+     588: d65f03c0     	ret
+     58c: 9000000c     	adrp	x12, 0x0 <DegasThermalInitialize>
+     590: 9100018c     	add	x12, x12, #0x0
+     594: b86b798e     	ldr	w14, [x12, x11, lsl #2]
+     598: 9000000c     	adrp	x12, 0x0 <DegasThermalInitialize>
+     59c: 9100018c     	add	x12, x12, #0x0
+     5a0: b86b798c     	ldr	w12, [x12, x11, lsl #2]
+     5a4: 0b0e018c     	add	w12, w12, w14
+     5a8: 6b0c01df     	cmp	w14, w12
+     5ac: 540000c2     	b.hs	0x5c4 <DegasThermalPolicyRead+0x3cc>
+     5b0: cb0e018d     	sub	x13, x12, x14
+     5b4: f10025bf     	cmp	x13, #0x9
+     5b8: 540000a2     	b.hs	0x5cc <DegasThermalPolicyRead+0x3d4>
+     5bc: 1280000d     	mov	w13, #-0x1              // =-1
+     5c0: 14000024     	b	0x650 <DegasThermalPolicyRead+0x458>
+     5c4: 1280000d     	mov	w13, #-0x1              // =-1
+     5c8: 14000029     	b	0x66c <DegasThermalPolicyRead+0x474>
+     5cc: f24009af     	ands	x15, x13, #0x7
+     5d0: 52800110     	mov	w16, #0x8               // =8
+     5d4: 6f07e7e0     	movi	v0.2d, #0xffffffffffffffff
+     5d8: 6f07e7e1     	movi	v1.2d, #0xffffffffffffffff
+     5dc: 9a8f020f     	csel	x15, x16, x15, eq
+     5e0: 8b0e1550     	add	x16, x10, x14, lsl #5
+     5e4: cb0f01ad     	sub	x13, x13, x15
+     5e8: 8b0e01ef     	add	x15, x15, x14
+     5ec: 8b0e01ae     	add	x14, x13, x14
+     5f0: cb0c01ed     	sub	x13, x15, x12
+     5f4: 9102020f     	add	x15, x16, #0x80
+     5f8: bc5801e2     	ldur	s2, [x15, #-0x80]
+     5fc: bd4001e3     	ldr	s3, [x15]
+     600: d10181f0     	sub	x16, x15, #0x60
+     604: 910081f1     	add	x17, x15, #0x20
+     608: b10021ad     	adds	x13, x13, #0x8
+     60c: 0d409202     	ld1	{ v2.s }[1], [x16]
+     610: 0d409223     	ld1	{ v3.s }[1], [x17]
+     614: d10101f0     	sub	x16, x15, #0x40
+     618: 910101f1     	add	x17, x15, #0x40
+     61c: 4d408202     	ld1	{ v2.s }[2], [x16]
+     620: 4d408223     	ld1	{ v3.s }[2], [x17]
+     624: d10081f0     	sub	x16, x15, #0x20
+     628: 910181f1     	add	x17, x15, #0x60
+     62c: 910401ef     	add	x15, x15, #0x100
+     630: 4d409202     	ld1	{ v2.s }[3], [x16]
+     634: 4d409223     	ld1	{ v3.s }[3], [x17]
+     638: 4ea06440     	smax	v0.4s, v2.4s, v0.4s
+     63c: 4ea16461     	smax	v1.4s, v3.4s, v1.4s
+     640: 54fffdc1     	b.ne	0x5f8 <DegasThermalPolicyRead+0x400>
+     644: 4ea16400     	smax	v0.4s, v0.4s, v1.4s
+     648: 4eb0a800     	smaxv	s0, v0.4s
+     64c: 1e26000d     	fmov	w13, s0
+     650: 8b0e154f     	add	x15, x10, x14, lsl #5
+     654: cb0e018c     	sub	x12, x12, x14
+     658: b84205ee     	ldr	w14, [x15], #0x20
+     65c: 6b0d01df     	cmp	w14, w13
+     660: 1a8dc1cd     	csel	w13, w14, w13, gt
+     664: f100058c     	subs	x12, x12, #0x1
+     668: 54ffff81     	b.ne	0x658 <DegasThermalPolicyRead+0x460>
+     66c: 8b0b094a     	add	x10, x10, x11, lsl #2
+     670: b9410d4a     	ldr	w10, [x10, #0x10c]
+     674: 7100055f     	cmp	w10, #0x1
+     678: 540000a0     	b.eq	0x68c <DegasThermalPolicyRead+0x494>
+     67c: 7100095f     	cmp	w10, #0x2
+     680: 54000101     	b.ne	0x6a0 <DegasThermalPolicyRead+0x4a8>
+     684: 2a0903e8     	mov	w8, w9
+     688: 14000006     	b	0x6a0 <DegasThermalPolicyRead+0x4a8>
+     68c: 90000009     	adrp	x9, 0x0 <DegasThermalInitialize>
+     690: 91000129     	add	x9, x9, #0x0
+     694: b86b7929     	ldr	w9, [x9, x11, lsl #2]
+     698: 6b09011f     	cmp	w8, w9
+     69c: 1a893108     	csel	w8, w8, w9, lo
+     6a0: 52800020     	mov	w0, #0x1                // =1
+     6a4: b9000048     	str	w8, [x2]
+     6a8: b900006d     	str	w13, [x3]
+     6ac: d65f03c0     	ret
+
+00000000000006b0 <DegasThermalPoll>:
+     6b0: d103c3ff     	sub	sp, sp, #0xf0
+     6b4: a90853f3     	stp	x19, x20, [sp, #0x80]
+     6b8: a9095bf5     	stp	x21, x22, [sp, #0x90]
+     6bc: a90a63f7     	stp	x23, x24, [sp, #0xa0]
+     6c0: a90b6bf9     	stp	x25, x26, [sp, #0xb0]
+     6c4: a90c73fb     	stp	x27, x28, [sp, #0xc0]
+     6c8: a90d7bfd     	stp	x29, x30, [sp, #0xd0]
+     6cc: 910343fd     	add	x29, sp, #0xd0
+     6d0: 92800020     	mov	x0, #-0x2               // =-2
+     6d4: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     6d8: f80103a0     	stur	x0, [x29, #0x10]
+     6dc: f9400113     	ldr	x19, [x8]
+     6e0: b40020d3     	cbz	x19, 0xaf8 <DegasThermalPoll+0x448>
+     6e4: d10243a0     	sub	x0, x29, #0x90
+     6e8: 2a1f03e1     	mov	w1, wzr
+     6ec: 52800802     	mov	w2, #0x40               // =64
+     6f0: d10243b4     	sub	x20, x29, #0x90
+     6f4: 94000000     	bl	0x6f4 <DegasThermalPoll+0x44>
+     6f8: aa1f03f5     	mov	x21, xzr
+     6fc: f10022bf     	cmp	x21, #0x8
+     700: 540000e2     	b.hs	0x71c <DegasThermalPoll+0x6c>
+     704: 8b150a60     	add	x0, x19, x21, lsl #2
+     708: 94000000     	bl	0x708 <DegasThermalPoll+0x58>
+     70c: b8357a80     	str	w0, [x20, x21, lsl #2]
+     710: 910006b5     	add	x21, x21, #0x1
+     714: f10022bf     	cmp	x21, #0x8
+     718: 54ffff63     	b.lo	0x704 <DegasThermalPoll+0x54>
+     71c: d10243a8     	sub	x8, x29, #0x90
+     720: aa1f03f4     	mov	x20, xzr
+     724: 91080275     	add	x21, x19, #0x200
+     728: 91008116     	add	x22, x8, #0x20
+     72c: 91098277     	add	x23, x19, #0x260
+     730: 9100b118     	add	x24, x8, #0x2c
+     734: f1000a9f     	cmp	x20, #0x2
+     738: 54000168     	b.hi	0x764 <DegasThermalPoll+0xb4>
+     73c: d37ef699     	lsl	x25, x20, #2
+     740: 8b1902a0     	add	x0, x21, x25
+     744: 94000000     	bl	0x744 <DegasThermalPoll+0x94>
+     748: b8347ac0     	str	w0, [x22, x20, lsl #2]
+     74c: 8b1902e0     	add	x0, x23, x25
+     750: 94000000     	bl	0x750 <DegasThermalPoll+0xa0>
+     754: b8347b00     	str	w0, [x24, x20, lsl #2]
+     758: 91000694     	add	x20, x20, #0x1
+     75c: f1000a9f     	cmp	x20, #0x2
+     760: 54fffee9     	b.ls	0x73c <DegasThermalPoll+0x8c>
+     764: 9109f260     	add	x0, x19, #0x27c
+     768: 94000000     	bl	0x768 <DegasThermalPoll+0xb8>
+     76c: 2a1f03f4     	mov	w20, wzr
+     770: b81a83a0     	stur	w0, [x29, #-0x58]
+     774: 381ac3bf     	sturb	wzr, [x29, #-0x54]
+     778: d2800108     	mov	x8, #0x8                // =8
+     77c: 90000000     	adrp	x0, 0x0 <DegasThermalInitialize>
+     780: 91000000     	add	x0, x0, #0x0
+     784: f2def008     	movk	x8, #0xf780, lsl #32
+     788: f2ffffe8     	movk	x8, #0xffff, lsl #48
+     78c: f9400115     	ldr	x21, [x8]
+     790: b85983b7     	ldur	w23, [x29, #-0x68]
+     794: 297063a8     	ldp	w8, w24, [x29, #-0x80]
+     798: 296e73bb     	ldp	w27, w28, [x29, #-0x90]
+     79c: 296f5bb3     	ldp	w19, w22, [x29, #-0x88]
+     7a0: b813c3a8     	stur	w8, [x29, #-0xc4]
+     7a4: 292c63a8     	stp	w8, w24, [x29, #-0xa0]
+     7a8: 297123b9     	ldp	w25, w8, [x29, #-0x78]
+     7ac: 297227ba     	ldp	w26, w9, [x29, #-0x70]
+     7b0: 292a73bb     	stp	w27, w28, [x29, #-0xb0]
+     7b4: 292b5bb3     	stp	w19, w22, [x29, #-0xa8]
+     7b8: 292827a8     	stp	w8, w9, [x29, #-0xc0]
+     7bc: 292d23b9     	stp	w25, w8, [x29, #-0x98]
+     7c0: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     7c4: f9400108     	ldr	x8, [x8]
+     7c8: d63f0100     	blr	x8
+     7cc: 2a0003e1     	mov	w1, w0
+     7d0: 360001b4     	tbz	w20, #0x0, 0x804 <DegasThermalPoll+0x154>
+     7d4: 900000c8     	adrp	x8, 0x18000 <DegasThermalReadTelemetry+0x174bc>
+     7d8: 91006108     	add	x8, x8, #0x18
+     7dc: b901091f     	str	wzr, [x8, #0x108]
+     7e0: b900011f     	str	wzr, [x8]
+     7e4: b900211f     	str	wzr, [x8, #0x20]
+     7e8: b900411f     	str	wzr, [x8, #0x40]
+     7ec: b900611f     	str	wzr, [x8, #0x60]
+     7f0: b900811f     	str	wzr, [x8, #0x80]
+     7f4: b900a11f     	str	wzr, [x8, #0xa0]
+     7f8: b900c11f     	str	wzr, [x8, #0xc0]
+     7fc: b900e11f     	str	wzr, [x8, #0xe0]
+     800: 140000b3     	b	0xacc <DegasThermalPoll+0x41c>
+     804: d28b2969     	mov	x9, #0x594b             // =22859
+     808: 5298272b     	mov	w11, #0xc139            // =49465
+     80c: aa1f03e8     	mov	x8, xzr
+     810: f2a710c9     	movk	x9, #0x3886, lsl #16
+     814: d102c3aa     	sub	x10, x29, #0xb0
+     818: 72a0002b     	movk	w11, #0x1, lsl #16
+     81c: f2d8bac9     	movk	x9, #0xc5d6, lsl #32
+     820: 5280002c     	mov	w12, #0x1               // =1
+     824: f2e68da9     	movk	x9, #0x346d, lsl #48
+     828: 9bc97ea9     	umulh	x9, x21, x9
+     82c: d34bfd34     	lsr	x20, x9, #11
+     830: 90000089     	adrp	x9, 0x10000 <DegasThermalReadTelemetry+0xf4bc>
+     834: 91004129     	add	x9, x9, #0x10
+     838: 14000006     	b	0x850 <DegasThermalPoll+0x1a0>
+     83c: b900093f     	str	wzr, [x9, #0x8]
+     840: 91001108     	add	x8, x8, #0x4
+     844: 91008129     	add	x9, x9, #0x20
+     848: f100811f     	cmp	x8, #0x20
+     84c: 54000340     	b.eq	0x8b4 <DegasThermalPoll+0x204>
+     850: b868694d     	ldr	w13, [x10, x8]
+     854: 6b0b01bf     	cmp	w13, w11
+     858: 54ffff22     	b.hs	0x83c <DegasThermalPoll+0x18c>
+     85c: b940092e     	ldr	w14, [x9, #0x8]
+     860: 3400020e     	cbz	w14, 0x8a0 <DegasThermalPoll+0x1f0>
+     864: f940012e     	ldr	x14, [x9]
+     868: eb0e028e     	subs	x14, x20, x14
+     86c: 540001a3     	b.lo	0x8a0 <DegasThermalPoll+0x1f0>
+     870: f11f41df     	cmp	x14, #0x7d0
+     874: 54000162     	b.hs	0x8a0 <DegasThermalPoll+0x1f0>
+     878: b85f012e     	ldur	w14, [x9, #-0x10]
+     87c: 6b0e01bf     	cmp	w13, w14
+     880: 54000160     	b.eq	0x8ac <DegasThermalPoll+0x1fc>
+     884: b85f412e     	ldur	w14, [x9, #-0xc]
+     888: f9000134     	str	x20, [x9]
+     88c: 710005df     	cmp	w14, #0x1
+     890: 540000e8     	b.hi	0x8ac <DegasThermalPoll+0x1fc>
+     894: 110005ce     	add	w14, w14, #0x1
+     898: b81f412e     	stur	w14, [x9, #-0xc]
+     89c: 14000004     	b	0x8ac <DegasThermalPoll+0x1fc>
+     8a0: b900092c     	str	w12, [x9, #0x8]
+     8a4: a93fd134     	stp	x20, x20, [x9, #-0x8]
+     8a8: b81f413f     	stur	wzr, [x9, #-0xc]
+     8ac: b81f012d     	stur	w13, [x9, #-0x10]
+     8b0: 17ffffe4     	b	0x840 <DegasThermalPoll+0x190>
+     8b4: 900000ca     	adrp	x10, 0x18000 <DegasThermalReadTelemetry+0x174bc>
+     8b8: 9100614a     	add	x10, x10, #0x18
+     8bc: 52800049     	mov	w9, #0x2                // =2
+     8c0: b940014b     	ldr	w11, [x10]
+     8c4: 90000868     	adrp	x8, 0x10c000 <DegasThermalReadTelemetry+0x10b4bc>
+     8c8: b900e95a     	str	w26, [x10, #0xe8]
+     8cc: 340003eb     	cbz	w11, 0x948 <DegasThermalPoll+0x298>
+     8d0: b940214b     	ldr	w11, [x10, #0x20]
+     8d4: 340003ab     	cbz	w11, 0x948 <DegasThermalPoll+0x298>
+     8d8: b940414b     	ldr	w11, [x10, #0x40]
+     8dc: b85443ad     	ldur	w13, [x29, #-0xbc]
+     8e0: 3400040b     	cbz	w11, 0x960 <DegasThermalPoll+0x2b0>
+     8e4: b940614a     	ldr	w10, [x10, #0x60]
+     8e8: 340003ca     	cbz	w10, 0x960 <DegasThermalPoll+0x2b0>
+     8ec: 6b1c037f     	cmp	w27, w28
+     8f0: 52822dea     	mov	w10, #0x116f            // =4463
+     8f4: 1a9cc369     	csel	w9, w27, w28, gt
+     8f8: 72a0002a     	movk	w10, #0x1, lsl #16
+     8fc: 6b13013f     	cmp	w9, w19
+     900: 1a93c129     	csel	w9, w9, w19, gt
+     904: 6b16013f     	cmp	w9, w22
+     908: 1a96c129     	csel	w9, w9, w22, gt
+     90c: 6b0a013f     	cmp	w9, w10
+     910: 5400006d     	b.le	0x91c <DegasThermalPoll+0x26c>
+     914: 52800049     	mov	w9, #0x2                // =2
+     918: 14000012     	b	0x960 <DegasThermalPoll+0x2b0>
+     91c: 529fbd2b     	mov	w11, #0xfde9            // =65001
+     920: b9410d0a     	ldr	w10, [x8, #0x10c]
+     924: 6b0b013f     	cmp	w9, w11
+     928: 5400006b     	b.lt	0x934 <DegasThermalPoll+0x284>
+     92c: 7100095f     	cmp	w10, #0x2
+     930: 540001a0     	b.eq	0x964 <DegasThermalPoll+0x2b4>
+     934: 529d4beb     	mov	w11, #0xea5f            // =59999
+     938: 6b0b013f     	cmp	w9, w11
+     93c: 540000ad     	b.le	0x950 <DegasThermalPoll+0x2a0>
+     940: 52800029     	mov	w9, #0x1                // =1
+     944: 14000007     	b	0x960 <DegasThermalPoll+0x2b0>
+     948: b85443ad     	ldur	w13, [x29, #-0xbc]
+     94c: 14000005     	b	0x960 <DegasThermalPoll+0x2b0>
+     950: 529adb0b     	mov	w11, #0xd6d8            // =55000
+     954: 6b0b013f     	cmp	w9, w11
+     958: 7a40c944     	ccmp	w10, #0x0, #0x4, gt
+     95c: 1a9f07e9     	cset	w9, ne
+     960: b9010d09     	str	w9, [x8, #0x10c]
+     964: 900004ca     	adrp	x10, 0x98000 <DegasThermalReadTelemetry+0x974bc>
+     968: 9102614a     	add	x10, x10, #0x98
+     96c: 52800049     	mov	w9, #0x2                // =2
+     970: b940014b     	ldr	w11, [x10]
+     974: 90000888     	adrp	x8, 0x110000 <DegasThermalReadTelemetry+0x10f4bc>
+     978: b9006d4d     	str	w13, [x10, #0x6c]
+     97c: 340001eb     	cbz	w11, 0x9b8 <DegasThermalPoll+0x308>
+     980: b940214b     	ldr	w11, [x10, #0x20]
+     984: 340001ab     	cbz	w11, 0x9b8 <DegasThermalPoll+0x308>
+     988: b940414a     	ldr	w10, [x10, #0x40]
+     98c: 3400016a     	cbz	w10, 0x9b8 <DegasThermalPoll+0x308>
+     990: b853c3a9     	ldur	w9, [x29, #-0xc4]
+     994: 52822dea     	mov	w10, #0x116f            // =4463
+     998: 72a0002a     	movk	w10, #0x1, lsl #16
+     99c: 6b18013f     	cmp	w9, w24
+     9a0: 1a98c129     	csel	w9, w9, w24, gt
+     9a4: 6b19013f     	cmp	w9, w25
+     9a8: 1a99c129     	csel	w9, w9, w25, gt
+     9ac: 6b0a013f     	cmp	w9, w10
+     9b0: 5400034d     	b.le	0xa18 <DegasThermalPoll+0x368>
+     9b4: 52800049     	mov	w9, #0x2                // =2
+     9b8: b9011109     	str	w9, [x8, #0x110]
+     9bc: 900007c8     	adrp	x8, 0xf8000 <DegasThermalReadTelemetry+0xf74bc>
+     9c0: 9103e108     	add	x8, x8, #0xf8
+     9c4: 52800049     	mov	w9, #0x2                // =2
+     9c8: b940010a     	ldr	w10, [x8]
+     9cc: b9001117     	str	w23, [x8, #0x10]
+     9d0: 900008a8     	adrp	x8, 0x114000 <DegasThermalReadTelemetry+0x1134bc>
+     9d4: 3400040a     	cbz	w10, 0xa54 <DegasThermalPoll+0x3a4>
+     9d8: 52822dea     	mov	w10, #0x116f            // =4463
+     9dc: b85403ab     	ldur	w11, [x29, #-0xc0]
+     9e0: 72a0002a     	movk	w10, #0x1, lsl #16
+     9e4: 6b0a017f     	cmp	w11, w10
+     9e8: 5400036c     	b.gt	0xa54 <DegasThermalPoll+0x3a4>
+     9ec: 529fbd2a     	mov	w10, #0xfde9            // =65001
+     9f0: b9411509     	ldr	w9, [x8, #0x114]
+     9f4: 6b0a017f     	cmp	w11, w10
+     9f8: 5400006b     	b.lt	0xa04 <DegasThermalPoll+0x354>
+     9fc: 7100093f     	cmp	w9, #0x2
+     a00: 540002c0     	b.eq	0xa58 <DegasThermalPoll+0x3a8>
+     a04: 529d4bea     	mov	w10, #0xea5f            // =59999
+     a08: 6b0a017f     	cmp	w11, w10
+     a0c: 540001cd     	b.le	0xa44 <DegasThermalPoll+0x394>
+     a10: 52800029     	mov	w9, #0x1                // =1
+     a14: 14000010     	b	0xa54 <DegasThermalPoll+0x3a4>
+     a18: 529fbd2b     	mov	w11, #0xfde9            // =65001
+     a1c: b941110a     	ldr	w10, [x8, #0x110]
+     a20: 6b0b013f     	cmp	w9, w11
+     a24: 5400006b     	b.lt	0xa30 <DegasThermalPoll+0x380>
+     a28: 7100095f     	cmp	w10, #0x2
+     a2c: 54fffc80     	b.eq	0x9bc <DegasThermalPoll+0x30c>
+     a30: 529d4beb     	mov	w11, #0xea5f            // =59999
+     a34: 6b0b013f     	cmp	w9, w11
+     a38: 5400070d     	b.le	0xb18 <DegasThermalPoll+0x468>
+     a3c: 52800029     	mov	w9, #0x1                // =1
+     a40: 17ffffde     	b	0x9b8 <DegasThermalPoll+0x308>
+     a44: 529adb0a     	mov	w10, #0xd6d8            // =55000
+     a48: 6b0a017f     	cmp	w11, w10
+     a4c: 7a40c924     	ccmp	w9, #0x0, #0x4, gt
+     a50: 1a9f07e9     	cset	w9, ne
+     a54: b9011509     	str	w9, [x8, #0x114]
+     a58: 2a0103f3     	mov	w19, w1
+     a5c: 900008c8     	adrp	x8, 0x118000 <DegasThermalReadTelemetry+0x1174bc>
+     a60: 91046108     	add	x8, x8, #0x118
+     a64: 52800029     	mov	w9, #0x1                // =1
+     a68: d102d3a2     	sub	x2, x29, #0xb4
+     a6c: d102e3a3     	sub	x3, x29, #0xb8
+     a70: aa1403e0     	mov	x0, x20
+     a74: 2a1f03e1     	mov	w1, wzr
+     a78: f9000114     	str	x20, [x8]
+     a7c: b9000909     	str	w9, [x8, #0x8]
+     a80: 381ac3a9     	sturb	w9, [x29, #-0x54]
+     a84: 94000000     	bl	0xa84 <DegasThermalPoll+0x3d4>
+     a88: 35000040     	cbnz	w0, 0xa90 <DegasThermalPoll+0x3e0>
+     a8c: 381ac3bf     	sturb	wzr, [x29, #-0x54]
+     a90: d102d3a2     	sub	x2, x29, #0xb4
+     a94: d102e3a3     	sub	x3, x29, #0xb8
+     a98: aa1403e0     	mov	x0, x20
+     a9c: 52800021     	mov	w1, #0x1                // =1
+     aa0: 94000000     	bl	0xaa0 <DegasThermalPoll+0x3f0>
+     aa4: 35000040     	cbnz	w0, 0xaac <DegasThermalPoll+0x3fc>
+     aa8: 381ac3bf     	sturb	wzr, [x29, #-0x54]
+     aac: d102d3a2     	sub	x2, x29, #0xb4
+     ab0: d102e3a3     	sub	x3, x29, #0xb8
+     ab4: aa1403e0     	mov	x0, x20
+     ab8: 52800041     	mov	w1, #0x2                // =2
+     abc: 94000000     	bl	0xabc <DegasThermalPoll+0x40c>
+     ac0: 2a1303e1     	mov	w1, w19
+     ac4: 35000040     	cbnz	w0, 0xacc <DegasThermalPoll+0x41c>
+     ac8: 381ac3bf     	sturb	wzr, [x29, #-0x54]
+     acc: ad7b87a0     	ldp	q0, q1, [x29, #-0x90]
+     ad0: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     ad4: 91000108     	add	x8, x8, #0x0
+     ad8: 90000000     	adrp	x0, 0x0 <DegasThermalInitialize>
+     adc: 91000000     	add	x0, x0, #0x0
+     ae0: ad000500     	stp	q0, q1, [x8]
+     ae4: ad7c8ba0     	ldp	q0, q2, [x29, #-0x70]
+     ae8: ad010900     	stp	q0, q2, [x8, #0x20]
+     aec: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     af0: f9400108     	ldr	x8, [x8]
+     af4: d63f0100     	blr	x8
+     af8: a94d7bfd     	ldp	x29, x30, [sp, #0xd0]
+     afc: a94c73fb     	ldp	x27, x28, [sp, #0xc0]
+     b00: a94b6bf9     	ldp	x25, x26, [sp, #0xb0]
+     b04: a94a63f7     	ldp	x23, x24, [sp, #0xa0]
+     b08: a9495bf5     	ldp	x21, x22, [sp, #0x90]
+     b0c: a94853f3     	ldp	x19, x20, [sp, #0x80]
+     b10: 9103c3ff     	add	sp, sp, #0xf0
+     b14: d65f03c0     	ret
+     b18: 529adb0b     	mov	w11, #0xd6d8            // =55000
+     b1c: 6b0b013f     	cmp	w9, w11
+     b20: 7a40c944     	ccmp	w10, #0x0, #0x4, gt
+     b24: 1a9f07e9     	cset	w9, ne
+     b28: 17ffffa4     	b	0x9b8 <DegasThermalPoll+0x308>
+
+0000000000000b2c <$ehgcr_4_64>:
+     b2c: d10243a0     	sub	x0, x29, #0x90
+     b30: 2a1f03e1     	mov	w1, wzr
+     b34: 52800802     	mov	w2, #0x40               // =64
+     b38: 94000000     	bl	0xb38 <$ehgcr_4_64+0xc>
+     b3c: 52800034     	mov	w20, #0x1               // =1
+     b40: 17ffff0e     	b	0x778 <DegasThermalPoll+0xc8>
+
+0000000000000b44 <DegasThermalReadTelemetry>:
+     b44: d10103ff     	sub	sp, sp, #0x40
+     b48: a90153f3     	stp	x19, x20, [sp, #0x10]
+     b4c: a9025bf5     	stp	x21, x22, [sp, #0x20]
+     b50: f9001bfe     	str	x30, [sp, #0x30]
+     b54: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     b58: f9400108     	ldr	x8, [x8]
+     b5c: f90007e8     	str	x8, [sp, #0x8]
+     b60: b4000780     	cbz	x0, 0xc50 <DegasThermalReadTelemetry+0x10c>
+     b64: 2a1f03e1     	mov	w1, wzr
+     b68: 52800802     	mov	w2, #0x40               // =64
+     b6c: aa0003f3     	mov	x19, x0
+     b70: 94000000     	bl	0xb70 <DegasThermalReadTelemetry+0x2c>
+     b74: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     b78: f9400108     	ldr	x8, [x8]
+     b7c: b40006a8     	cbz	x8, 0xc50 <DegasThermalReadTelemetry+0x10c>
+     b80: d2800108     	mov	x8, #0x8                // =8
+     b84: d28b2969     	mov	x9, #0x594b             // =22859
+     b88: 90000000     	adrp	x0, 0x0 <DegasThermalInitialize>
+     b8c: 91000000     	add	x0, x0, #0x0
+     b90: f2def008     	movk	x8, #0xf780, lsl #32
+     b94: f2a710c9     	movk	x9, #0x3886, lsl #16
+     b98: f2ffffe8     	movk	x8, #0xffff, lsl #48
+     b9c: f2d8bac9     	movk	x9, #0xc5d6, lsl #32
+     ba0: f9400108     	ldr	x8, [x8]
+     ba4: f2e68da9     	movk	x9, #0x346d, lsl #48
+     ba8: 9bc97d08     	umulh	x8, x8, x9
+     bac: d34bfd15     	lsr	x21, x8, #11
+     bb0: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     bb4: f9400108     	ldr	x8, [x8]
+     bb8: d63f0100     	blr	x8
+     bbc: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     bc0: 91000108     	add	x8, x8, #0x0
+     bc4: 2a0003f6     	mov	w22, w0
+     bc8: ad400900     	ldp	q0, q2, [x8]
+     bcc: 910013e2     	add	x2, sp, #0x4
+     bd0: ad410503     	ldp	q3, q1, [x8, #0x20]
+     bd4: 90000908     	adrp	x8, 0x120000 <DegasThermalReadTelemetry+0x11f4bc>
+     bd8: 910003e3     	mov	x3, sp
+     bdc: aa1503e0     	mov	x0, x21
+     be0: 2a1f03e1     	mov	w1, wzr
+     be4: ad000a60     	stp	q0, q2, [x19]
+     be8: ad010663     	stp	q3, q1, [x19, #0x20]
+     bec: b9412114     	ldr	w20, [x8, #0x120]
+     bf0: 94000000     	bl	0xbf0 <DegasThermalReadTelemetry+0xac>
+     bf4: 35000040     	cbnz	w0, 0xbfc <DegasThermalReadTelemetry+0xb8>
+     bf8: 3900f27f     	strb	wzr, [x19, #0x3c]
+     bfc: 910013e2     	add	x2, sp, #0x4
+     c00: 910003e3     	mov	x3, sp
+     c04: aa1503e0     	mov	x0, x21
+     c08: 52800021     	mov	w1, #0x1                // =1
+     c0c: 94000000     	bl	0xc0c <DegasThermalReadTelemetry+0xc8>
+     c10: 35000040     	cbnz	w0, 0xc18 <DegasThermalReadTelemetry+0xd4>
+     c14: 3900f27f     	strb	wzr, [x19, #0x3c]
+     c18: 910013e2     	add	x2, sp, #0x4
+     c1c: 910003e3     	mov	x3, sp
+     c20: aa1503e0     	mov	x0, x21
+     c24: 52800041     	mov	w1, #0x2                // =2
+     c28: 94000000     	bl	0xc28 <DegasThermalReadTelemetry+0xe4>
+     c2c: 35000040     	cbnz	w0, 0xc34 <DegasThermalReadTelemetry+0xf0>
+     c30: 3900f27f     	strb	wzr, [x19, #0x3c]
+     c34: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     c38: 90000000     	adrp	x0, 0x0 <DegasThermalInitialize>
+     c3c: 91000000     	add	x0, x0, #0x0
+     c40: f9400108     	ldr	x8, [x8]
+     c44: 2a1603e1     	mov	w1, w22
+     c48: d63f0100     	blr	x8
+     c4c: 14000002     	b	0xc54 <DegasThermalReadTelemetry+0x110>
+     c50: 2a1f03f4     	mov	w20, wzr
+     c54: 90000008     	adrp	x8, 0x0 <DegasThermalInitialize>
+     c58: f94007e9     	ldr	x9, [sp, #0x8]
+     c5c: f9400108     	ldr	x8, [x8]
+     c60: eb09011f     	cmp	x8, x9
+     c64: 540000e1     	b.ne	0xc80 <DegasThermalReadTelemetry+0x13c>
+     c68: 2a1403e0     	mov	w0, w20
+     c6c: f9401bfe     	ldr	x30, [sp, #0x30]
+     c70: a9425bf5     	ldp	x21, x22, [sp, #0x20]
+     c74: a94153f3     	ldp	x19, x20, [sp, #0x10]
+     c78: 910103ff     	add	sp, sp, #0x40
+     c7c: d65f03c0     	ret
+     c80: f94007e0     	ldr	x0, [sp, #0x8]
+     c84: 94000000     	bl	0xc84 <DegasThermalReadTelemetry+0x140>
+     c88: d4200020     	brk	#0x1
+
+Disassembly of section .text:
+
+0000000000000000 <READ_REGISTER_ULONG>:
+       0: d10043ff     	sub	sp, sp, #0x10
+       4: d5033f9f     	dsb	sy
+       8: f90007e0     	str	x0, [sp, #0x8]
+       c: f94007e8     	ldr	x8, [sp, #0x8]
+      10: b9400100     	ldr	w0, [x8]
+      14: 910043ff     	add	sp, sp, #0x10
+      18: d65f03c0     	ret

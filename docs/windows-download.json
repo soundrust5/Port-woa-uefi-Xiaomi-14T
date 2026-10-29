@@ -1,0 +1,13 @@
+{
+  "product": "Windows 11 Arm64",
+  "release": "25H2 V2",
+  "language": "Russian",
+  "architecture": "Arm64",
+  "edition_sku": "20105",
+  "microsoft_expected_sha256": "EBB950CF0B71AA4F2EBCFC80F9E4881EC314BB76D62C3F50EC30116E5BA82410",
+  "official_page": "https://www.microsoft.com/ru-ru/software-download/windows11arm64",
+  "official_catalog_endpoint": "https://www.microsoft.com/software-download-connector/api/",
+  "catalog_product_edition_id": "3324",
+  "local_download_started_by_codex": false,
+  "note": "The user started the ISO download independently; Codex did not start a duplicate transfer. Microsoft states generated CDN links expire after 24 hours."
+}

@@ -31,10 +31,10 @@ STATIC VOID DegasOsHandoff(VOID){
 #if defined(DEGAS_DIAGNOSTIC_EBS_WATCHDOG) && DEGAS_DIAGNOSTIC_EBS_WATCHDOG
  // Temporary diagnostic only: force automatic recovery even after successful EBS.
  // No Boot Services, allocation, timer callbacks or filesystem operations.
- MmioWrite32(0x1c00a004,(10u<<11)|8u);
+ MmioWrite32(0x1c00a004,(30u<<11)|8u);
  MmioWrite32(0x1c00a000,0x22000000u|((Mode&0x00ffffffu)&~0x48u)|1u);
  MmioWrite32(0x1c00a008,0x1971);
- DEBUG((DEBUG_ERROR,"DEGAS DIAGNOSTIC EBS RESET ARMED seconds=10\n"));
+ DEBUG((DEBUG_ERROR,"DEGAS DIAGNOSTIC EBS RESET ARMED seconds=30\n"));
 #else
  MmioWrite32(0x1c00a000,(Mode&~1u)|0x22000000u);
  DEBUG((DEBUG_ERROR,"DEGAS WINDOWS WATCHDOG DISABLED AT EBS\n"));

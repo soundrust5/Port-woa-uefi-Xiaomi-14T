@@ -1,0 +1,105 @@
+{
+  "success": true,
+  "tests": 5,
+  "original_windows_package_walk_cases": [
+    {
+      "revision": 2,
+      "uid": 0,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 2,
+      "uid": 1,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 2,
+      "uid": 2,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 2,
+      "uid": 3,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 2,
+      "uid": 4,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 2,
+      "uid": 5,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 2,
+      "uid": 6,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 2,
+      "uid": 7,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 3,
+      "uid": 0,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 3,
+      "uid": 1,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 3,
+      "uid": 2,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 3,
+      "uid": 3,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 3,
+      "uid": 4,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 3,
+      "uid": 5,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 3,
+      "uid": 6,
+      "status": 0,
+      "package": "0x60000024"
+    },
+    {
+      "revision": 3,
+      "uid": 7,
+      "status": 0,
+      "package": "0x60000024"
+    }
+  ],
+  "source_sha256": "5bb49f8383e38b26ef0c18f3087db3be541e99143b80b92d2f83d824b7e5301c",
+  "source_unchanged": true,
+  "limits": "Actual pinned package walker/offset validator only; no HAL initialization, Windows boot or hardware cache proof"
+}

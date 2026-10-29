@@ -1,0 +1,72 @@
+{
+  "repository": "https://github.com/Project-Silicium/Mu-Silicium.git",
+  "commit": "964a886f3d1ad3f35137435b11287c8d6827437b",
+  "checkout": "mu",
+  "dependencies_initialized": true,
+  "primary_dependencies": [
+    {
+      "path": "Binaries",
+      "commit": "b36d6529fa2a51c602bffefdee545feb098f2bde",
+      "sparse_checkout": [
+        "generic"
+      ]
+    },
+    {
+      "path": "Common/Mu",
+      "commit": "d491bf02de6974425e247e4b7d33a99b6d66d225"
+    },
+    {
+      "path": "Common/Mu_OEM_Sample",
+      "commit": "841317731fb907cd366222d831a96ab0974b4101"
+    },
+    {
+      "path": "Mu_Basecore",
+      "commit": "7e2a44a7129856365a8d71eff83de38877b47e66"
+    },
+    {
+      "path": "Silicium-ACPI",
+      "commit": "94896d455b758765f9cef0dc60e1bc447f53bee5"
+    },
+    {
+      "path": "Silicon/Silicium/OpensslPkg/Library/OpensslLib/openssl",
+      "commit": "67b5686b4419b4cb8caa502711c41815f5279751"
+    }
+  ],
+  "mu_basecore_nested_dependencies": {
+    "evidence": "evidence/build/nested-dependencies.json",
+    "count": 9,
+    "initialized": true
+  },
+  "full_mu_build_completed": true,
+  "patches": {
+    "mu": [
+      "mu-sec-stack-base.patch",
+      "mu-framebuffer-stride.patch",
+      "mu-sec-display-preserve.patch"
+    ],
+    "Mu_Basecore@7e2a44a7129856365a8d71eff83de38877b47e66": [
+      "mu-basecore-gcc15-efirom.patch"
+    ]
+  },
+  "bundled_basecore_patches": [
+    {
+      "path": "mu/Resources/MuPatches/Auth-Service.patch",
+      "sha256": "4a25bfb3c6094e928527deed2c08230badccda5f572aec111ee951fb482141b0"
+    },
+    {
+      "path": "mu/Resources/MuPatches/Boot-Manager.patch",
+      "sha256": "8974a807d8cbd1a5ba3c751e8456b91e966ebf8f4d85b4261cb2731a8e5c0584"
+    },
+    {
+      "path": "mu/Resources/MuPatches/Timer.patch",
+      "sha256": "b6ac7f4d5067535e533cec91927b1ae17e98da2a5fc9bc924d56bc19f382de89"
+    },
+    {
+      "path": "mu/Resources/MuPatches/Usb-Bus.patch",
+      "sha256": "cd97c5fd063ee21fe9535fb565fe40c317de7158501b37ab3645d637c2267e38"
+    }
+  ],
+  "module_build_completed": true,
+  "full_mu_build_scope": "stone RELEASE control FD only; not degas",
+  "degas_firmware_completed": false
+}

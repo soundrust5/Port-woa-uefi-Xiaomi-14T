@@ -1,0 +1,36 @@
+[Version]
+Signature="$Windows NT$"
+Class=SCSIAdapter
+ClassGuid={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%Provider%
+CatalogFile=degasufs.cat
+DriverVer=10/27/2026,0.1.0.0
+PnpLockdown=1
+
+[Manufacturer]
+%Provider%=Degas,NTarm64.10.0...19041
+[Degas.NTarm64.10.0...19041]
+%Description%=Install,ACPI\DGS0001
+[SourceDisksNames]
+1=%Provider%
+[SourceDisksFiles]
+degasufs.sys=1
+[DestinationDirs]
+DefaultDestDir=13
+[Install.NT]
+CopyFiles=@degasufs.sys
+[Install.NT.Services]
+AddService=degasufs,2,Service
+[Service]
+DisplayName=%Description%
+ServiceType=1
+StartType=0
+ErrorControl=1
+ServiceBinary=%13%\degasufs.sys
+LoadOrderGroup=SCSI Miniport
+AddReg=Parameters
+[Parameters]
+HKR,"Parameters","BusType",0x00010001,0x13
+[Strings]
+Provider="Degas port development"
+Description="MT6897 UFS bounded diagnostic miniport"

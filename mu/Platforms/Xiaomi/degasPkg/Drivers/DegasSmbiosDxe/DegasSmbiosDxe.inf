@@ -1,0 +1,20 @@
+[Defines]
+ INF_VERSION=0x0001001B
+ BASE_NAME=DegasSmbiosDxe
+ FILE_GUID=CCCB9E49-40E5-41DE-B2A2-CB10222D9D7A
+ MODULE_TYPE=DXE_DRIVER
+ ENTRY_POINT=DegasSmbiosEntry
+[Sources]
+ DegasSmbios.c
+[Packages]
+ MdePkg/MdePkg.dec
+[LibraryClasses]
+ UefiDriverEntryPoint
+ UefiBootServicesTableLib
+ BaseLib
+ BaseMemoryLib
+ DebugLib
+[Protocols]
+ gEfiSmbiosProtocolGuid
+[Depex]
+ gEfiSmbiosProtocolGuid

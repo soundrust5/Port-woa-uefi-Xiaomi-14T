@@ -1,0 +1,40 @@
+; Explicit binding for this project's VHF child in the experimental WinPE.
+; Packages an unmodified Microsoft KMDF HID miniport from the same Windows ISO.
+[Version]
+Signature="$WINDOWS NT$"
+Class=HIDClass
+ClassGuid={745A17A0-74D3-11D0-B6FE-00A0C90F57DA}
+Provider=%Provider%
+DriverVer=10/27/2026,0.1.0.0
+CatalogFile=degasvhf.cat
+PnpLockdown=1
+[Manufacturer]
+%Provider%=Models,NTarm64.10.0...26100
+[Models.NTarm64.10.0...26100]
+; VHF prepends this ID ahead of the supplied project ID. Match rank zero,
+; otherwise inbox hidvhf.inf outranks the project ID (observed 00FF0001).
+%Device%=Install,HID_DEVICE_SYSTEM_VHF
+[Install.NT]
+CopyFiles=DriverCopy
+[DestinationDirs]
+DriverCopy=13
+[SourceDisksNames]
+1=%Device%,,,
+[SourceDisksFiles]
+mshidkmdf.sys=1
+[DriverCopy]
+mshidkmdf.sys
+[Install.NT.HW]
+AddReg=Hardware
+[Hardware]
+HKR,,DeviceResetNotificationEnabled,0x00010001,1
+[Install.NT.Services]
+AddService=mshidkmdf,0x00000002,Service
+[Service]
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%13%\mshidkmdf.sys
+[Strings]
+Provider="Xiaomi 14T port project"
+Device="Xiaomi 14T virtual touch HID binding"

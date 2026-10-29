@@ -1,0 +1,13 @@
+{
+  "tests_run": 8,
+  "passed": true,
+  "actual_C_capture_cases": 232,
+  "hardware_access": false,
+  "compiler_flags": "-Wall -Wextra -Werror -fsanitize=undefined -fno-sanitize-recover=undefined",
+  "source_sha256": {
+    "UefiCsramSnapshot.h": "fec0be94b298b9987d3542a91785d80d6e1c140f98f9e5bf826041158a34ca98",
+    "UefiCsramJournal.h": "d17d178d2e959933d60d645da4522187d91ddcfd0fb9a3b7bd52b027a6ccd2e3",
+    "decode_snapshot.py": "47503fa509ab5a967bc49474789f6fbdbd4109e0a011415de703e371d668a870",
+    "test_snapshot.py": "af9497f41d4d8a7c35f4e2deb65941335d084ad539c2fa68cab2bc9efecf58e9"
+  }
+}
