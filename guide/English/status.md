@@ -19,22 +19,22 @@ Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **29 October 2026**.
 | GPU acceleration | ❌ |
 | Touchscreen | ✅ |
 | Internal storage — UFS | ✅ |
-| Volume buttons | 🟡 UEFI only |
-| Power button | 🟡 UEFI only |
+| Volume buttons | ✅ |
+| Power button | ✅ |
 | USB host | ❌ |
 | USB device | ❌ |
 | USB Power Delivery | ❔ |
 | Charging control | ❔ |
 | Battery reporting | ❔ |
-| Wi-Fi | ❌ |
-| Bluetooth | ❌ |
+| Wi-Fi | 🚧 |
+| Bluetooth | 🚧 |
 | NFC | ❌ |
 | Mobile data / cellular modem | ❌ |
 | Calls / SMS | ❌ |
 | GNSS / GPS | ❌ |
 | Speakers | ❌ |
 | Microphones | ❌ |
-| Bluetooth audio | ❌ |
+| Bluetooth audio | 🚧 |
 | Rear cameras | ❌ |
 | Front camera | ❌ |
 | Fingerprint reader | ❌ |
@@ -46,7 +46,7 @@ Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **29 October 2026**.
 | Proximity sensor | ❌ |
 | Temperature sensors / software thermal throttling | ✅ |
 | Automatic brightness | ❌ |
-| Sleep / resume | ❔ |
+| Sleep / resume | ❌ (BSOD) |
 | TPM | ❌ |
 
 All eight CPU cores, dynamic frequency scaling and boost have been tested in Windows. Touchscreen input, including multitouch and the screen edges, is reported working on the test device. Display output uses the framebuffer. Buttons currently work in UEFI only.
