@@ -19,8 +19,8 @@ Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **29 October 2026**.
 | GPU acceleration | ❌ |
 | Touchscreen | ✅ |
 | Internal storage — UFS | ✅ |
-| Volume buttons | ✅ |
-| Power button | ✅ |
+| Volume buttons | ✅ UEFI and Windows |
+| Power button | ✅ UEFI; 5-second hold opens shutdown confirmation in Windows |
 | USB host | ❌ |
 | USB device | ❌ |
 | USB Power Delivery | ❔ |
@@ -46,13 +46,13 @@ Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **29 October 2026**.
 | Proximity sensor | ❌ |
 | Temperature sensors / software thermal throttling | ✅ |
 | Automatic brightness | ❌ |
-| Sleep / resume | ❌ (BSOD) |
+| Sleep / resume | ❌ Unavailable; not tested |
 | TPM | ❌ |
 
-All eight CPU cores, dynamic frequency scaling and boost have been tested in Windows. Touchscreen input, including multitouch and the screen edges, is reported working on the test device. Display output uses the framebuffer. Buttons currently work in UEFI only.
+All eight CPU cores, dynamic frequency scaling and boost have been tested in Windows. Touchscreen input, including multitouch and the screen edges, is reported working on the test device. Display output uses the framebuffer.
 
 UFS reading and writing passed in Windows PE, including a stress test. Unverified entries do not imply working Windows support.
 
-Temperature readings and software frequency limiting have been verified; thresholds remain conservative. Long-term thermal protection, sleep and resume remain unverified.
+Temperature readings and software frequency limiting have been verified; thresholds remain conservative. Long-term thermal protection remains unverified.
 
 [Installation availability](installation.md)
