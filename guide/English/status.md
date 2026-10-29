@@ -13,8 +13,8 @@ Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **27 October 2026**.
 | UEFI | ✅ |
 | Windows boot from UFS (WinPE) | ✅ |
 | Full Windows installation | 🚧 |
-| CPU | ✅ |
-| All CPU cores / SMP | ❔ |
+| CPU | 🟡 |
+| All CPU cores / SMP | 🟡 (maximum frequency 1.3Ghz |
 | Display | ✅ |
 | GPU acceleration | ❌ |
 | Touchscreen | ✅ |
