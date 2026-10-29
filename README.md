@@ -4,24 +4,19 @@
 
 **English** | [Русский](README.ru-RU.md)
 
-Experimental Windows on ARM (WoA) port for **Xiaomi 14T (`degas`) — MediaTek Dimensity 8300-Ultra (MT6897)**.
+Experimental Windows on ARM port for **Xiaomi 14T (`degas`) — Dimensity 8300-Ultra / MT6897**.
 
-Windows 11 PRO boots from UFS. CPU, display, touchscreen with multitouch, and UFS read/write work. Hardware buttons work in UEFI only.
+Windows boots from UFS. All eight CPU cores, framebuffer display, multitouch and UFS read/write have worked on the test device. DVFS is unfinished; GPU acceleration, Wi-Fi and Bluetooth are not implemented.
 
-> [!IMPORTANT]
-> Public installation is not available yet.
+> [!CAUTION]
+> If you are unsure or afraid to install UEFI on your phone, feel free to close this repository. We are not responsible for damaged phones. This port is experimental, with many bugs and unfinished features; installation may leave your device unusable.
 
 - [Project status](guide/English/status.md)
-- [Installation](guide/English/installation.md)
-- [Mu-Silicium source](mu/) · [Source details & licenses](SOURCE.md)
+- [UEFI installation guide](guide/English/installation.md)
+- [UEFI downloads](https://github.com/soundrust5/Port-woa-uefi-Xiaomi-14T/releases)
 
 Maintainer: [soundrust5](https://github.com/soundrust5).
 
 <br clear="both">
 
-
-## Current sources and experimental release — 29 October 2026
-
-Current UEFI, Windows UFS/touch driver and CPU/DVFS research sources, build scripts, tests and reports are published. [Source contents and dependency reconstruction](SOURCE.md) · [UEFI releases](../../releases).
-
-Earlier device testing confirmed Windows with all eight CPU cores, UFS read/write, multitouch and autonomous framebuffer refresh. DVFS is unfinished; GPU acceleration, Wi-Fi and Bluetooth are not implemented. The new fullscreen-default image passed build and packaging checks; this exact binary has not yet been booted on the phone. Windows images and proprietary driver binaries are not included.
+A UEFI installation guide is currently available. A public Windows installation guide is not available yet.
