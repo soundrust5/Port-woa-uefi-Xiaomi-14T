@@ -6,7 +6,7 @@
 
 Experimental Windows on ARM (WoA) port for **Xiaomi 14T (`degas`) — MediaTek Dimensity 8300-Ultra (MT6897)**.
 
-Windows PE boots from UFS. CPU, display, touchscreen with multitouch, and UFS read/write work. Hardware buttons work in UEFI only.
+Windows 11 PRO boots from UFS. CPU, display, touchscreen with multitouch, and UFS read/write work. Hardware buttons work in UEFI only.
 
 > [!IMPORTANT]
 > Public installation is not available yet.
