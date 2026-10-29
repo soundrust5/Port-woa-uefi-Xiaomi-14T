@@ -44,13 +44,15 @@ Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **29 October 2026**.
 | Compass / magnetometer | ❌ |
 | Ambient light sensor | ❌ |
 | Proximity sensor | ❌ |
-| Temperature / thermal management | ❔ |
+| Temperature sensors / software thermal throttling | ✅ |
 | Automatic brightness | ❌ |
 | Sleep / resume | ❔ |
 | TPM | ❌ |
 
-CPU status confirms the boot CPU and ARM64 execution. Touchscreen input, including multitouch and the screen edges, is reported working on the test device. Display output uses the framebuffer. Buttons currently work in UEFI only.
+All eight CPU cores, dynamic frequency scaling and boost have been tested in Windows. Touchscreen input, including multitouch and the screen edges, is reported working on the test device. Display output uses the framebuffer. Buttons currently work in UEFI only.
 
 UFS reading and writing passed in Windows PE, including a stress test. Unverified entries do not imply working Windows support.
+
+Temperature readings and software frequency limiting have been verified; thresholds remain conservative. Long-term thermal protection, sleep and resume remain unverified.
 
 [Installation availability](installation.md)
