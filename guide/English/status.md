@@ -13,8 +13,8 @@ Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **29 October 2026**.
 | UEFI | ✅ |
 | Windows boot from UFS (WinPE) | ✅ |
 | Full Windows installation | ✅ |
-| CPU | 🟡 |
-| All CPU cores / SMP | ✅ 8 cores; DVFS unfinished |
+| CPU | ✅ |
+| All CPU cores / SMP | ✅ |
 | Display | ✅ |
 | GPU acceleration | ❌ |
 | Touchscreen | ✅ |
@@ -54,6 +54,3 @@ CPU status confirms the boot CPU and ARM64 execution. Touchscreen input, includi
 UFS reading and writing passed in Windows PE, including a stress test. Unverified entries do not imply working Windows support.
 
 [Installation availability](installation.md)
-
-
-2026-10-29 source refresh: all eight CPU cores were observed working in Windows. Clock-frequency scaling/DVFS is still under investigation. See [current source notes](../../SOURCE.md) for the build-qualified fullscreen prerelease and remaining limitations.
