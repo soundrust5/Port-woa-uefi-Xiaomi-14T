@@ -4,7 +4,7 @@
 
 Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **29 October 2026**.
 
-**AI-assisted project:** the maintainer estimates that around **90% of development** was completed with AI assistance. This is an estimate; hardware functionality is verified on the physical device.
+**AI-assisted project:** the maintainer estimates that around **70% of development** was completed with AI assistance. This is an estimate; hardware functionality is verified on the physical device.
 
 ✅ Working · 🟡 Partial · 🚧 In development · ❌ Not implemented · ❔ Not verified
 
