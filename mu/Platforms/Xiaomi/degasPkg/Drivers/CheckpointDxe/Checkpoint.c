@@ -48,6 +48,7 @@ STATIC EFI_STATUS Label(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop,UINTN Y,CONST CHAR8 *T
  Status=Gop->Blt(Gop,Buffer,EfiBltBufferToVideo,0,0,100,Y,W,H,W*sizeof(*Buffer));
  FreePool(Buffer);return Status;
 }
+#include "BootLook.h"
 // DME_GET reads a local UniPro attribute; it never starts a transfer queue.
 STATIC BOOLEAN UfsReadAttributes(VOID){
  STATIC CONST UINT16 Attrs[]={0x15a9,0x155e,0xd0a6,0xd0a8}; UINTN A,N;
@@ -285,102 +286,48 @@ STATIC VOID UfsEnableTest(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop,BOOLEAN SpeedOnly){
 #include "TouchSpi.h"
 #include "TouchPower.h"
 #include "../../Include/Protocol/DegasCpuStatus.h"
-STATIC VOID CpuSummary(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
- EFI_GUID Guid=DEGAS_CPU_STATUS_GUID;DEGAS_CPU_STATUS *Cpu=NULL;CHAR8 Text[80];
- if(EFI_ERROR(gBS->LocateProtocol(&Guid,NULL,(VOID **)&Cpu)) || !Cpu || Cpu->Version!=2 || Cpu->TemplateCount>8){Label(Gop,660,"ACPI CPU STATUS UNAVAILABLE");return;}
- AsciiSPrint(Text,sizeof(Text),"ACPI CPUS: %u / %u",Cpu->PublishedCount,Cpu->TemplateCount);Label(Gop,660,Text);
- AsciiSPrint(Text,sizeof(Text),"GIC: %u PSCI: %x STATE: %x",Cpu->DiscoveryStatus,Cpu->PsciCpuOnFeature,Cpu->StateMismatchMask);Label(Gop,720,Text);
- AsciiSPrint(Text,sizeof(Text),"BOOT CPU: %u MIDR: %08x",(UINT32)((ArmReadMpidr()>>8)&255),(UINT32)ArmReadMidr());Label(Gop,780,Text);
-}
+#if DEGAS_WIFI_INIT_TEST
+#include "WifiRfPowerProbe.h"
+#endif
 STATIC VOID ButtonTest(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
- UINTN I,Selected=0,Changes=0,Stable=0,Confirms=0;
- UINT32 Last=0,Pressed=0,Sample,Edges; unsigned int Pmic=0,Error;
- DEGAS_PMIF_IO Io={NULL,PmicRead,PmicWrite,PmicDelay};
- EFI_GRAPHICS_OUTPUT_BLT_PIXEL Bg={0,0,0,0},Orange={0xff,0xff,0xff,0};
- DEBUG((DEBUG_ERROR,"DEGAS GPIO32 dir=%08x mode=%08x din=%08x\n",MmioRead32(0x10005010),MmioRead32(0x10005340),MmioRead32(0x10005210)));
- // PMIC reads use host command/completion writes; never change PMIC registers.
+ AndroidRouteReport();
+#if DEGAS_WIFI_INIT_TEST
+ BOOLEAN WifiDone=FALSE;
+#endif
+ UINTN Selected=0,Stable=0,RouteTick=0;UINT32 Last=0,Pressed=0,Sample,Edges;
+ unsigned int Pmic=0,Error;DEGAS_PMIF_IO Io={NULL,PmicRead,PmicWrite,PmicDelay};
  Error=DegasPmicKeysRead(&Io,&Pmic);
- DEBUG((DEBUG_ERROR,"DEGAS PMIC initial error=%u status=%02x\n",Error,Pmic));
  if(Error){Label(Gop,1690,"PMIC READ FAILED RETURN FASTBOOT");return;}
- if(EFI_ERROR(Label(Gop,660,"")) ||
-    EFI_ERROR(Label(Gop,900,"BOOT ANDROID")) ||
-    EFI_ERROR(Label(Gop,1030,"CPU DVFS SNAPSHOT")) ||
-    EFI_ERROR(Label(Gop,1160,"WINDOWS BOOT MANAGER")) ||
-    EFI_ERROR(Label(Gop,1290,"UFS SPEED TEST")) ||
-    EFI_ERROR(Label(Gop,1420,"TOUCH DRAW TEST")) ||
-    EFI_ERROR(Label(Gop,1550,"END TEST")) ||
-    EFI_ERROR(Label(Gop,1690,"")))return;
- CpuSummary(Gop);
- DEBUG((DEBUG_ERROR,"DEGAS MENU WATCHDOG mode=%08x\n",MmioRead32(0x1c00a000)));
- if(EFI_ERROR(Gop->Blt(Gop,&Orange,EfiBltVideoFill,0,0,70,855,16,100,0)))return;
- for(I=0;;I++){
-  // Only reload the existing watchdog. Do not change its mode or timeout.
-  if((I%20)==0)MmioWrite32(0x1c00a008,0x1971);
-  if(I && (I%1200)==0)DEBUG((DEBUG_ERROR,"DEGAS MENU ALIVE polls=%Lu\n",(UINT64)I));
-  MicroSecondDelay(50000);
+ if(EFI_ERROR(DrawBootChoice(Gop,0,TRUE)) || EFI_ERROR(DrawBootChoice(Gop,1,FALSE)))return;
+#if !DEGAS_ANDROID_EFI_BOOT
+ AndroidRouteScreen(Gop,0);
+#endif
+ for(;;){
+  MmioWrite32(0x1c00a008,0x1971);MicroSecondDelay(50000);
+#if !DEGAS_ANDROID_EFI_BOOT
+  if(++RouteTick%20==0)AndroidRouteScreen(Gop,RouteTick/20);
+#else
+  (VOID)RouteTick;
+#endif
   Error=DegasPmicKeysRead(&Io,&Pmic);
-  if(Error){DEBUG((DEBUG_ERROR,"DEGAS PMIC error=%u poll=%u\n",Error,(UINT32)I));break;}
-  Sample=((MmioRead32(0x10005210)&1)==0?1:0) |
-         ((Pmic&8)==0?2:0) | ((Pmic&2)==0?4:0);
+  if(Error){DEBUG((DEBUG_ERROR,"DEGAS PMIC error=%u\n",Error));break;}
+  Sample=((MmioRead32(0x10005210)&1)==0?1:0)|((Pmic&8)==0?2:0)|((Pmic&2)==0?4:0);
   if(Sample==Last){if(Stable<2)Stable++;}else{Stable=0;Last=Sample;}
   if(Stable<2 || Sample==Pressed)continue;
   Edges=Sample&~Pressed;Pressed=Sample;
-  DEBUG((DEBUG_ERROR,"DEGAS KEYS mask=%u pmic=%02x poll=%u\n",Pressed,Pmic,(UINT32)I));
+#if DEGAS_WIFI_INIT_TEST
+  if(Pressed==3 && !WifiDone){WifiDone=TRUE;WifiInitProbe(Gop);continue;}
+#endif
   if(Edges==4){
-   Confirms++;
-   if(Selected==5)break;
-   if(Selected==4){
-    STATIC CONST UINT32 Pins[]={9,11,12,13,14,60,73};
-    UINTN PinIndex;
-    Label(Gop,1690,"TOUCH SNAPSHOT WAIT");
-    BootWatchdogArmTenSeconds();
-    DEBUG((DEBUG_ERROR,"DEGAS TOUCH GPIO SNAPSHOT v1 BEGIN NO WRITES\n"));
-    for(PinIndex=0;PinIndex<ARRAY_SIZE(Pins);PinIndex++){
-     UINT32 Pin=Pins[PinIndex],Bank=(Pin/32)*16,Shift=Pin%32;
-     UINT32 Dir=MmioRead32(0x10005000+Bank);
-     UINT32 Dout=MmioRead32(0x10005100+Bank);
-     UINT32 Din=MmioRead32(0x10005200+Bank);
-     UINT32 Mode=MmioRead32(0x10005300+(Pin/8)*16);
-     DEBUG((DEBUG_ERROR,"DEGAS TOUCH pin=%u mode=%u dir=%u out=%u in=%u raw=%08x/%08x/%08x/%08x\n",
-      Pin,(Mode>>((Pin%8)*4))&15,(Dir>>Shift)&1,(Dout>>Shift)&1,(Din>>Shift)&1,Mode,Dir,Dout,Din));
-    }
-    DEBUG((DEBUG_ERROR,"DEGAS TOUCH GPIO SNAPSHOT END SPI NOT ACCESSED\n"));
-    TouchPowerSnapshot(Gop);
-    return;
-   }
-   if(Selected==0){BootAndroid(Gop);return;}
-   else if(Selected==1){
-    CpuDvfsSnapshot(Gop);
-    Label(Gop,2050,"TEST ENDED SELECT BOOT ANDROID");
-    continue;
-   }
-   else{
-    STATIC CONST UINT16 Offsets[]={0,0x10,0x14,0x18,0x20,0x24,0x30,0x34,0x38,0x3c,0x40,0x44,0x48,0x50,0x54,0x58,0x60,0x70,0x74,0x78,0x80,0x140,0x144,0x160,0x2100,0x2200,0x2240};
-    UINT32 Version; UINTN R;
-    DEBUG((DEBUG_ERROR,"DEGAS UFS SNAPSHOT BEGIN address=112b0008\n"));
-    Version=MmioRead32(0x112b0008);
-    DEBUG((DEBUG_ERROR,"DEGAS UFS offset=0008 value=%08x\n",Version));
-    if(Version!=0x400 && Version!=0x310 && Version!=0x300 && Version!=0x210 && Version!=0x110){
-      Label(Gop,1690,"UFS VERSION UNRECOGNIZED");continue;
-    }
-    for(R=0;R<ARRAY_SIZE(Offsets);R++){
-      DEBUG((DEBUG_ERROR,"DEGAS UFS reading=%04x\n",Offsets[R]));
-      DEBUG((DEBUG_ERROR,"DEGAS UFS offset=%04x value=%08x\n",Offsets[R],MmioRead32(0x112b0000+Offsets[R])));
-    }
-    DEBUG((DEBUG_ERROR,"DEGAS UFS SNAPSHOT END NO WRITES\n"));
-    UfsEnableTest(Gop,Selected==3);
-    Label(Gop,1840,"TEST ENDED WAIT FOR RESTART");
-    return; // Preserve test result; watchdog resets after hardware changes.
-   }
-   continue;
+   if(Selected==0){BootAndroid(Gop);continue;}
+   UfsEnableTest(Gop,FALSE);return;
   }
   if(Edges!=1 && Edges!=2)continue;
-  if(EFI_ERROR(Gop->Blt(Gop,&Bg,EfiBltVideoFill,0,0,70,855+Selected*130,16,100,0)))break;
-  Selected=(Selected+(Edges==1?5:1))%6;Changes++;
-  if(EFI_ERROR(Gop->Blt(Gop,&Orange,EfiBltVideoFill,0,0,70,855+Selected*130,16,100,0)))break;
+  if(EFI_ERROR(DrawBootChoice(Gop,Selected,FALSE)))break;
+  Selected^=1;
+  if(EFI_ERROR(DrawBootChoice(Gop,Selected,TRUE)))break;
  }
- DEBUG((DEBUG_ERROR,"DEGAS BUTTON SELECTION changes=%u selected=%u confirms=%u error=%u\n",(UINT32)Changes,(UINT32)Selected,(UINT32)Confirms,Error));
- Label(Gop,1690,Error?"PMIC READ FAILED RETURN FASTBOOT":"TEST FINISHED RETURN TO FASTBOOT");
+ Label(Gop,1690,"PMIC READ FAILED RETURN FASTBOOT");
 }
 STATIC EFI_STATUS RunMenu(VOID){
  EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop; EFI_STATUS S;
@@ -392,7 +339,7 @@ STATIC EFI_STATUS RunMenu(VOID){
  SerialPortWrite((UINT8 *)(EFI_ERROR(S)?"DXE GOP FAILED\n":"DXE GOP OK\n"),EFI_ERROR(S)?15:11);
  }
  if(EFI_ERROR(S))return S;
- S=Label(Gop,300,"MEDIATEK");if(EFI_ERROR(S))return S;
+ S=DrawMiLogo(Gop);if(EFI_ERROR(S))return S;
  ApJournalCanaryCheck(Gop);
  ButtonTest(Gop);
  return EFI_SUCCESS;

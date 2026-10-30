@@ -1,0 +1,132 @@
+package com.woa.helper.util
+
+import com.woa.helper.main.Dlg
+import com.woa.helper.main.Download
+
+object ToolboxDeployer {
+    private const val TOOLBOX_DIR = "/sdcard/WOAHelper/Toolbox"
+
+    fun deploySta(filesDir: String): ShellResult = ShellResult.Error("StA is unavailable on Xiaomi 14T")
+
+    fun deploySoftware(filesDir: String): ShellResult {
+        val winPath = MountManager.getWinPath()
+        if (winPath.isEmpty()) return ShellResult.Error("Mount path is empty")
+        val mkdir1 = ShellManager.execResult("mkdir -p $TOOLBOX_DIR")
+        if (mkdir1 is ShellResult.Error) return mkdir1
+        val files = listOf("WorksOnWoa.url", "TestedSoftware.url", "ARMSoftware.url", "ARMRepo.url")
+        files.forEach { file ->
+            val cp = ShellManager.execResult("cp $filesDir/$file $TOOLBOX_DIR")
+            if (cp is ShellResult.Error) return cp
+        }
+        val mkdir2 = ShellManager.execResult("mkdir -p $winPath/Toolbox", master = true)
+        if (mkdir2 is ShellResult.Error) return mkdir2
+        files.forEach { file ->
+            val cp = ShellManager.execResult("cp $filesDir/$file $winPath/Toolbox", master = true)
+            if (cp is ShellResult.Error) return cp
+        }
+        return ShellResult.Success("")
+    }
+
+    fun deployAtlasOS(url: String, targetName: String, onProgress: Download.ProgressCallback = Dlg.downloadCallback()): ShellResult {
+        val mkdir = ShellManager.execResult("mkdir -p $TOOLBOX_DIR")
+        if (mkdir is ShellResult.Error) return mkdir
+        val dl1 = Download.file(url, "$TOOLBOX_DIR/$targetName", onProgress)
+        if (dl1 is ShellResult.Error) return dl1
+        onProgress.onProgress(50, "AMEWizardBeta.zip")
+        val dl2 = Download.file("https://download.ameliorated.io/AME%20Beta.zip", "$TOOLBOX_DIR/AMEWizardBeta.zip", onProgress)
+        if (dl2 is ShellResult.Error) return dl2
+        onProgress.onProgress(80, "")
+        val winPath = MountManager.getWinPath()
+        if (winPath.isEmpty()) return ShellResult.Error("Mount path is empty")
+        val mkdir2 = ShellManager.execResult("mkdir -p $winPath/Toolbox", master = true)
+        if (mkdir2 is ShellResult.Error) return mkdir2
+        val cp1 = ShellManager.execResult("cp $TOOLBOX_DIR/$targetName $winPath/Toolbox/$targetName", master = true)
+        if (cp1 is ShellResult.Error) return cp1
+        return ShellManager.execResult("cp $TOOLBOX_DIR/AMEWizardBeta.zip $winPath/Toolbox", master = true)
+    }
+
+    fun deployUsbHost(filesDir: String): ShellResult = ShellResult.Error("Legacy USB host scripts are unavailable on Xiaomi 14T")
+
+    fun deployRotation(filesDir: String): ShellResult {
+        val mkdir1 = ShellManager.execResult("mkdir -p $TOOLBOX_DIR")
+        if (mkdir1 is ShellResult.Error) return mkdir1
+        val cp1 = ShellManager.execResult("cp $filesDir/QuickRotate_V6.1.6.exe $TOOLBOX_DIR/")
+        if (cp1 is ShellResult.Error) return cp1
+        val winPath = MountManager.getWinPath()
+        if (winPath.isEmpty()) return ShellResult.Error("Mount path is empty")
+        val mkdir2 = ShellManager.execResult("mkdir -p $winPath/Toolbox", master = true)
+        if (mkdir2 is ShellResult.Error) return mkdir2
+        val cp2 = ShellManager.execResult("cp $TOOLBOX_DIR/QuickRotate_V6.1.6.exe $winPath/Toolbox", master = true)
+        if (cp2 is ShellResult.Error) return cp2
+        return ShellManager.execResult("cp $TOOLBOX_DIR/QuickRotate_V6.1.6.exe $winPath/Users/Public/Desktop", master = true)
+    }
+
+    fun deployTabletMode(filesDir: String): ShellResult {
+        val mkdir1 = ShellManager.execResult("mkdir -p $TOOLBOX_DIR")
+        if (mkdir1 is ShellResult.Error) return mkdir1
+        val cp1 = ShellManager.execResult("cp $filesDir/OptimizedTaskbarControl_V3.2.exe $TOOLBOX_DIR/")
+        if (cp1 is ShellResult.Error) return cp1
+        val winPath = MountManager.getWinPath()
+        if (winPath.isEmpty()) return ShellResult.Error("Mount path is empty")
+        val mkdir2 = ShellManager.execResult("mkdir -p $winPath/Toolbox", master = true)
+        if (mkdir2 is ShellResult.Error) return mkdir2
+        return ShellManager.execResult("cp $TOOLBOX_DIR/OptimizedTaskbarControl_V3.2.exe $winPath/Toolbox", master = true)
+    }
+
+    fun deployFrameworks(filesDir: String, onProgress: Download.ProgressCallback = Dlg.downloadCallback()): ShellResult {
+        val frameworksDir = "/sdcard/WOAHelper/Frameworks"
+        val mkdir1 = ShellManager.execResult("mkdir -p $frameworksDir")
+        if (mkdir1 is ShellResult.Error) return mkdir1
+        val cp1 = ShellManager.execResult("cp $filesDir/install.bat $frameworksDir/install.bat")
+        if (cp1 is ShellResult.Error) return cp1
+        val installers = listOf(
+            "PhysX-9.13.0604-SystemSoftware-Legacy.msi", "PhysX_9.23.1019_SystemSoftware.exe", "xnafx40_redist.msi",
+            "opengl.appx", "2005vcredist_x64.EXE", "2005vcredist_x86.EXE", "2008vcredist_x64.exe", "2008vcredist_x86.exe",
+            "2010vcredist_x64.exe", "2010vcredist_x86.exe", "2012vcredist_x64.exe", "2012vcredist_x86.exe",
+            "2013vcredist_x64.exe", "2013vcredist_x86.exe", "2015VC_redist.x64.exe", "2015VC_redist.x86.exe",
+            "2022VC_redist.arm64.exe", "dxwebsetup.exe", "oalinst.exe"
+        )
+        val total = installers.size
+        val failures = mutableListOf<String>()
+        installers.forEachIndexed { index, installer ->
+            val baseProgress = (index * 100 / total)
+            val result = Download.file("https://github.com/n00b69/woasetup/releases/download/Installers/$installer", "$frameworksDir/$installer") { percent, _ ->
+                val overall = baseProgress + percent / total
+                onProgress.onProgress(overall.coerceAtMost(99), installer)
+            }
+            if (result is ShellResult.Error) failures.add("$installer: ${result.message}")
+        }
+        if (failures.isNotEmpty()) return ShellResult.Error("Download failed: ${failures.take(3).joinToString(", ")}${if (failures.size > 3) " (+${failures.size - 3} more)" else ""}")
+        val winPath = MountManager.getWinPath()
+        if (winPath.isEmpty()) return ShellResult.Error("Mount path is empty")
+        val mkdir2 = ShellManager.execResult("mkdir -p $winPath/Toolbox/Frameworks", master = true)
+        if (mkdir2 is ShellResult.Error) return mkdir2
+        return ShellManager.execResult("cp $frameworksDir/* $winPath/Toolbox/Frameworks", master = true)
+    }
+
+    fun deployDefenderEdge(filesDir: String, isNetworkConnected: Boolean, onProgress: Download.ProgressCallback = Dlg.downloadCallback()): ShellResult {
+        val mkdir = ShellManager.execResult("mkdir -p $TOOLBOX_DIR")
+        if (mkdir is ShellResult.Error) return mkdir
+        if (ShellManager.exec("find $filesDir -maxdepth 1 -name DefenderRemover.exe").isEmpty()) {
+            if (!isNetworkConnected) return ShellResult.Error("DefenderRemover not found and no internet to download")
+            val dl = Download.file("https://github.com/n00b69/woasetup/releases/download/Installers/DefenderRemover.exe", "$TOOLBOX_DIR/DefenderRemover.exe", onProgress)
+            if (dl is ShellResult.Error) return dl
+            val cp = ShellManager.execResult("cp $TOOLBOX_DIR/DefenderRemover.exe $filesDir/DefenderRemover.exe")
+            if (cp is ShellResult.Error) return cp
+        } else {
+            val cp = ShellManager.execResult("cp $filesDir/DefenderRemover.exe $TOOLBOX_DIR/DefenderRemover.exe")
+            if (cp is ShellResult.Error) return cp
+        }
+        val winPath = MountManager.getWinPath()
+        if (winPath.isEmpty()) return ShellResult.Error("Mount path is empty")
+        val mkdir2 = ShellManager.execResult("mkdir -p $winPath/Toolbox", master = true)
+        if (mkdir2 is ShellResult.Error) return mkdir2
+        val cp1 = ShellManager.execResult("cp $filesDir/RemoveEdge.bat $TOOLBOX_DIR")
+        if (cp1 is ShellResult.Error) return cp1
+        val cp2 = ShellManager.execResult("cp $filesDir/DefenderRemover.exe $winPath/Toolbox", master = true)
+        if (cp2 is ShellResult.Error) return cp2
+        return ShellManager.execResult("cp $filesDir/RemoveEdge.bat $winPath/Toolbox", master = true)
+    }
+
+    fun dumpModem(): ShellResult = ShellResult.Error("Modem provisioning is unavailable on Xiaomi 14T")
+}

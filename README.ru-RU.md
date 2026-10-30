@@ -4,6 +4,8 @@
 
 [English](README.md) | **Русский**
 
+[![Latest UEFI](https://img.shields.io/github/v/release/soundrust5/Port-woa-uefi-Xiaomi-14T?include_prereleases&label=UEFI)](https://github.com/soundrust5/Port-woa-uefi-Xiaomi-14T/releases/latest)
+
 Экспериментальный порт Windows on ARM для **Xiaomi 14T (`degas`) — Dimensity 8300-Ultra / MT6897**.
 
 На тестовом устройстве работают загрузка Windows с UFS, все восемь ядер CPU, framebuffer-экран, мультитач и чтение/запись UFS.
@@ -14,6 +16,8 @@
 - [Статус проекта](guide/Russian/status.md)
 - [Гайд по установке UEFI](guide/Russian/installation.md)
 - [Скачать UEFI](https://github.com/soundrust5/Port-woa-uefi-Xiaomi-14T/releases)
+
+- [Исходники WoA Helper (приложение для Android)](apps/woa-helper-degas/DEGAS-ADAPTATION.md)
 
 Автор проекта: [soundrust5](https://github.com/soundrust5).
 

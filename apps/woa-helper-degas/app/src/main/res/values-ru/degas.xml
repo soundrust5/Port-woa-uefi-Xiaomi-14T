@@ -1,0 +1,11 @@
+<resources>
+    <string name="degas_unavailable">Эта функция не адаптирована для Xiaomi 14T.</string>
+    <string name="degas_update">У этой локальной сборки пока нет канала обновлений.</string>
+    <string name="degas_reboot">Перезагрузка в UEFI</string>
+    <string name="degas_reboot_subtitle">Телефон перезагрузится в установленное меню UEFI. Выберите WINDOWS вручную.</string>
+    <string name="degas_mount_question">Подключить C: для чтения или с записью? Для записи полностью завершите работу Windows. Приложение не восстанавливает грязный NTFS и не удаляет файл гибернации. Для смены режима сначала отключите диск.</string>
+    <string name="degas_mount_ro">Только чтение</string>
+    <string name="degas_mount_rw">Чтение и запись</string>
+    <string name="degas_backup">Копия текущего boot</string>
+    <string name="degas_backup_subtitle">Сохраняет boot активного слота. Сейчас в нём находится UEFI. Это не полная резервная копия телефона.</string>
+</resources>

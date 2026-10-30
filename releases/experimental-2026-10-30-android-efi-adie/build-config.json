@@ -1,0 +1,33 @@
+{
+  "build_id": "e2178db6-6dac-4874-8ffb-2308c5bfe3f6",
+  "source_manifest_sha256": "22cda6002d4ada37a29133a112c62cb6a2c1ef8187ffb6efa457160f51d33f20",
+  "mode": 2,
+  "cpu_count": 8,
+  "boot_core": 0,
+  "psci": true,
+  "parking": false,
+  "cpu_topology": true,
+  "dvfs_read_only_snapshot": true,
+  "dvfs_control_writes": false,
+  "dvfs_test_target_khz": null,
+  "watchdog_after_ebs_seconds": 0,
+  "watchdog_disabled_by_windows_ufs": true,
+  "diagnostic_only": true,
+  "checkpoint_efi_sha256": "23fa23c2bce52b3adac2b5c778f7fc2eedf9326c6c911c0434d55d303c356cf5",
+  "acpi_efi_sha256": "70a84de94403cce8693f849f5bd2f8fec656b045b7b7078e3e598003d12be0de",
+  "smbios_efi_sha256": "3d2cfb97800c626bf43aa34d91a1f1c8dd2dc77c041ab219d94315ce47719526",
+  "translation_sha256": "aff36c80c0687757f9bac565b1d95957871eafdfab6e12a4f5649e06c0281115",
+  "exact_linked_guard_and_identity": true,
+  "boot_image_sha256": "202b99cbb28993350c990f6ecce9ca0d4a29744f35584663803000416c752284",
+  "stock_restore_image": "D:\\Edk2-For-Xiaomi14T\\evidence\\raw\\2026-10-24-degas-return\\boot_b.img",
+  "stock_restore_sha256": "fa01819342dd24164dea568f88f9715bc3132f738a68c49453907982946c1113",
+  "gz_tee_lk_preloader_untouched": true,
+  "windows_files_untouched": true,
+  "limitations": [
+    "first-EBS-attempt only",
+    "currentEL1 stage1 access qualification only",
+    "Windows SMP and late integrity acceptance require hardware observation",
+    "cold 8-CPU proof only; sleep/hotplug/resume unqualified",
+    "Windows UFS driver disables watchdog; no guaranteed automatic reset after storage starts"
+  ]
+}

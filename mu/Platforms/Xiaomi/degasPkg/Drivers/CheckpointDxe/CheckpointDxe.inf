@@ -38,6 +38,7 @@
  BaseMemoryLib
  DevicePathLib
  UefiBootManagerLib
+ FdtLib
 [Protocols]
  gEfiCpuArchProtocolGuid
  gEfiBdsArchProtocolGuid
@@ -51,6 +52,7 @@
  gEfiLoadedImageProtocolGuid
  gEfiSimpleTextOutProtocolGuid
  gEfiDxeSmmReadyToLockProtocolGuid
+ gEfiLoadFile2ProtocolGuid
 [Guids]
  gEfiSmbiosTableGuid
  gEfiSmbios3TableGuid
@@ -58,5 +60,7 @@
  gEfiEventExitBootServicesGuid
  gEfiEventBeforeExitBootServicesGuid
  gEventExitBootServicesFailedGuid
+ gFdtTableGuid
+ gLinuxEfiInitrdMediaGuid
 [Depex]
  gEfiGraphicsOutputProtocolGuid AND gEfiTimerArchProtocolGuid AND gEfiMetronomeArchProtocolGuid

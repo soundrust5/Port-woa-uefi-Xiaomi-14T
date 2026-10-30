@@ -1,0 +1,293 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/settingsPanel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_inverseOnSurface">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbarlayout"
+            layout="@layout/toolbar" />
+
+        <ScrollView
+            android:id="@+id/app"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/md_theme_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/quickbootBackupContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/default_background"
+                    android:orientation="vertical"
+                    android:padding="@dimen/settings_padding">
+
+                    <LinearLayout
+                        android:id="@+id/quickbootBackupHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/settings_row_height"
+                        android:clickable="true"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quickboot_backup"
+                            android:textSize="@dimen/text_header"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/quickbootBackupChevron"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="8dp"
+                            android:src="@drawable/ic_chevron_down" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/quickbootBackupContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="10dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <com.woa.helper.main.SettingsButton
+                                    android:id="@+id/backupWindows"
+                                    style="@style/settingsButton"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/settings_row_height"
+                                    app:text="@string/windows" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/settings_row_height"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:paddingStart="8dp"
+                                    android:paddingEnd="8dp">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/force"
+                                        android:textSize="@dimen/text_body"
+                                        android:textStyle="bold" />
+
+                                    <Switch
+                                        android:id="@+id/forceWindowsSwitch"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <com.woa.helper.main.SettingsButton
+                                    android:id="@+id/backupAndroid"
+                                    style="@style/settingsButton"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/settings_row_height"
+                                    app:text="@string/android" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/settings_row_height"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:paddingStart="8dp"
+                                    android:paddingEnd="8dp">
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/force"
+                                        android:textSize="@dimen/text_body"
+                                        android:textStyle="bold" />
+
+                                    <Switch
+                                        android:id="@+id/forceAndroidSwitch"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.woa.helper.main.SettingsButton
+                    android:id="@+id/confirmation"
+                    style="@style/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    app:text="@string/preference5" />
+
+                <com.woa.helper.main.SettingsButton
+                    android:id="@+id/automount"
+                    style="@style/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    app:text="@string/preference7" />
+
+                <com.woa.helper.main.SettingsButton
+                    android:id="@+id/securelock"
+                    style="@style/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    app:text="@string/preference9" />
+
+                <com.woa.helper.main.SettingsButton
+                    android:id="@+id/mountLocation"
+                    style="@style/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    app:text="@string/preference10" />
+
+                <com.woa.helper.main.SettingsButton
+                    android:id="@+id/selinux"
+                    style="@style/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    app:text="@string/preference14" />
+
+                <com.woa.helper.main.SettingsButton
+                    android:id="@+id/appUpdate"
+                    style="@style/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    app:text="@string/preference11" />
+
+                <com.woa.helper.main.SettingsButton
+                    android:id="@+id/devcfg1"
+                    style="@style/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    app:text="@string/preference12" />
+
+                <com.woa.helper.main.SettingsButton
+                    android:id="@+id/devcfg2"
+                    style="@style/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    android:visibility="gone"
+                    app:text="@string/preference13" />
+
+                <LinearLayout
+                    style="@style/settingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/settings_row_height"
+                    android:layout_gravity="center"
+                    android:background="@drawable/default_background"
+                    android:gravity="center"
+                    android:padding="@dimen/settings_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:text="@string/preference6"
+                        android:textSize="@dimen/text_header"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/languages"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/text_header" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/chatButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/settings_row_height"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/default_background"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:padding="@dimen/settings_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/chat"
+                            android:textSize="@dimen/text_header"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/githubButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/settings_row_height"
+                        android:layout_weight="1"
+                        android:background="@drawable/default_background"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:padding="@dimen/settings_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/github"
+                            android:textSize="@dimen/text_header"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/codename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <com.github.mmin18.widget.RealtimeBlurView
+        android:id="@+id/blur"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:realtimeBlurRadius="10dp"
+        app:realtimeOverlayColor="#80000000" />
+</FrameLayout>

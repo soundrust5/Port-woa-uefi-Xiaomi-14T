@@ -4,6 +4,8 @@
 
 **English** | [Русский](README.ru-RU.md)
 
+[![Latest UEFI](https://img.shields.io/github/v/release/soundrust5/Port-woa-uefi-Xiaomi-14T?include_prereleases&label=UEFI)](https://github.com/soundrust5/Port-woa-uefi-Xiaomi-14T/releases/latest)
+
 Experimental Windows on ARM port for **Xiaomi 14T (`degas`) — Dimensity 8300-Ultra / MT6897**.
 
 Windows boots from UFS. All eight CPU cores, framebuffer display, multitouch and UFS read/write have worked on the test device.
@@ -14,6 +16,8 @@ Windows boots from UFS. All eight CPU cores, framebuffer display, multitouch and
 - [Project status](guide/English/status.md)
 - [UEFI installation guide](guide/English/installation.md)
 - [UEFI downloads](https://github.com/soundrust5/Port-woa-uefi-Xiaomi-14T/releases)
+
+- [WoA Helper source (Android companion)](apps/woa-helper-degas/DEGAS-ADAPTATION.md)
 
 Maintainer: [soundrust5](https://github.com/soundrust5).
 

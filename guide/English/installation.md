@@ -79,7 +79,7 @@ Wait for `OKAY` and successful completion. Only then run:
 ./fastboot.exe reboot
 ```
 
-The UEFI menu should appear. Volume buttons move the selection; Power confirms. `BOOT ANDROID` requests an automatic restart into Android; let it restart without holding buttons. `WINDOWS BOOT MANAGER` requires an already prepared compatible Windows installation. Diagnostic menu items are not installation steps.
+The UEFI menu should appear. Volume buttons move the selection; Power confirms. `BOOT ANDROID` loads Android directly through the stock EFI stub. After a radio diagnostic, let the automatic reset finish, then select Android. `WINDOWS BOOT MANAGER` requires an already prepared compatible Windows installation. Diagnostic menu items are not installation steps.
 
 ## 6. Restore Android if needed
 

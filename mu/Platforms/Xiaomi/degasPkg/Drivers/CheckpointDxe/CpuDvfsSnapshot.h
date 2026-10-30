@@ -42,7 +42,7 @@ STATIC BOOLEAN DvfsPublish(VOID){
  return TRUE;
 }
 #include "CpuDvfsStep.h"
-STATIC VOID CpuDvfsSnapshot(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
+STATIC inline VOID CpuDvfsSnapshot(EFI_GRAPHICS_OUTPUT_PROTOCOL *Gop){
  STATIC UINT32 Previous[DEGAS_APJ_WORDS];DEGAS_DVFS_SNAPSHOT S;
  UINT32 Status,D;BOOLEAN Saved;CHAR8 Text[64];
  BootWatchdogArmTenSeconds();

@@ -1,6 +1,7 @@
 #ifndef DEGAS_GCE_FRAME_PACKET_H
 #define DEGAS_GCE_FRAME_PACKET_H
 #define DEGAS_GCE_FRAME_WORDS 62U
+#define DEGAS_GCE_TE_FRAME_WORDS 67U
 #define DEGAS_GCE_FRAME_SENTINEL 0x76543210U
 // Port of the independently decoded offline one-frame packet. Fixed-size
 // Three idle polls, fresh FRAME_DONE clear/set handshake, 18 retained transfer
@@ -20,10 +21,17 @@ STATIC VOID GceFrameWrite(UINT64 *P,UINTN *N,UINT32 Address,UINT32 Value,UINT32 
  P[(*N)++]=((Mask==0xffffffffU?0x9000000000000000ULL:0x9100000000000000ULL) |
             ((UINT64)((Address&0xffffU)|2U)<<32)|Value);
 }
-STATIC BOOLEAN GceBuildFrame(UINT64 *P,UINTN Capacity){
+STATIC BOOLEAN GceBuildFrameEx(UINT64 *P,UINTN Capacity,BOOLEAN WaitTe){
  UINTN N=0;
- if(P==NULL || Capacity<DEGAS_GCE_FRAME_WORDS)return FALSE;
+ UINTN Required=WaitTe?DEGAS_GCE_TE_FRAME_WORDS:DEGAS_GCE_FRAME_WORDS;
+ if(P==NULL || Capacity<Required)return FALSE;
  GceFramePoll(P,&N,0x80000000U,0);
+ // DSI INTSTA TE_RDY is BIT2 in this vendor driver (not upstream BIT4).
+ // Clear the old W0C latch, then await a NEW panel edge before every frame.
+ if(WaitTe){
+  GceFrameWrite(P,&N,0x1400d00c,0xfffffffbU,0xffffffffU);
+  GceFramePoll(P,&N,4U,4U);
+ }
  GceFrameWrite(P,&N,0x1400d190,2,2);GceFrameWrite(P,&N,0x1400d190,4,4);
  GceFrameWrite(P,&N,0x1400d008,0,0xffffffffU);GceFrameWrite(P,&N,0x1400d014,0,3);
  GceFrameWrite(P,&N,0x1400d100,0x55,0xffffffffU);GceFrameWrite(P,&N,0x1400d104,1,1);
@@ -41,6 +49,7 @@ STATIC BOOLEAN GceBuildFrame(UINT64 *P,UINTN Capacity){
  GceFramePoll(P,&N,0x80000000U,0);
  P[N++]=0xa080000000000000ULL|DEGAS_GCE_FRAME_SENTINEL;
  P[N++]=0x4000000000000000ULL;P[N++]=0x1000000000000001ULL;
- return N==DEGAS_GCE_FRAME_WORDS;
+ return N==Required;
 }
+STATIC inline BOOLEAN GceBuildFrame(UINT64 *P,UINTN Capacity){return GceBuildFrameEx(P,Capacity,FALSE);}
 #endif
