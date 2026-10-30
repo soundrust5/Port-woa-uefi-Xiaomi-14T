@@ -1,31 +1,25 @@
-# WoA Helper — Xiaomi 14T (degas)
-
-Android companion adapted from the existing OnePlus 12 fork of n00b69/woa-helper. Package: `com.woa.helper.degas`.
+# WoA Helper для Xiaomi 14T
 
 ## Русский
 
-Нужен root (KernelSU/Magisk). Приложение поддерживает только `degas`.
+Нужны Xiaomi 14T, root и уже установленная Windows.
 
-- Подключение раздела Windows C: в `/storage/emulated/0/Windows` или `/mnt/Windows`.
-- Отдельный выбор «только чтение» и «чтение/запись». Плитка, виджет и автомонтирование используют только чтение.
-- Для записи полностью завершите работу Windows. Грязный/гибернированный NTFS не восстанавливается принудительно.
-- Перезагрузка в установленное меню UEFI, резервная копия boot активного слота.
-- Русский и английский интерфейс. Прошивка разделов, модема и devcfg отключена.
+1. [Скачайте APK](https://github.com/soundrust5/Port-woa-uefi-Xiaomi-14T/releases/download/experimental-2026-10-30-android-efi-adie/WoA-Helper-Xiaomi-14T.apk), установите его и разрешите root при первом запуске.
+2. Нажмите подключение Windows и выберите чтение или чтение/запись.
+3. Откройте Windows в файловом менеджере. Чтобы закончить работу или сменить режим, отключите её в приложении.
+4. Кнопка перезагрузки открывает установленное меню UEFI. Выберите там Android или Windows.
 
-Раздел находится по `/dev/block/by-name/Windows`, без фиксированного номера UFS или слота. SELinux не отключается. В обычном файловом менеджере доступ зависит от разрешений Android и видимости mount namespace; для окончательной проверки нужен тест UI на конкретной прошивке.
+Перед записью полностью завершите работу Windows: после гибернации писать нельзя. Приложение не устанавливает Windows или UEFI.
 
 ## English
 
-Root (KernelSU/Magisk) is required. Only `degas` is supported. Mount the named Windows partition read-only or read/write; browse it at the paths above. Fully shut down Windows before writable access. Dirty/hibernated NTFS is never forced writable. Widgets/tiles/automount are read-only. Boot backup resolves the active slot dynamically; reboot enters the installed UEFI menu. Partition flashing, modem/devcfg and legacy boot patching remain disabled. SELinux is unchanged.
+Requires Xiaomi 14T, root and an existing Windows installation.
 
-## Build / validation
+1. [Download the APK](https://github.com/soundrust5/Port-woa-uefi-Xiaomi-14T/releases/download/experimental-2026-10-30-android-efi-adie/WoA-Helper-Xiaomi-14T.apk), install it and grant root on first launch.
+2. Tap the Windows mount action and choose read-only or read/write.
+3. Open Windows in your file manager. Unmount it in the app when finished or before changing access mode.
+4. The reboot action opens the installed UEFI menu. Choose Android or Windows there.
 
-JDK 21, Android SDK 36, bundled Gradle wrapper:
+Fully shut down Windows before writing; do not write to a hibernated volume. The app does not install Windows or UEFI.
 
-```powershell
-.\gradlew.bat testDebugUnitTest assembleDebug
-```
-
-Debug APK is signed with the local Android debug certificate. Unit tests and APK build passed. Native RO mount and RW temporary-file readback/removal/unmount passed on the phone in the global root mount namespace, using the same NTFS binary. The user confirmed reading and writing through the installed app. The quickboot action now explicitly unmounts a verified Windows volume before reboot and cancels reboot on unmount failure; that reboot behavior has build validation, not a new device reboot test.
-
-The native executable is `app/src/main/jniLibs/arm64-v8a/libntfs3g_exec.so`, SHA256 `77f47b1b5655a385c136d1b6bc0b0e1cd15f43446bb89886aa7b6c7a34b29a15`. It is the already-tested static ARM64 NTFS-3G build. Matching source archive and COPYING are in `third_party/`; root repository script `tools/degas_full_windows_build_ntfs.sh` records its build recipe. Preserved upstream README and OnePlus adaptation notes describe ancestry, not the current supported-device list. No new license is asserted over upstream code.
+Based on [n00b69/woa-helper](https://github.com/n00b69/woa-helper) through the existing OnePlus 12 adaptation. Upstream notices and licenses still apply; see [ancestry notes](UPSTREAM-OP12-ADAPTATION.md) and [NTFS-3G license](third_party/NTFS-3G-COPYING).

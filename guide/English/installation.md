@@ -3,21 +3,21 @@
 [Home](../../README.md) | **English** | [Русский](../Russian/installation.md)
 
 > [!CAUTION]
-> If you are unsure or afraid to install UEFI, feel free to close this repository. We are not responsible for damaged phones. This experimental port has bugs and unfinished features and may leave your phone unusable.
+> Install at your own risk. This unfinished port can leave your phone unusable. We are not responsible for damaged devices.
 
-Only for **Xiaomi 14T (`degas`, MT6897)**, not Xiaomi 14T Pro. This installs the UEFI menu, **not Windows**. Windows partitioning and installation are outside this guide. Compatibility with every Android firmware version has not been verified.
+Only for **Xiaomi 14T (`degas`, MT6897)**, not the Pro. This installs UEFI only. Windows installation is not covered here. Compatibility with every Android firmware version is unverified.
 
 ## 1. Prepare your computer and phone
 
-- Back up your personal data outside the phone.
-- You need an **already unlocked bootloader**, rooted working Android, USB debugging, and a charged phone. Bootloader unlocking is outside this guide and can erase data.
-- Install [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools). Open **Windows PowerShell** in that folder. The commands below use `./adb.exe` and `./fastboot.exe`; do not paste them into Android's terminal.
-- Download `boot.img` and `SHA256SUMS` from the [release](https://github.com/soundrust5/Port-woa-uefi-Xiaomi-14T/releases/latest) into the same folder. Keep the backup in a separate safe location too.
-- Run each block in order in the **same PowerShell window**. Stop on an error, `FAILED`, an empty result or an unexpected device. Connect only this phone.
+- Back up your data outside the phone.
+- You need an **unlocked bootloader**, working rooted Android, USB debugging and a charged phone. Unlocking is not covered here and can erase data.
+- Install [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools) and open **Windows PowerShell** in that folder. Run the commands on your computer.
+- Download `boot.img` and `SHA256SUMS` from the [release](https://github.com/soundrust5/Port-woa-uefi-Xiaomi-14T/releases/latest) into that folder.
+- Connect only this phone. Run the blocks in order in the **same PowerShell window**. Stop on errors, `FAILED` or unexpected/empty results.
 
 ## 2. Check the device and its current slot
 
-Connect the phone, allow USB debugging on its screen, and run:
+Allow USB debugging on the phone, then run:
 
 ```powershell
 ./adb.exe devices
@@ -25,9 +25,9 @@ Connect the phone, allow USB debugging on its screen, and run:
 ./adb.exe shell su -c id
 ```
 
-Expect one authorized `device`, product `degas`, and root `uid=0`. Accept the root request on the phone if prompted.
+Expect one `device`, product `degas` and root `uid=0`. Grant root on the phone if prompted.
 
-A/B slots are two sets of Android boot partitions. **Your active slot may be A or B.** B was used on our test phone; it is not a universal requirement. The following commands read your slot and remember it:
+**Your active slot may be A or B.** Read and save it:
 
 ```powershell
 $slot = (./adb.exe shell getprop ro.boot.slot_suffix).Trim().TrimStart('_')
@@ -37,11 +37,11 @@ $slot | Set-Content -Encoding ascii ./original-slot.txt
 Write-Output "Android slot: $slot; target partition: $partition"
 ```
 
-Do not change slots to match someone else's instructions, and do not perform an Android OTA update during this procedure.
+Keep your current slot. Do not install Android OTA updates during this procedure.
 
 ## 3. Back up your working Android boot image
 
-These commands copy your current boot partition; they do not write to it. If it already contains UEFI, use your original Android backup instead. A rooted Android backup may include your root modifications.
+If UEFI is already installed, use your original Android backup. Otherwise, copy the current boot image:
 
 ```powershell
 ./adb.exe shell "su -c 'dd if=/dev/block/by-name/$partition of=/data/local/tmp/android-$partition.img bs=4M'"
@@ -52,7 +52,7 @@ Get-FileHash "./android-$partition.img" -Algorithm SHA256
 Get-FileHash ./boot.img -Algorithm SHA256
 ```
 
-The backup hash must match the partition hash printed by `sha256sum`. The UEFI `boot.img` hash must match its line in `SHA256SUMS` (letter case does not matter). **Do not continue without a verified backup.** Save `original-slot.txt` and the backup somewhere outside the phone.
+Match the backup hash to `sha256sum`, and the UEFI image hash to `SHA256SUMS`; letter case does not matter. **Do not continue without a verified backup.** Keep it and `original-slot.txt` outside the phone.
 
 ## 4. Enter fastboot and check the slot again
 
@@ -63,27 +63,27 @@ The backup hash must match the partition hash printed by `sha256sum`. The UEFI `
 ./fastboot.exe getvar current-slot
 ```
 
-Expect one phone, product `degas`, and the **same slot saved in step 2**. If the slot differs, stop; do not force it to A or B. Use bootloader fastboot, not recovery's fastbootd.
+Check for one phone, product `degas` and **the slot saved in step 2**. Stop if it differs. Use bootloader fastboot, not fastbootd.
 
 ## 5. Flash the checked slot
 
-This replaces only the selected boot partition. It does not format the phone or install Windows.
+Flash only the checked boot partition:
 
 ```powershell
 ./fastboot.exe flash $partition ./boot.img
 ```
 
-Wait for `OKAY` and successful completion. Only then run:
+Wait for `OKAY` and successful completion, then reboot:
 
 ```powershell
 ./fastboot.exe reboot
 ```
 
-The UEFI menu should appear. Volume buttons move the selection; Power confirms. `BOOT ANDROID` loads Android directly through the stock EFI stub. After a radio diagnostic, let the automatic reset finish, then select Android. `WINDOWS BOOT MANAGER` requires an already prepared compatible Windows installation. Diagnostic menu items are not installation steps.
+In UEFI, use Volume to select and Power to confirm. Choose `BOOT ANDROID` for Android. Windows Boot Manager needs an existing compatible Windows installation. Skip diagnostics during installation.
 
 ## 6. Restore Android if needed
 
-Hold **Power + Volume Down** to enter fastboot. Open PowerShell in the folder containing your backup and `original-slot.txt`:
+Hold **Power + Volume Down** for fastboot. Open PowerShell beside your backup and `original-slot.txt`:
 
 ```powershell
 $slot = (Get-Content ./original-slot.txt -Raw).Trim()
@@ -94,13 +94,13 @@ $partition = "boot_$slot"
 Get-FileHash "./android-$partition.img" -Algorithm SHA256
 ```
 
-Confirm product `degas` and the original verified backup hash. Restore it:
+Confirm product `degas` and your original backup hash, then restore:
 
 ```powershell
 ./fastboot.exe flash $partition "./android-$partition.img"
 ```
 
-Only after the flash succeeds, select your original slot and restart:
+After a successful flash, select your saved slot and restart:
 
 ```powershell
 ./fastboot.exe set_active $slot
@@ -109,4 +109,4 @@ Only after the flash succeeds, select your original slot and restart:
 
 Do not erase other partitions, relock the bootloader, or use another phone's backup.
 
-Currently this is a **UEFI installation guide only**. See [component status](status.md) for Windows support.
+See [component status](status.md) for Windows support.

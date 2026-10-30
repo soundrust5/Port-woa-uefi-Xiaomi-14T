@@ -53,7 +53,7 @@ The GICC parser (RVA48A8D8 onward) has distinct GICv3 and legacy branches:
 - `48A94C`: writes W8 to first DWORD of the 64-byte HAL processor descriptor.
 - Only the legacy branch at `48A958` loads GICC CPU Interface Number at+4 instead.
 
-The resulting processor ID for the actual declared MPIDRs 0x100..0x700 is 0x100..0x700, not0. HalpInterruptSetProcessorStartContext later writes this descriptor first DWORD to the parking mailbox CPU_ID (RVA47F8A0, independently identified by parking-contract agent).
+The resulting processor ID for the actual declared MPIDRs 0x100..0x700 is 0x100..0x700, not0. HalpInterruptSetProcessorStartContext later writes this descriptor first DWORD to the parking mailbox CPU_ID (RVA47F8A0).
 
 Therefore an AP parking loop that only accepts CPU_ID==0 rejects every legitimate secondary release under this Windows implementation. Expected ID for this hardware is I<<8 (or the general compressed-MPIDR formula), validated per private mailbox/CPU. This is a concrete correction to the strict-zero diagnostic, not proof it fixes the original KMODE: original v1 accepted any non-FFFFFFFF value and would have accepted these IDs already.
 

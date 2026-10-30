@@ -1,4 +1,4 @@
-# Host-only MPIDR context bridge feasibility fixture
+# MPIDR context bridge feasibility fixture (offline)
 
 Build with `wsl bash diagnostic/degas-linux-context-design/build.sh` from the
 workspace root, then run `python diagnostic/degas-linux-context-design/test_bridge.py`.

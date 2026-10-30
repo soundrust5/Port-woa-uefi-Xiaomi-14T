@@ -1,4 +1,4 @@
-# Host-only per-MPIDR AP context bridge
+# per-MPIDR AP context bridge (offline)
 
 `ApContext.S` is a 448-byte AArch64 diagnostic prototype. It independently
 finds a published descriptor through MPIDR, restores its complete 64-bit

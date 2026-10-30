@@ -19,7 +19,7 @@ Evidence directory: `evidence/raw/2026-10-29-degas-wifi-android-audit/`.
 
 The presence of generic loaded `btsdio` or `hci_uart` modules does not identify this WLAN transport. The actual WLAN parent and matching vendor build configuration do.
 
-Root's later read-only filename follow-up, `firmware-paths-followup.txt`, additionally identifies `/vendor/firmware/soc7_0_ram_mcu_{1,1a,1b}_1_hdr.bin` alongside the BT images and `wifi.cfg`. These names supplement the source templates below; the complete Wi-Fi image selection, hashes and firmware-to-ECO match remain to be established.
+The later filename capture, `firmware-paths-followup.txt`, additionally identifies `/vendor/firmware/soc7_0_ram_mcu_{1,1a,1b}_1_hdr.bin` alongside the BT images and `wifi.cfg`. These names supplement the source templates below; the complete Wi-Fi image selection, hashes and firmware-to-ECO match remain to be established.
 
 Resource extraction is `prior-live-fdt-wifi-resources.json`, derived offline from the previously captured live FDT `evidence/raw/2026-10-27-degas-windows-ufs-baseline/fdt.dtb`, SHA256 `29775b7b4361d040817d77bf130039966200055d0e2ae86eb02d63661bd61e68`:
 

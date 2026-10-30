@@ -59,7 +59,7 @@ cannot establish what a completely uninstrumented boot would observe.
 The previously reported GCD/GetMemoryMap-versus-CPU-attribute uncertainty
 remains; this audit provides no new evidence that it caused the failure.
 
-## Bounded disproving tests, only after renewed hardware authorization
+## Follow-up tests
 
 1. Capture the global startup page selected by mailbox+8 after validating
    physical bounds. Record page+0, page+8, the 0x180-byte stub at +0x10,

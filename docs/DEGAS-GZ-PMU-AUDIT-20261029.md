@@ -14,7 +14,7 @@ payload SHA256 is
 `85802b8800ce948f36f463945dd9bf3dfd348073c771133b5f7e44d1baa57fd9`.
 Addresses below are hexadecimal payload offsets; add200 for raw offsets.
 
-## Exact findings
+## Findings
 
 An aligned static core-payload scan found only three PMU register accesses:
 

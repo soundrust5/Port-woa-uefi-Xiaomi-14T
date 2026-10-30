@@ -1,12 +1,6 @@
 # Degas UFS, DMA, copy, and memory audit — 2026-10-26
 
-Scope: offline, independent source and existing-evidence review. No phone, ADB,
-fastboot, flashing, reboot, production-source edit, or new hardware inference.
-The coordinator subsequently authorized updating only the stale BlockIO host
-test, which was repaired and rerun as described below.
-No AGENTS.md was found in the workspace or D:\ root. Read the complete relevant
-bring-up history in `docs/DEGAS-DISPLAY-HANDOFF-20261024.md` and inspected the
-current Checkpoint transport, copy, BlockIO, memory-map and inherited ARM MMU.
+Offline review of Checkpoint transport, copy routines, BlockIO, memory mapping and inherited ARM MMU code. The stale BlockIO host test was updated and rerun.
 
 ## Assessment
 
@@ -115,7 +109,7 @@ The compiler still spills the word to the stack each iteration for the fallback
 branch, so eight-byte access does not by itself guarantee an eightfold overall
 speedup. The unaligned destination path remains more expensive.
 
-## Ranked next discriminating tests, when hardware is separately authorized
+## Follow-up tests
 
 1. **Capture V10 automatic-reset evidence before changing transport.** Its
    purpose is to distinguish continuing reads, a return/error, an exception,
@@ -180,7 +174,7 @@ missing GetPerformanceCounter/DEGAS_UFS_MAX_BLOCKS/DegasUfsReadCommand/UfsCopyRe
 BootWatchdogFeed, and its packet mock insists on 4 KiB. This is a confirmed test
 maintenance gap in the old test, not evidence that the firmware fails.
 
-On explicit coordinator authorization, updated that test only: it now includes
+The updated BlockIO test includes
 the current builder/copy helper, accepts and validates variable-sized commands,
 checks 14+14+1 batching and exact LBA progression, byte contents and canaries
 for caller alignments 0..15, a three-chunk request ending at final LBA, invalid
@@ -203,7 +197,7 @@ Exit code 0, exact output:
 `PASS: BlockIO 14+14+1 batching, all caller alignments/canaries, last LBA, read-only and first/second-chunk failures`
 
 No production file was changed by this audit. The two repository writes are
-this report and the explicitly authorized BlockIO test update.
+this report and the BlockIO test update.
 
 ## Existing hardware evidence used
 

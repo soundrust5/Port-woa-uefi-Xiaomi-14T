@@ -33,7 +33,6 @@ register writes are required for reads; they are not PMIC writes.
 The exact Android reference lives in android-mt6363-conn-rails.json under
 evidence/raw/2026-10-30-degas-wifi-power.
 
-
 V5 hardware result: RF SNAPSHOT SAVED; all12 PMIC reads succeeded and Android
 booted from the UEFI menu. The logged entry stage6 preceded the user request
 on the initial UEFI boot, with uninitialized flag contents; it is expected
@@ -41,7 +40,6 @@ and is NOT an observed rejection of that user request. No failing menu boot
 has yet been captured with the observer. Therefore the intermittent Android
 boot issue remains unproven and no repair is claimed from this successful
 attempt. The diagnostic remains enabled in subsequent private images.
-
 
 V7 fallback: the fixed request slot is not a dependable single transport.
 V6's next early entry saw unrelated values; the user confirms Android was
@@ -63,7 +61,6 @@ invalid header bounds, missing primary, all guards and stock copying/ABI.
 This is a candidate fix; hardware confirmation of the failing scenario is
 required before claiming reliable Android routing.
 
-
 V7 hardware failure: user did not repeat RF this time. Retained console has
 one P0 entry, the RF pass and timeout arm, but no subsequent BootAndroid
 request and no second wrapper entry. Console fallback did not solve the
@@ -78,7 +75,6 @@ issued. BootAndroid issues it immediately after publishing the console token,
 without any subsequent logging. The reset-only watchdog remains fallback.
 Both sites log the intended software command before issuing it. No claims
 of a hardware fix before the new path has been observed on the phone.
-
 
 V8 result: user explicitly observed RF software reboot, fresh menu, Android
 selection and return to UEFI without repeating RF. Yet recovered pstore still

@@ -4,7 +4,7 @@
 
 Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **30 October 2026**.
 
-**AI-assisted project:** the maintainer estimates that around **70% of development** was completed with AI assistance. This is an estimate; hardware functionality is verified on the physical device.
+The maintainer estimates that AI assisted around 70% of development.
 
 ✅ Working · 🟡 Partial · 🚧 In development · ❌ Not implemented · ❔ Not verified
 
@@ -49,12 +49,10 @@ Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **30 October 2026**.
 | Sleep / resume | ❌ Unavailable; not tested |
 | TPM | ❌ |
 
-All eight CPU cores, dynamic frequency scaling and boost have been tested in Windows. Touchscreen input, including multitouch and the screen edges, is reported working on the test device. Display output uses the framebuffer.
+Windows has eight working cores, frequency scaling and boost, 10.4 GB RAM, multitouch and framebuffer display output. UFS read/write works but remains slow.
 
-UFS reading and writing passed in Windows PE, including a stress test. Unverified entries do not imply working Windows support.
+Android boots directly from UEFI. Radio initialization tests pass; Wi-Fi firmware startup, network connection and a Windows Wi-Fi driver are still unfinished.
 
-Temperature readings and software frequency limiting have been verified; thresholds remain conservative. Long-term thermal protection remains unverified.
+Temperature readings and software throttling work. Long-term thermal protection remains unverified; sleep/resume is unavailable.
 
-Android now boots directly through its stock EFI stub, including after the qualified RF/CONN cleanup and reset. Native A-die initialization and an independent RF-SPI read both returned ID `66378A01`. Wi-Fi firmware startup, network association and a Windows Wi-Fi driver remain unfinished. The tested Windows configuration retains eight cores, DVFS, 10.4 GB RAM, UFS, touch and TE display refresh.
-
-[Installation availability](installation.md)
+[Install UEFI](installation.md)

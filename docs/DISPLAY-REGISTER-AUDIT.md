@@ -38,7 +38,7 @@ Watchdog второго теста (`PC=0x4000011c`, `LR=0x400000fc`,
 Воспроизводимый extractor:
 [`tools/extract_display_update.py`](../tools/extract_display_update.py).
 Полный выбранный листинг:
-[`display-update-chain.asm`](../evidence/extracted/2026-09-14/lk-analysis/display-update-chain.asm).
+`display-update-chain.asm` (локальный файл `evidence/extracted/2026-09-14/lk-analysis/display-update-chain.asm`, в репозиторий не включён).
 Extractor проверяет SHA-256 exact main-LK payload
 `6afd84aefda089681f0ec4a224c6710228f525ec312bfa2532977be9e4496580`.
 
@@ -109,12 +109,12 @@ reads `baseN + 0x160/0x164`, `baseN + 0x168` и `baseN + 0x16c`.
 Это exact LK VA и offsets. Их physical mapping и допустимость доступа из
 текущего EL1/stage-2 режима здесь не утверждаются.
 
-**Исправление после проверки главным агентом:** двухконтроллерный список выше
+**Исправление после проверки ветвей LK:** двухконтроллерный список выше
 относится именно к runtime remap 43 → 45 при поле 0x5082e570 == 2.
 Без remap ветка 43 использует только base0: +0x190 OR2/OR4, +8=0,
 +0x14 получает mode, +0x100=0x55/0xaa, +0x104 OR1. Нельзя смешивать эти ветви.
 
-## Дополнительная проверка главным агентом
+## Проверка ветвей LK
 
 Разбор 0xffff0000507495b4 подтвердил: перед циклом вызовов driver +0x28
 исполняется helper 0xffff00005074cbf0. Он записывает ноль в block+8 и единицу
@@ -129,7 +129,7 @@ reads `baseN + 0x160/0x164`, `baseN + 0x168` и `baseN + 0x16c`.
 writer проверяет mode/busy, пишет очередь по отдельной таблице base (0x1400dd00
 и 0x1420dd00 в LK VA) и количество в DSI+0x60. Это не одна безусловная запись.
 
-Рабочая гипотеза главного агента: framebuffer адрес/stride не опровергнуты;
+Гипотеза: framebuffer адрес/stride не опровергнуты;
 в probe отсутствует необходимый этап передачи кадра command-mode панели.
 Чтобы перейти от этой гипотезы к исправлению, нужны наблюдения у входа payload:
 содержимое исходной logo surface, режим/состояние DSI и mutex, затем сравнение

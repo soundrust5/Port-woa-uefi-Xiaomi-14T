@@ -59,7 +59,7 @@ not establish runtime image identity or prove this base. LPB.Prcb=TPIDR+980
 and Number1 do establish internal consistency of the observed target data;
 they do not establish allocator execution or prove the eventual fault.
 
-## Bounded next test
+## Next test
 
 Before changing Windows initialization, establish runtime identity in the
 same pre-entry observation: compare a small instruction window at restored

@@ -4,7 +4,7 @@ This is a host-side, read-only analysis of existing artifacts. No phone command,
 firmware edit, controller write, PLL/voltage operation or GZ modification was
 performed. It qualifies an observation plan, not a Windows DVFS implementation.
 
-## Evidence and immediate conclusion
+## Findings
 
 The UEFI-menu capture in
 `evidence/raw/2026-10-29-degas-dvfs-snapshot-v1-result/decoded.json` and

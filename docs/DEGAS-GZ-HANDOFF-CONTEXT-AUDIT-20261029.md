@@ -1,14 +1,12 @@
 # Exact GZ handoff and CPU_ON context audit — 2026-10-29
 
-Read-only binary audit; no phone operation, MMIO, firmware patch, or Windows
-change. This report is the only new artifact. Root independently verified the
-active ATF against the pinned ATF hash. GZ findings below are pinned to saved
+The active ATF matched its reference hash. This GZ audit uses
 `evidence/raw/2026-10-24-degas-return/gz_b.img`, full-partition SHA256
 `011c07ed744d69a7b2760a3fb2bdd727327bec08bc844dd4177086e4ce04ee0e`.
 Its MTK header declares payload length0x1B77C0, beginning at raw offset0x200.
 All GZ addresses below are payload-relative; add0x200 for raw file offsets
-(existing linked-image references use base0x38000000). Root's separate read-only
-capture now verifies the active gz_b header and exact loaded payload against
+(existing linked-image references use base0x38000000). A later read-only
+capture verified the active gz_b header and exact loaded payload against
 this saved image: `evidence/raw/2026-10-29-degas-active-gz-identity/manifest.json`,
 payload SHA256 `85802b8800ce948f36f463945dd9bf3dfd348073c771133b5f7e44d1baa57fd9`.
 
@@ -65,7 +63,7 @@ to the target guest register block at+1000. Consequently the zeroed guest X0
 survives even though entry PC and affinity are retained. Native X3=0 alone
 would not prove a bug—the hypervisor may legitimately use its own bootstrap
 context—but the missing guest-X3-to-guest-X0 transfer in the vCPU construction
-is the concrete loss. Root's independent ATF trace preserves native X3 through
+is the concrete loss. The ATF trace preserves native X3 through
 its entry record and ERET, which places this discrepancy in GZ mediation.
 
 The non-cold branch at3D87C also initializes a distinct hypervisor context;

@@ -63,7 +63,6 @@ then select ANDROID in the same menu. If watchdog resets a stalled test, choose
 ANDROID on the next menu. Do not repeat the test or boot Windows until logs
 are captured. No promise of FW-ready/scan/network support from an IP match.
 
-
 ## Hardware result and read-only follow-up
 
 The first hardware test recorded CTL=02000012, CFG=1,
@@ -98,7 +97,6 @@ remain unchanged. Activation is the same simultaneous volume-key chord;
 expected label is CONN AON SNAPSHOT SAVED. An ID of zero in this profile
 is intentional because no chip-ID transaction is attempted.
 
-
 ## AON v2 result and active v3 contract
 
 AON v2 passed on the phone. Both previously missing observations are zero:
@@ -128,7 +126,6 @@ Host GCC and Clang ASan/UBSan checks cover the observed baseline, sticky
 RDY in cold/on states, both blocked mirror cases, failed EN clear, ACK
 failures, cleanup failure, partial baseline rejection and unrelated bits.
 Hardware success is pending. No conclusion about a usable WLAN link yet.
-
 
 ## V3 hardware result / pinmux follow-up
 
@@ -176,7 +173,6 @@ at each pin write/readback, delayed ID ready on last sample and bounded
 failure, in addition to the prior protection/power checks.
 For V4, return to fastboot after the mandatory test reset; do not rely on
 the currently intermittent Android route. Restore Android before collecting.
-
 
 ## V4 hardware PASS
 

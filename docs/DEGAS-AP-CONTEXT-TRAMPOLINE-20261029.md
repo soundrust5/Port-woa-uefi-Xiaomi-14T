@@ -1,6 +1,6 @@
-# Host-only AP context recovery trampoline, 2026-10-29
+# AP context recovery trampoline, 2026-10-29 (offline)
 
-## Result and scope
+## Result
 
 The diagnostic implementation in `diagnostic/degas-ap-context-bridge/` restores
 a published 64-bit context into X0 using MPIDR, without consuming incoming X0.

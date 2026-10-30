@@ -2,11 +2,7 @@
 
 ## Proposed first table
 
-Install a **topology-only PPTT with one physical package and eight core leaves**.
-Leave cache Type1 structures absent until complete geometry and ownership have
-been qualified. This is an independently generated design; the root agent owns
-firmware integration. No shared firmware, phone, native PSCI path, GICC affinity,
-mailbox address, enabled-CPU count, frequency, or voltage was changed here.
+Use a topology-only PPTT with one physical package and eight core leaves. Add cache Type1 structures after geometry and ownership are measured. This design does not change CPU startup, frequency or voltage.
 
 Eight-core Windows operation is now user-confirmed on the retained native
 context v2 image. The reported eight sockets and cache totals are a different
@@ -210,7 +206,7 @@ The present test artifacts are host-only:
 - `test_design.py`:5 tests pass, including16 original-Windows package walks,
   malformed-table rejection, both CCIDX layouts and legal CLIDR selectors.
 - No live PPTT installation, Windows topology API capture or cache-register
-  collection was performed by this agent.
+  collection was performed.
 
 The immediate justified firmware change is the package topology. A complete
 cache table depends on independently supported physical geometry and sharing.

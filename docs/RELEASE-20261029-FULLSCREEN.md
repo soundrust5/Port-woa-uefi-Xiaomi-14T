@@ -1,4 +1,4 @@
-# Xiaomi 14T UEFI — fullscreen / native 8 CPU experimental build
+# Xiaomi 14T UEFI â€” fullscreen / native 8 CPU experimental build
 
 Experimental prerelease for Xiaomi 14T **degas / MT6897 only**, dated 29 October 2026.
 

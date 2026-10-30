@@ -47,7 +47,7 @@ evidence. Activation work adds runtime freshness and conservative software
 thermal caps; successful compilation does not establish that Windows has
 consumed PEP performance notifications or executed those transitions.
 
-## Evidence and limits of the choice
+## Provider choice
 
 The clock-step-v2 retry evidence establishes a real little-domain transition
 under UEFI: requests 1300000 → 1400000 → 2000000 → 1300000 kHz produce approximately

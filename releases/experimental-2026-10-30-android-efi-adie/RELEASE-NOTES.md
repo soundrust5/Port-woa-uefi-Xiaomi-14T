@@ -1,6 +1,6 @@
 ## Русский
 
-Экспериментальный UEFI для **Xiaomi 14T (`degas`)**: прямая загрузка Android через EFI и проверенный A-die/RF-SPI ID.
+Обновлённый UEFI для **Xiaomi 14T (`degas`)** с прямой загрузкой Android.
 
 Скачайте `boot.img` и `SHA256SUMS`.
 
@@ -8,7 +8,7 @@
 
 ## English
 
-Experimental UEFI for **Xiaomi 14T (`degas`)**: direct Android EFI boot and verified A-die/RF-SPI ID.
+Updated UEFI for **Xiaomi 14T (`degas`)** with direct Android boot.
 
 Download `boot.img` and `SHA256SUMS`.
 

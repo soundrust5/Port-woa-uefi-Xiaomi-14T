@@ -1,6 +1,6 @@
 # Degas display, watchdog and RAM observability audit — 2026-10-26
 
-Scope: independent offline inspection of the current Xiaomi 14T / MT6897 Mu source and existing evidence. No phone, ADB, fastboot, flashes, reboots, full firmware builds, or induced exceptions were used by this agent. After the initial read-only audit, the parent explicitly authorized the narrow shared BLT correction, then the guarded opaque-GOP helper and board snapshot protocol, with focused host tests. Those changes are documented below. No Windows/menu code was edited by this agent. No applicable `AGENTS.md` was found in the workspace or its checked ancestors; the 2026-10-24 display handoff was read.
+Offline review of display handoff, followed by the BLT copy correction and opaque-GOP helper described below.
 
 ## Later V11 evidence and guarded opaque implementation
 
@@ -58,7 +58,7 @@ The current UEFI mode is internally truthful: physical base `0xfcc2f000`, visibl
 | --- | --- | --- |
 | QueryMode(0) | Allocates a new info buffer and returns the active dimensions/format/stride. `PixelInformation` is not copied or initialized in that allocation (`DegasGop.c:32–45`). It is ignored for current BGR mode, so this does not establish a current Windows failure. It would be wrong for the advertised helper's 16/24-bit PixelBitMask modes. | Copy the complete initialized mode-info structure. Do not change current pitch or pixel layout in this cleanup. |
 | SetMode(0) | Returns success without clearing or refreshing (`:51–56`). This violates the SetMode clear-to-black behavior documented in the local UEFI binding (`MdePkg/Include/Protocol/GraphicsOutput.h:115–141`). Even reselecting mode 0 must implement the documented operation. | Clear the visible rectangle through the existing opaque-black BLT path and propagate transfer failure. No panel timing change is required for this one-mode correction. |
-| BLT destination checking | The driver's overflow-safe rectangle checks run after `FrameBufferBlt` (`DegasGop.c:113–120`). The shared library's fill/buffer operations have addition-based checks, so this postcheck does not protect against arithmetic-wrap inputs before a store. | Validate operation-specific source/destination bounds with subtraction before entering the library. This is a robustness fix; malformed WBM input has not been observed. Only the separately authorized VideoToVideo shared-library fix below was made. |
+| BLT destination checking | The driver's overflow-safe rectangle checks run after `FrameBufferBlt` (`DegasGop.c:113–120`). The shared library's fill/buffer operations have addition-based checks, so this postcheck does not protect against arithmetic-wrap inputs before a store. | Validate operation-specific source/destination bounds with subtraction before entering the library. This is a robustness fix; malformed WBM input has not been observed. The VideoToVideo fix is described below. |
 | Reserved byte | The driver forces byte 3 opaque only after BLT, masking inherited per-pixel blending for that path. Direct writers see no equivalent rule. | Make hardware treat the BGRX buffer as opaque independently of byte 3. There is no standard GOP alpha format that can require arbitrary Windows writers to supply FF. |
 | Direct framebuffer writes | There is no automatic transfer contract in the driver. SetMode/QueryMode metadata cannot cause command-mode transfers. | Provide a validated autonomous hardware scanout/refresh path that survives EBS, or a suitable OS display implementation. A BLT callback or EFI timer is insufficient after EBS. |
 | Protocol installation/error cleanup | `RegisterFrameBuffer` returns success even if installation failed (`:406–412`, after ASSERT); cleanup dereferences `mFrameBuffer.Mode` before checking it (`:338`) if its initial allocation failed. | Preserve installation error and null-check the outer mode before its Info pointer. These are failure-path defects, not an explanation of the successful existing console test. No edits made here. |
@@ -79,17 +79,17 @@ The following are diagnostic workarounds, not the smallest proper Windows fix:
 
 The smallest proper **local API** improvements are complete QueryMode copying and real SetMode clearing. The smallest proper **display handoff** fix must additionally address opacity and persistent transfer in hardware; its register sequence is not yet established. The two should not be confused.
 
-### Authorized shared-library VideoToVideo correction and verification
+### VideoToVideo correction
 
 The selected library is `MdeModulePkg/Library/FrameBufferBltLib` (`SiliciumPkg.dsc.inc:221`). Its reverse-copy branch previously advanced source and destination by `Height * LineStride` before copying `Height` rows. This starts one row past the requested rectangle. For a valid full-width one-row copy from `(0,0)` to `(0,2711)`, it wrote 4880 bytes at row 2712: outside the reported surface, with 1808 bytes beyond even the mapped reserve. An ordinary downward or same-row rightward copy could also copy the wrong rows. GraphicsConsole's upward scroll uses the forward branch, so the console PASS does not exercise this defect. WBM's use of the reverse operation remains unobserved.
 
-With explicit parent authorization, only `FrameBufferBltLibVideoToVideo` was changed: reverse copying starts at `(Height - 1) * LineStride`, and its four source/destination extent checks now use subtraction after checking the starting coordinate. The latter rejects addition-wrap inputs before address arithmetic. Other library operations were not changed.
+Only `FrameBufferBltLibVideoToVideo` was changed: reverse copying starts at `(Height - 1) * LineStride`, and its four source/destination extent checks now use subtraction after checking the starting coordinate. The latter rejects addition-wrap inputs before address arithmetic. Other library operations were not changed.
 
 `diagnostic/tests/test_degas_framebuffer_video_copy.c` includes the actual selected library source and calls its actual VideoToVideo function, using host `memmove` only as the platform CopyMem implementation. Expected output is calculated from an immutable snapshot of the original surface, independently of copy direction. Every word of the surface, row padding, and outer canaries is compared. It covers last visible row, downward/upward row overlap, rightward/leftward same-row overlap, bottom-row horizontal overlap, identical full rectangle, integer-wrap coordinates, exceeded edges, and zero extents.
 
 - Before the production change: GCC built the test, which failed `last visible row` at word 114 (the requested final row was unchanged).
 - After the change: the same test passed with `-Wall -Wextra -Werror`.
-- No full firmware build, packaging or phone test was run by this agent. This correction removes a reproducible memory/copy defect; it does not establish that it caused the observed WBM symptom.
+- Host test only; whether this copy defect caused the WBM symptom was not established.
 
 Reproduce from the workspace inside WSL, placing the executable in a temporary directory:
 

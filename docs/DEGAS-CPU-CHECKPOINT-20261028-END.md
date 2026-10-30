@@ -1,9 +1,6 @@
 # Paused at user's request, 2026-10-28
 
-No further flashing/reboots/experiments authorized until the user resumes.
-Phone last verified in stock Android with ADB. Stock boot_b restored from
-evidence/raw/2026-10-24-degas-return/boot_b.img. No NTFS/ESP mounts left by
-the latest capture. Agents are interrupted. No active shell sessions pending.
+Historical checkpoint: stock Android boot_b restored; ADB available, NTFS/ESP unmounted.
 
 Latest Windows test image:
 artifacts/degas-windows-coherent-dualboot-v1/boot.img
@@ -41,7 +38,7 @@ BOOT ANDROID composite route worked after UEFI-only tests, but user reported
 returning to UEFI after the Windows attempt. Latest captured console contains
 one wrapper entry and Windows EBS tail, no Android-request marker or second
 wrapper entry. Do not claim lost flag or Android kernel panic yet. Stock
-Android boot works. Agent audit found no overlap of AP journal and flagF00.
+Android boot works. The memory-map review found no overlap of AP journal and flagF00.
 
 Console wrapper now preserves valid ring on re-entry (ramoops_probe.c), source
 and host tests verified. Latest wrapper build ID3c9a9a3bcfbd62d31ede799a94b4a6830d42571b301a0281581fa167fe6ebfa7.

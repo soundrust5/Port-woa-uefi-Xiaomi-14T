@@ -52,7 +52,6 @@ This supports LK ROM/EMI preloading. It does not prove a particular firmware
 payload remains present or authenticated in UEFI. Check reserved EMI content
 and remapping before copying payloads or releasing the WLAN MCU.
 
-
 V6 hardware PASS: RF0/CONN0/IP02050400, both rail enable/NORMAL controls
 read back01, VRFIO18 selector0b. RF restore returned1d07=00,1bcd=00,
 OP_CFG80/80 and selector0c; CONN/pinmux cleanup also passed. Full result

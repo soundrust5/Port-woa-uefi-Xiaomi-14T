@@ -1,6 +1,6 @@
 # Linux-style shared CPU context bridge for Degas — 2026-10-29
 
-## Result and scope
+## Result
 
 The Android/Linux technique can be adapted at the Windows bootstrap boundary:
 publish context in shared memory, enter an AP stub that does not need incoming

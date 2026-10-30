@@ -106,9 +106,9 @@ decoded frequency, not the exact pretest enable/request bit pattern.
 
 No shared firmware file was edited and no hardware action was performed.
 
-## Review of root's isolated read-only integration
+## Read-only integration
 
-Root subsequently added `CheckpointDxe/DvfsPmuRead.S` and called it only after
+The integration added `CheckpointDxe/DvfsPmuRead.S` and called it only after
 the retained CSRAM record is committed. The observer reads PMU-version,
 PMCR/enable/filter/reference metadata and two raw cycle/reference samples10ms
 apart. It deliberately has no PMU or controller writes. It samples even a

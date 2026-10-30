@@ -2,7 +2,7 @@
 
 Offline only. No production edits, device access, SMC invocation, GCE submission, or IOMMU/security changes were performed. Focused disassembly and metadata are preserved under `evidence/extracted/2026-10-26-gce/`.
 
-## Concrete result
+## Result
 
 The PC encoding is established: **`(controller DMA address + 0x40000000) >> 3`**, not bare `PA >> 3`. The unresolved part is whether the controller DMA address for a new Mu buffer may equal its CPU physical address in the inherited V13 state. A nonsecure read of zero at global GCE `+0x54` does not by itself close that gap.
 
@@ -62,11 +62,11 @@ Exact installed `cmdq_xlate` at `0x84c0` checks index against channel count and 
 
 The next hardware **execution** experiment should be only an internal SPR0 magic assignment, EOC without IRQ, and terminal/pass instruction. It should have no packet memory writes, peripheral writes, waits, loops, display commands, SMCs, global54 writes, IOMMU-root replacement or protected-reservation reuse. Require SPR0 magic, execution-count change and bounded PC/end status; on timeout/error record status before selected-thread cleanup and retain the packet allocation if quiescence is not proved.
 
-Use the established PC encoder on a **controller DMA address**, with its CPU backing address separately recorded. A compile-time/runtime `dma_address = cpu_pa` assumption is not yet justified by this inspection. Keep the address-route proof separate from the already established encoder and do not relabel a guessed PA as a mapped DMA address. If the parent requires a source-proven route before integration, this experiment remains unlinked until that one unresolved mapping/bypass condition is closed. Another broad read-only snapshot of the same globals would not close it.
+Use the established PC encoder on a **controller DMA address**, with its CPU backing address separately recorded. A compile-time/runtime `dma_address = cpu_pa` assumption is not yet justified by this inspection. Keep the address-route proof separate from the already established encoder and do not relabel a guessed PA as a mapped DMA address. The mapping/bypass path must be resolved before linking this experiment.
 
 ## V14 follow-up: the ATF map is a fixed secure-module mapping
 
-The parent reports V14's query returned hyp-IOMMU type2 enabled while executing at EL1, with the sampled registers unchanged and all channels disabled. This does not identify normal guest-root ownership or make a CPU PA a controller DMA address.
+V14 returned hyp-IOMMU type2 enabled while executing at EL1, with the sampled registers unchanged and all channels disabled. This does not identify normal guest-root ownership or make a CPU PA a controller DMA address.
 
 The exact routine at `0x4882b880` is now traced through selection and update:
 

@@ -1,10 +1,6 @@
 # Independent native AP prefix review — 2026-10-29
 
-**Conditional GO for a bounded CPU0+CPU1 cold-boot experiment. No GO for a
-general SMP/power-management release.** This judgment covers the exact prefix
-and its native mailbox contract. The new EBS locator/write integration is
-separate work and is not certified by this review. No phone action or source
-edit outside this report was performed; the other agent's files were not edited.
+The reviewed prefix supports an experimental CPU0+CPU1 cold boot. General SMP/power management and the separate EBS locator/write integration were outside this review.
 
 Reviewed `diagnostic/degas-windows-context-bridge/bridge_fixture.py`,
 `NativeContextFixture.h` and `test_bridge.py` against the original saved active

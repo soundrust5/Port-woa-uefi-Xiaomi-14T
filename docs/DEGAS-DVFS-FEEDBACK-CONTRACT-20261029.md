@@ -1,4 +1,4 @@
-# Minimum honest FxPPM frequency-feedback contract
+# FxPPM frequency feedback
 
 Read-only audit, 2026-10-29. No provider, firmware, counter-control or phone
 changes were made. This establishes the software contract; it does not qualify

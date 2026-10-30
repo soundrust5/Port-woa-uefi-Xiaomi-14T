@@ -96,7 +96,7 @@ neither power state nor successful coherency. CPU0's direct leaf cannot have
 its deadline enforced by another ordinary BSP polling loop; its trap recovery
 would require the hardware watchdog/exception policy.
 
-## What the values establish
+## Interpretation
 
 MMFR2.CCIDX[23:20]=0 selects legacy CCSIDR: ways=[12:3]+1, sets=[27:13]+1.
 CCIDX=1 selects extended CCSIDR: ways=[23:3]+1, sets=[55:32]+1. Both formats

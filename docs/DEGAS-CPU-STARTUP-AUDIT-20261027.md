@@ -8,7 +8,7 @@ The debuglogger copy is the preceding menu-only log, not the crashed boot.
 Saved System.evtx includes another CPU0-only processor-power record (522).
 Kernel-Power without a bugcheck code cannot identify the reset mechanism.
 
-## Concrete ACPI correction
+## ACPI correction
 
 The degas MADT generator assigned UID to both CPU Interface Number and ACPI
 Processor UID. The working OP12 generator assigns zero to the former and

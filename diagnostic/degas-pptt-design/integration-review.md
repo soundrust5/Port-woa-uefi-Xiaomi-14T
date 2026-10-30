@@ -1,9 +1,6 @@
 # Optional topology integration review, 2026-10-29
 
-**PASS for the reviewed source/layout changes. No introduced correction is
-required.** Compilation and live OS publication remain the root agent's checks.
-Reviewed `DegasAcpiDxe.c`, `CpuPpttGenerated.h`, and `DegasSmbios.c`; no firmware
-source, native CPU bridge, or cache probe source was edited by this review.
+The reviewed `DegasAcpiDxe.c`, `CpuPpttGenerated.h` and `DegasSmbios.c` layout passed source checks. Compilation and publication to the OS require separate validation.
 
 - Parsed the actual generated initializer: signature PPTT, revision3, declared
   and actual length216, checksum0. It contains one20-byte root at offset36 and

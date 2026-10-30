@@ -65,7 +65,7 @@ stops under the watchdog; it is never treated as an untouched fallback.
 
 ## Evidence and remaining limits
 
-Agent prototypes separately execute original GZ context loss and shared-memory
+Prototypes test original GZ context loss and shared-memory
 reconstruction. The exact Windows fixture tests its original generated startup
 page and its adapted prefix through stack/PCR setup before enabling the MMU.
 Firmware core tests compile the actual production header under UBSan and cover

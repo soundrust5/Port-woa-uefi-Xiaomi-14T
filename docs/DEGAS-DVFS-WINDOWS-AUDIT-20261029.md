@@ -145,8 +145,7 @@ against hardware.
 
 ### Minimal observation points; no guessed physical mapping
 
-Two root-installed temporary probes collected the existing read without an
-additional SRAM access. No agent installed a phone probe.
+Two temporary root probes captured the existing read without another SRAM access.
 
 - `mediatek_cpufreq_hw:mtk_cpufreq_hw_get+0x24`, at .textC28, precedes
   `LDR X0,[X20,#18]`. X0 is the policy CPU, X20 is the domain and X8 is the

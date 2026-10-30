@@ -1,10 +1,6 @@
 # Read-only UEFI CSRAM snapshot
 
-This directory supplies a bounded observation core and an offline decoder. It
-does not install a firmware driver, access a phone, write a controller, start a
-CPU, send an IPI/SMC, program a PLL, or change a clock/voltage/performance request.
-The parent integration owns mapping, menu invocation, build identity, and RAM
-journal retention. Cache probing is outside this helper.
+Read-only CSRAM observation core and offline decoder. Firmware integration supplies MMIO mapping, menu entry, build identity and retained RAM logging. Cache probing and controller writes are outside this helper.
 
 ## Capture contract
 
@@ -61,8 +57,7 @@ unnecessary. The helper still rejects every surrounding mapped word outside
 the 109-word allowlist. AddDev/MmIO is an MMIO resource, never allocatable RAM;
 this is a UEFI mapping and does not install a Windows runtime MMIO service.
 Device attributes alone do not enforce the no-write policy: callback review
-does. The parent reports adding this mapping separately; this directory did
-not edit the shared firmware map.
+does. The mapping is supplied by platform integration.
 
 ## Journal integration
 
@@ -123,8 +118,8 @@ The interpretation source is the local primary reference
 `mtk_cpu_create_freq_table`, `mtk_cpufreq_hw_get`, probe mode and latency
 conversion) and the captured DT in
 `evidence/raw/2026-10-25-degas-ufs-baseline-v2/live-fdt.tsv`. Exact installed-module
-findings are retained by the parent separately; this helper does not claim the
-whole published source is an identity match to the installed module.
+findings are recorded separately; the reference source is not a byte-for-byte
+match to the installed module.
 
 ## Host validation
 

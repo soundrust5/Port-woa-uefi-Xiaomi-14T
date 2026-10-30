@@ -1,8 +1,8 @@
 # Degas Windows boot audit — 2026-10-26
 
-Scope: independent offline, read-only review of the current Mu source and saved evidence. No phone access, ADB, fastboot, flashing, rebooting, or production edits. This report is the only intended new file. No applicable `AGENTS.md` was found in the workspace or its checked ancestors. Read the display handoff and lancelot foundation notes before tracing the implementation.
+Offline review of Mu boot code and saved display/boot captures.
 
-## Most defensible conclusion
+## Conclusion
 
 **Updated after fresh V11 evidence:** `evidence/raw/2026-10-26-degas-windows-v11-result/console-ramoops-0:559-570` shows the large 647,626,752-byte request completed successfully in 14.901273 seconds, successful EBS notification, empty UFS doorbells/HCE stopped, all EBS callbacks complete, memory-protection completion, and the final `ready-to-return success` breadcrumb. The previous possibility of a hang in the instrumented firmware EBS body is no longer the leading explanation for this run. The final breadcrumb is immediately before return; it still does not independently prove Windows kernel entry.
 
@@ -167,7 +167,7 @@ Given V8's verified recovery, V9's faster-copy change and absence of reset make 
 
 No new unconditional fatal handoff defect was established. The focused next test should retain bounded hardware recovery and add stage evidence instead of changing BCD/ACPI/GIC simultaneously:
 
-- Before the boot, capture actual runtime descriptor base/length/alignment and the current memory-protection settings, alongside the preflight already being added by the parent task.
+- Before the boot, capture actual runtime descriptor base/length/alignment and the current memory-protection settings.
 - In a diagnostic build, add RAM-only begin/end breadcrumbs around successful EBS event dispatch, and a final breadcrumb immediately before CoreExitBootServices returns; if needed, add before/after marks to GIC shutdown. Do not draw or allocate at that boundary. Preserve the short hardware watchdog through all of it.
 - If the final core-return breadcrumb is absent but Windows handoff marker is present, isolate the intervening firmware callback. If present, proceed to a carefully scoped winload/kernel-transition observation; do not label that marker itself kernel entry. If no EBS is reached, focus on complete WIM read, allocations and hidden loader error rather than OS UFS driver work.
 - Separately correct the proven RTC/SMBIOS/display shortcomings, but do not conflate those compliance fixes with a demonstrated repair of this handoff.
@@ -183,11 +183,11 @@ Read-only review of `Drivers/CheckpointDxe/WindowsBoot.h`, `Include/Protocol/Deg
 - Each display-idle wait is capped at approximately 100 ms. The refresh path contains up to three such waits, so the aggregate polling bound is approximately 300 ms, plus cache/MMIO work. Do not describe the complete Flush as a single 100 ms bound.
 - Logging uses the corrected RAM ring writer's save-disable/restore IRQ guard. It restores the entry interrupt state; the flush does not persistently change CPU IRQ routing/state or the GIC configuration.
 
-The result will show one snapshot of memory already rendered by the loader. It cannot prove that the next Windows framebuffer update becomes visible, and it cannot replace a native display driver or continuously refreshed hardware configuration. Hardware blend/DSI behavior remains the display agent's evidence-backed experimental scope.
+A final-frame snapshot shows what the loader rendered. Continuous post-EBS refresh still requires a hardware display loop or an OS driver.
 
 V11 independently observed `smbios2=0 smbios3=0`, invalid successful GetTime date `2019-1-0`, 1,125,634,048 conventional bytes and a 1 GiB largest free interval (`console-ramoops-0:498-499`). Those initial audit gaps are now observations rather than packaging inferences, but V11's progress shows they did not stop this run from reaching the final EBS breadcrumb.
 
-The parent task's concern about raw physical ramoops access at virtual runtime is also confirmed as a conditional real risk: generic, non-OP12-gated runtime paths include `ArmPsciResetSystemLib.c:88` (ResetWarm fallback DEBUG_INFO), `Variable.c:2488` (out-of-space DEBUG_WARN), and `Variable.c:358` (RecordVarErrorFlag DEBUG_ERROR). The serial ring remains reserved physical memory and has no SetVirtualAddressMap conversion. The IRQ reentrancy guard does not solve that mapping issue. No evidence links this risk to the fresh V11 stop; this final-frame EBS call still runs in the firmware's physical mapping context.
+Raw physical ramoops access at virtual runtime is a mapping risk: generic, non-OP12-gated runtime paths include `ArmPsciResetSystemLib.c:88` (ResetWarm fallback DEBUG_INFO), `Variable.c:2488` (out-of-space DEBUG_WARN), and `Variable.c:358` (RecordVarErrorFlag DEBUG_ERROR). The serial ring remains reserved physical memory and has no SetVirtualAddressMap conversion. The IRQ reentrancy guard does not solve that mapping issue. No evidence links this risk to the fresh V11 stop; this final-frame EBS call still runs in the firmware's physical mapping context.
 
 ## Focused follow-up: EBS thumbnail consumer
 
