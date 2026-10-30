@@ -18,7 +18,7 @@ Device: **Xiaomi 14T / degas / MediaTek MT6897**. Updated: **29 October 2026**.
 | Display | ✅ |
 | GPU acceleration | ❌ |
 | Touchscreen | ✅ |
-| Internal storage — UFS | ✅ |
+| Internal storage — UFS | 🟡 (slow) |
 | Volume buttons | ✅ UEFI and Windows |
 | Power button | ✅ UEFI; 5-second hold opens shutdown confirmation in Windows |
 | USB host | ❌ |
